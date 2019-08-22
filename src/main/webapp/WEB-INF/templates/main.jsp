@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <title>ProjectDuo</title>
@@ -7,26 +8,6 @@
 <link rel="stylesheet" href="css/main.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
-
-body, html {
-  height: 100%;
-  line-height: 1.8;
-}
-
-/* Full height image header */
-.bgimg-1 {
-  background-position: center;
-  background-size: cover;
-  background-image: url("/img/bgImage.jpg");
-  min-height: 100%;
-}
-
-.w3-bar .w3-button {
-  padding: 16px;
-}
-</style>
 <body>
 
 <!-- Navbar (sit on top) -->
@@ -59,7 +40,7 @@ body, html {
   <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button">CONTACT</a>
 </nav>
 
-<!-- 일반적인 화면에서의 헤더의 메뉴 -->
+<!-- 일반적인 화면에서의 헤더의 메뉴  -->
 <header class="bgimg-1 w3-display-container w3-grayscale-min" id="home">
   <div class="w3-display-left w3-text-white" style="padding:48px">
     <span class="w3-jumbo w3-hide-small">Start something that matters</span><br>
