@@ -1,4 +1,3 @@
-# Project Duo
 ## 목차
 1. About
 2. 페이지 구성
