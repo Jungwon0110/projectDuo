@@ -11,195 +11,100 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="css/main.css">
-<style>
-img {
-  vertical-align: middle;
-}
 
-/* Position the image container (needed to position the left and right arrows) */
-.container {
-  position: relative;
-}
-
-/* Hide the images by default */
-.mySlides {
-  display: none;
-}
-
-/* Add a pointer when hovering over the thumbnail images */
-.cursor {
-  cursor: pointer;
-}
-
-/* Next & previous buttons */
-.prev,
-.next {
-  cursor: pointer;
-  position: absolute;
-  top: 40%;
-  width: auto;
-  padding: 16px;
-  margin-top: -50px;
-  color: white;
-  font-weight: bold;
-  font-size: 20px;
-  border-radius: 0 3px 3px 0;
-  user-select: none;
-  -webkit-user-select: none;
-}
-
-/* Position the "next button" to the right */
-.next {
-  right: 0;
-  border-radius: 3px 0 0 3px;
-}
-
-/* On hover, add a black background color with a little bit see-through */
-.prev:hover,
-.next:hover {
-  background-color: rgba(0, 0, 0, 0.8);
-}
-
-/* Number text (1/3 etc) */
-.numbertext {
-  color: #f2f2f2;
-  font-size: 12px;
-  padding: 8px 12px;
-  position: absolute;
-  top: 0;
-}
-
-/* Container for image text */
-.caption-container {
-  text-align: center;
-  background-color: #222;
-  padding: 2px 16px;
-  color: white;
-}
-
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-/* Six columns side by side */
-.column {
-  float: left;
-  width: 16.66%;
-}
-
-/* Add a transparency effect for thumnbail images */
-.demo {
-  opacity: 0.6;
-}
-
-.active,
-.demo:hover {
-  opacity: 1;
-}
-</style>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
 	<div id="main_backgound">
 		<img class="mainImage" alt="mainBackGround" src="/img/bgImage.jpg">
 	</div>
-	<div id="title">
-		<h1>Portfolio</h1>
-	</div>
-	<div id="main_content">
-	<div class="container">
-	  <div class="mySlides">
-	    <div class="numbertext">1 / 6</div>
-	    <img src="https://source.unsplash.com/1600x900/?dog" style="width:70%">
-	  </div>
-	
-	  <div class="mySlides">
-	    <div class="numbertext">2 / 6</div>
-	    <img src="https://source.unsplash.com/1600x900/?cat" style="width:70%">
-	  </div>
-	
-	  <div class="mySlides">
-	    <div class="numbertext">3 / 6</div>
-	    <img src="https://source.unsplash.com/1600x900/?puppy" style="width:70%">
-	  </div>
-	    
-	  <div class="mySlides">
-	    <div class="numbertext">4 / 6</div>
-	    <img src="https://source.unsplash.com/1600x900/?kitten" style="width:70%">
-	  </div>
-	
-	  <div class="mySlides">
-	    <div class="numbertext">5 / 6</div>
-	    <img src="https://source.unsplash.com/1600x900/?tree" style="width:70%">
-	  </div>
-	    
-	  <div class="mySlides">
-	    <div class="numbertext">6 / 6</div>
-	    <img src="https://source.unsplash.com/1600x900/?flower" style="width:70%">
-	  </div>
-	    
-	  <a class="prev" onclick="plusSlides(-1)">❮</a>
-	  <a class="next" onclick="plusSlides(1)">❯</a>
-	
-	  <div class="caption-container">
-	    <p id="caption"></p>
-	  </div>
-	
-	  <div class="row">
-	    <div class="column">
-	      <img class="demo cursor" src="https://source.unsplash.com/1600x900/?dog" style="width:70%" onclick="currentSlide(1)" alt="The Woods">
-	    </div>
-	    <div class="column">
-	      <img class="demo cursor" src="https://source.unsplash.com/1600x900/?cat" style="width:70%" onclick="currentSlide(2)" alt="Cinque Terre">
-	    </div>
-	    <div class="column">
-	      <img class="demo cursor" src="https://source.unsplash.com/1600x900/?puppy" style="width:70%" onclick="currentSlide(3)" alt="Mountains and fjords">
-	    </div>
-	    <div class="column">
-	      <img class="demo cursor" src="https://source.unsplash.com/1600x900/?kitten" style="width:70%" onclick="currentSlide(4)" alt="Northern Lights">
-	    </div>
-	    <div class="column">
-	      <img class="demo cursor" src="https://source.unsplash.com/1600x900/?tree" style="width:70%" onclick="currentSlide(5)" alt="Nature and sunrise">
-	    </div>    
-	    <div class="column">
-	      <img class="demo cursor" src="https://source.unsplash.com/1600x900/?flower" style="width:70%" onclick="currentSlide(6)" alt="Snowy Mountains">
-	    </div>
-	  </div>
-	</div>
-</div>
-		
-		<jsp:include page="footer.jsp"></jsp:include>
+	<div id="main_contents">
+		<div id="main_forwardIcon">
+			<p>We Are Programmer</p>
+			<br>
+			<button id="mainButton1">Enter as a Guest</button>
+		</div>
+		<div class="form-wrap">
+			<div class="form-tabs">
+				<h3 class="signup-tab">
+					<button class="signinupButton" onclick="signup();">Sign Up</button>
+				</h3>
+				<h3 class="login-tab">
+					<button class="signinupButton" onclick="signin();">Login</button>
+				</h3>
+			</div>
+			<!--.tabs-->
 
-	<script>
-		var slideIndex = 1;
-		showSlides(slideIndex);
-		
-		function plusSlides(n) {
-		  showSlides(slideIndex += n);
+			<div class="tabs-content">
+				<div id="signup-tab-content">
+					<form class="signup-form" action="" method="post">
+						<input type="email" id="email" autocomplete="off" placeholder="Email"> 
+						<input type="text" id="name" autocomplete="off" placeholder="Username"> 
+						<input type="password" name="password" id="signup_pass" autocomplete="off" placeholder="Password">
+						<a onclick="signup_eye();"><i id="signup_eye" class="fa fa-eye-slash fa-lg"></i></a>
+						<input type="text"  class="input" id="birth" autocomplete="off" placeholder="ex.19921201"> 
+						<input type="text" id="githubAccount" autocomplete="off" placeholder="github Account"> 
+						
+						<input type="submit" class="blueButton" value="Sign Up">
+					</form>
+				</div>
+				<!--.signup-tab-content-->
+
+				<div id="login-tab-content">
+					<form class="login-form" action="" method="post">
+						<input type="text" id="user_login" autocomplete="off" placeholder="Email or Username"> 
+						<input type="password" name="user_pass" id="login_pass" autocomplete="off" placeholder="Password"> 
+						<a onclick="login_eye();"><i id="login_eye" class="fa fa-eye-slash fa-lg"></i></a>
+						<input type="submit" class="blueButton" value="Login">
+					</form>
+					<!--.login-form-->
+					<div class="help-text">
+						<p style="text-align:center">
+							<a style="color:white;text-decoration:none;" href="#">Forget your password?</a>
+						</p>
+					</div>
+					<!--.help-text-->
+				</div>
+				<!--.login-tab-content-->
+			</div>
+			<!--.tabs-content-->
+		</div>
+		<!--.form-wrap-->
+	</div>
+	<script type="text/javascript">
+		/* button action */
+		function signup() {
+		    var x = document.getElementById("signup-tab-content");
+		    var y = document.getElementById("login-tab-content");
+		    x.style.display = "block";           
+		    y.style.display = "none";           
+		}
+		function signin() {
+		    var x = document.getElementById("signup-tab-content");
+		    var y = document.getElementById("login-tab-content");
+		    x.style.display = "none";           
+		    y.style.display = "block";           
 		}
 		
-		function currentSlide(n) {
-		  showSlides(slideIndex = n);
-		}
 		
-		function showSlides(n) {
-		  var i;
-		  var slides = document.getElementsByClassName("mySlides");
-		  var dots = document.getElementsByClassName("demo");
-		  var captionText = document.getElementById("caption");
-		  if (n > slides.length) {slideIndex = 1}
-		  if (n < 1) {slideIndex = slides.length}
-		  for (i = 0; i < slides.length; i++) {
-		      slides[i].style.display = "none";
-		  }
-		  for (i = 0; i < dots.length; i++) {
-		      dots[i].className = dots[i].className.replace(" active", "");
-		  }
-		  slides[slideIndex-1].style.display = "block";
-		  dots[slideIndex-1].className += " active";
-		  captionText.innerHTML = dots[slideIndex-1].alt;
+		/* password view */
+		function signup_eye() {
+			if(document.getElementById("signup_pass").getAttribute("type")=="password"){
+				document.getElementById("signup_pass").setAttribute("type", "text"); 
+		  		document.getElementById("signup_eye").className = "fa fa-eye fa-lg"
+			}else if(document.getElementById("signup_pass").getAttribute("type")=="text"){
+				document.getElementById("signup_pass").setAttribute("type", "password"); 
+				document.getElementById("signup_eye").className = "fa fa-eye-slash fa-lg"
+			}
 		}
-	</script>
+		function login_eye() {
+			if(document.getElementById("login_pass").getAttribute("type")=="password"){
+				document.getElementById("login_pass").setAttribute("type", "text"); 
+		  		document.getElementById("login_eye").className = "fa fa-eye fa-lg"
+			}else if(document.getElementById("login_pass").getAttribute("type")=="text"){
+				document.getElementById("login_pass").setAttribute("type", "password"); 
+				document.getElementById("login_eye").className = "fa fa-eye-slash fa-lg"
+			}
+		}
+		</script>
 </body>
 </html>
