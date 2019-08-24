@@ -13,4 +13,4 @@
 
 ## 페이지 구성
 ##### Main Page
-![mainpage](./README_IMage/mainpage.png)
+![mainpage](./README_Image/mainPage.png)
