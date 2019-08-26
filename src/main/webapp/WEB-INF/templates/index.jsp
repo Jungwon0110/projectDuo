@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <title>ProjectDuo</title>
@@ -22,6 +23,23 @@
 			<p>We Are Programmer</p>
 			<br>
 			<button id="mainButton1">Enter as a Guest</button>
+			<!-- 			loginTest -->
+			<a href="/admin">admin</a>
+			<a href="/user">user</a>
+<sec:authorize access="isAnonymous()">
+로그아웃 중...
+</sec:authorize>
+<sec:authorize access="isAuthenticated()">
+로그인중
+</sec:authorize>
+	<c:url var="logoutUrl" value="/logout"/>
+		<form action="${logoutUrl}" method="post">
+			<input type="submit" value="Log out" />
+			<input type="hidden"  name="${_csrf.parameterName}" value="${_csrf.token}"/>
+		</form>
+<!-- 			loginTest -->
+			
+			
 		</div>
 		<div class="form-wrap">
 			<div class="form-tabs">
