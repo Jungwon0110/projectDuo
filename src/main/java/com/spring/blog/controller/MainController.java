@@ -13,15 +13,16 @@ import com.spring.blog.service.DbService;
 
 @Controller
 public class MainController {
-	
-	@Autowired
+
+	  
+    @Autowired
     DbService dbService;
     
+	
     @RequestMapping("/")
-    public String main() {
-        return "main";
+    public String index() {
+        return "index";
     }
-    
     
     @RequestMapping("/dbTest")
     public ModelAndView dbTest() throws Exception {
@@ -31,8 +32,18 @@ public class MainController {
         
         return new ModelAndView("dbTest", "list", list);
     }
+    
+    @RequestMapping("/admin")
+    public void admin() {}
+    
 	
-	
-	
+    @RequestMapping("/login")
+    public void login() {}
+    
+    @RequestMapping("/user")
+    public void user() {}
+    
+    
+    
 }
 
