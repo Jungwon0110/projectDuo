@@ -13,10 +13,10 @@ public class UserDetailDerviceImpl implements UserDetailsService{
 	
 	
 	@Override
-	public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
-		Account account =accountReposotory.findByUserId(userId);
-		if(account ==null) {
-			throw new UsernameNotFoundException(userId);
+	public UserDetails loadUserByUsername(String userid) throws UsernameNotFoundException {
+		Account account =accountReposotory.findByUserid(userid);
+		if(account == null) {
+			throw new UsernameNotFoundException(userid);
 		}
 		return new UserDetailsImpl(account);
 	}

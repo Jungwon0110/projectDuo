@@ -6,6 +6,7 @@ import com.spring.blog.domain.Account;
 
 public interface AccountRepository extends JpaRepository<Account, Long> {
 
-	Account findByUserId(String userId);
+	Account findByUserid(String userid);
+
 	
 }

@@ -10,11 +10,11 @@ import org.springframework.security.core.userdetails.User;
 
 import com.spring.blog.domain.Account;
 
-public class UserDetailsImpl extends User {
+public class UserDetailsImpl extends User  {
 	
 
 	public UserDetailsImpl(Account account) {
-		super(account.getUserId(),account.getPassword(),authorities(account));
+		super(account.getUserid(),account.getPassword(),authorities(account));
 	}
 
 	private static Collection<? extends GrantedAuthority> authorities(Account account) {

@@ -9,31 +9,21 @@ public class Account {
 	@Id
 	@GeneratedValue
 	private Long id;
-	private String userId;
+	private String userid;
 	private String password;
 	private String role;
 	private String nick;
 	public Long getId() {
 		return id;
 	}
-	public Account(Long id, String userId, String password, String role, String nick) {
-		super();
+	public void setId(Long id) {
 		this.id = id;
-		this.userId = userId;
-		this.password = password;
-		this.role = role;
-		this.nick = nick;
 	}
-	@Override
-	public String toString() {
-		return "Account [id=" + id + ", userId=" + userId + ", password=" + password + ", role=" + role + ", nick="
-				+ nick + "]";
+	public String getUserid() {
+		return userid;
 	}
-	public String getUserId() {
-		return userId;
-	}
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setUserid(String userid) {
+		this.userid = userid;
 	}
 	public String getPassword() {
 		return password;
@@ -53,8 +43,12 @@ public class Account {
 	public void setNick(String nick) {
 		this.nick = nick;
 	}
-	public void setId(Long id) {
-		this.id = id;
+	@Override
+	public String toString() {
+		return "Account [id=" + id + ", userid=" + userid + ", password=" + password + ", role=" + role + ", nick="
+				+ nick + "]";
 	}
+
+	
 	
 }
