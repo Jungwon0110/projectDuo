@@ -2,6 +2,14 @@
 	box-sizing: border-box;
 }
 
+#myVideo {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%; 
+  min-height: 100%;
+}
+
 #form {
 	position: absolute;
 	top: 20%;
@@ -20,7 +28,7 @@
 
 #main_forwardIcon{
 	float: left;
-	margin-top:10%;
+	margin-top:0%;
 	width : 60%;
 }
 
@@ -30,7 +38,7 @@
 }
 
 #mainButton1 {
-	background-color: rgba(0, 0, 0, 0.5);
+	background-color: rgba(1, 1, 1, 0.5);
 	font-size: 20px;
 	border-radius: 12px;
 	padding: 20px;
@@ -53,7 +61,7 @@ body {
 
 /* header  */
 #header {
-	background-color: rgba(0, 0, 0, .4);
+	background-color: rgba(1, 1, 1, .4);
 	color: white;
 	padding: 10px 30px;
 	text-align: right;
@@ -129,7 +137,7 @@ label, #toggle {
 
 /* signup&login */
 .form-wrap {
-	background-color:rgba(0,0,0,0.5);
+	background-color:rgba(1,1,1,0.5);
 	float: right;
 	min-width: 350px;
 	width: 30%;
@@ -139,11 +147,11 @@ label, #toggle {
 }
 
 #signup-tab-content{
-	display: block;
+	display: none;
 }
 
 #login-tab-content{
-	display: none;
+	display: block;
 }
 
 .form-tabs{
@@ -152,14 +160,14 @@ label, #toggle {
 }
 
 .signup-tab{
-	float: left;
+	float: right;
 	width: 50%;
     margin: 0px;
     border-rignt:1px solid;
 }
 
 .login-tab{
-	float: right;
+	float: left;
 	width: 50%;
     margin: 0px;
 }
