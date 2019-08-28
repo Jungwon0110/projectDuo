@@ -48,7 +48,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				// .anyRequest().authenticated()
 		
 		http.formLogin()
-			.loginPage("/login")
 			.and()
 			.logout().logoutSuccessUrl("/").permitAll();
 		
@@ -78,7 +77,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	public TokenBasedRememberMeServices tokenBasedRememberMeServices(){
 		TokenBasedRememberMeServices tokenBasedRememberMeServices =
 				new TokenBasedRememberMeServices(REMEMBER_ME_KEY, userDetailsService);
-		tokenBasedRememberMeServices.setCookieName("arahansaCookie");
+		tokenBasedRememberMeServices.setCookieName("projectDuoCookie");
 		return tokenBasedRememberMeServices;
 	}
 

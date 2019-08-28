@@ -32,9 +32,8 @@ public class MainController {
 	public void user() {}
 	
 	@RequestMapping("/login")
-	public void login() {
-		
-	}
+	public void login() { }
+	
 	
 	
 	@RequestMapping("/registerForm")
@@ -89,4 +88,7 @@ public class MainController {
 	public String  getMessage(){
 		return helloMessageService.getMessage();
 	}
+	
+	@RequestMapping("/notice")
+	public void notice() { }
 }

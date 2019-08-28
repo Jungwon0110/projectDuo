@@ -28,8 +28,6 @@
 
 #main_forwardIcon{
 	float: left;
-	margin-top:0%;
-	width : 60%;
 }
 
 #main_forwardIcon p {
@@ -38,12 +36,13 @@
 }
 
 #mainButton1 {
-	background-color: rgba(1, 1, 1, 0.5);
+	background-color: rgba(0, 0, 0, 0.5);
 	font-size: 20px;
 	border-radius: 12px;
 	padding: 20px;
 	border: none;
 	color: white;
+	cursor: pointer;
 }
 
 /* image 100%  */
@@ -61,7 +60,7 @@ body {
 
 /* header  */
 #header {
-	background-color: rgba(1, 1, 1, .4);
+	background-color: rgba(0, 0, 0, .4);
 	color: white;
 	padding: 10px 30px;
 	text-align: right;
@@ -95,29 +94,7 @@ label, #toggle {
 	display: inline;
 }
 
-/* responsive header */
-@media screen and (max-width:480px) {
-	#nav {
-		display: none;
-	}
-	#toggle:checked+#nav {
-		display: block;
-	}
-	.nav_li {
-		display: block;
-		width: 100%;
-		text-align: center;
-		border-top: 1px solid #ccc;
-		padding: 4px;
-	}
-	label {
-		display: block;
-		text-align: center;
-		font-size: 20px;
-		font-weight: bold;
-		padding: 4px;
-	}
-}
+
 
 /* footer */
 #footer {
@@ -136,8 +113,8 @@ label, #toggle {
 }
 
 /* signup&login */
-.form-wrap {
-	background-color:rgba(1,1,1,0.5);
+#form-wrap {
+	background-color:rgba(0,0,0,0.5);
 	float: right;
 	min-width: 350px;
 	width: 30%;
@@ -183,7 +160,7 @@ label, #toggle {
     cursor: pointer;
 }
 
-.tabs-content input{
+#tabs-content input{
 	padding:10px;
 	font-size:20px;
 	margin : 10px;
@@ -231,3 +208,49 @@ label, #toggle {
 	top:1px;
 }
 
+/* ===================================================================== */
+/* response layout */
+@media only screen and (max-width: 950px) {
+ 	#main_forwardIcon{
+ 		float:none;
+ 		width:100%;
+ 	}
+ 	
+ 	#form-wrap{
+ 		float: none;
+    	margin-left: 0px;
+ 	}
+ 	
+ 	#main_forwardIcon p{
+ 		font-size : 50px;
+ 	}
+ 	
+ 	#main_contents {
+    	top: 10%;
+	}
+ 	.
+}
+
+/* responsive header */
+@media screen and (max-width:480px) {
+	#nav {
+		display: none;
+	}
+	#toggle:checked+#nav {
+		display: block;
+	}
+	.nav_li {
+		display: block;
+		width: 100%;
+		text-align: center;
+		border-top: 1px solid #ccc;
+		padding: 4px;
+	}
+	label {
+		display: block;
+		text-align: center;
+		font-size: 20px;
+		font-weight: bold;
+		padding: 4px;
+	}
+}

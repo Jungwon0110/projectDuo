@@ -11,6 +11,7 @@
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="css/responseLayout.css">
 <link rel="stylesheet" href="css/main.css">
 
 <body>
@@ -18,19 +19,24 @@
 	<div id="main_backgound">
 <!-- 		<img class="mainImage" alt="mainBackGround" src="/img/bgImage.jpg"> -->
 		<video autoplay muted loop id="myVideo">
-		  <source src="/video/coding1.mp4" type="video/mp4">
+		  <source src="/video/coding2.mp4" type="video/mp4">
 		  Your browser does not support HTML5 video.
 		</video>
 	</div>
 	<div id="main_contents">
 		<div id="main_forwardIcon">
 			<p>We Are Programmer</p>
+			<button id="mainButton1"><a href="https://github.com/Jungwon0110/projectDuo" target="_blank"><i class="fab fa-github"></i></a></button>
 			<sec:authorize access="isAnonymous()">
 				<button id="mainButton1">Enter as a Guest</button>
 			</sec:authorize>
+			<sec:authorize access="isAuthenticated()">
+				<button id="mainButton1">Show PortFolio</button>
+			</sec:authorize>
+			
 		</div>
 		<sec:authorize access="isAnonymous()">
-		<div class="form-wrap">
+		<div id="form-wrap">
 			<div class="form-tabs">
 				<h3 class="login-tab">
 					<button class="signinupButton" onclick="signin();">Login</button>
@@ -41,7 +47,7 @@
 			</div>
 			<!--.tabs-->
 
-			<div class="tabs-content">
+			<div id="tabs-content">
 				<div id="signup-tab-content">
 					<form class="signup-form" action="/register" method="post">
 						<input type="email" id="email" name="email"  autocomplete="off" placeholder="Email"> 
@@ -95,11 +101,6 @@
 			<!--.tabs-content-->
 		</div>
 		<!--.form-wrap-->
-		</sec:authorize>
-		<sec:authorize access="isAuthenticated()">
-			<div class="form-wrap">
-				<button id="mainButton1">Show PortFolio</button>
-			</div>
 		</sec:authorize>
 	</div>
 	<script type="text/javascript">
