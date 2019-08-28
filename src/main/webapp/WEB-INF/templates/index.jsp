@@ -50,7 +50,9 @@
 			<div id="tabs-content">
 				<div id="signup-tab-content">
 					<form class="signup-form" action="/register" method="post">
-						<input type="email" id="email" name="email"  autocomplete="off" placeholder="Email"> 
+						<input type="email" id="email" name="email"  autocomplete="off" placeholder="Email" onChange="chkEmail(this)">
+						<p id="chkemail">이메일 형식으로 입력하세요.</p> 
+						<a id="exist" style="display:none" onClick="isexist(this)">중복체크</a><input type="checkbox" id="existchk" name="exist">
 						<input type="text" id="name" name="name"  autocomplete="off" placeholder="Username"> 
 						<input type="password" name="password" id="signup_pass" autocomplete="off" placeholder="Password">
 						<a onclick="signup_eye();"><i id="signup_eye" class="fa fa-eye-slash fa-lg"></i></a>
@@ -132,6 +134,26 @@
 				btn.className="grayButton";
 				console.log(btn)
 			}
+		}
+		
+		function chkEmail(email){
+			console.log(email);
+			console.log(document.getElementById("email"))
+			var e = document.getElementById("email").value;
+			console.log(e)
+			if(e.indexOf(".com")!=-1){
+				document.getElementById("chkemail").style.display="none"
+				document.getElementById("exist").style.display="block"
+			}else{
+				
+				document.getElementById("chkemail").style.display="block"
+				document.getElementById("email").focus();
+			}
+		}
+		
+		function isexist(chkexist){
+			console.log(document.getElementById("existchk"))
+			document.getElementById("existchk").checked="checked"
 		}
 		
 		/* password view */
