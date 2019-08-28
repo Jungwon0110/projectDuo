@@ -1,22 +1,22 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
+<title> Happy WOrld </title>
 </head>
 <body>
-	<h1>user�Դϴ�.</h1>
-	
-	<sec:authentication property="principal.username"/>�� �ȳ��ϼ���
-	
-		<c:url var="logoutUrl" value="/logout"/>
-		<form action="${logoutUrl}" method="post">
-			<input type="submit" value="Log out" />
-			<input type="hidden"  name="${_csrf.parameterName}" value="${_csrf.token}"/>
-		</form>
+<h1>user</h1>
+<a href="/admin">어드민 페이지로 이동</a><br>
+<a href="/user">유저 페이지로 이동</a><br>
+
+<form action="/logout" method="post">
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+    <input type="submit" value="로그아웃">
+</form>
+<a href="/">홈으로 이동</a>
+
+<sec:authentication property="principal.username"/>님 안녕하세요 !<br>
+<sec:authentication property="principal.name"/>님 안녕하세요 !<br>
 </body>
 </html>
