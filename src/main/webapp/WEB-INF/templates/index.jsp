@@ -57,8 +57,9 @@
 						<input type="text"  class="input" id="birth" name="birth" autocomplete="off" placeholder="ex.19921201"> 
 						<input type="text" id="githubAccount"  name="githubAccount"autocomplete="off" placeholder="github Account"> 
 						<input type="hidden" name="role" value="ROLE_USER" />
+						<input type="checkbox" id="chk" name="chk" onClick="boxChk(this)"><a>약관동의?</a>
 						
-						<input type="submit" class="blueButton" value="Sign Up">
+						<input type="submit" id="register_btn" class="blueButton" value="Sign Up" disabled="disabled">
 						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 					</form>
 				</div>
@@ -108,6 +109,8 @@
 		function signup() {
 		    var x = document.getElementById("signup-tab-content");
 		    var y = document.getElementById("login-tab-content");
+		    boxChk(document.getElementById("chk"))
+		    console.log(document.getElementById("register_btn"))
 		    x.style.display = "block";           
 		    y.style.display = "none";           
 		}
@@ -117,7 +120,19 @@
 		    x.style.display = "none";           
 		    y.style.display = "block";           
 		}
-		
+
+		function boxChk(checkbox) {
+			var btn = document.getElementById("register_btn")
+			console.log(btn.value)
+			if(checkbox.checked){
+				btn.className="blueButton"
+				btn.disabled="";
+			}else{
+				btn.disabled="disabled";
+				btn.className="grayButton";
+				console.log(btn)
+			}
+		}
 		
 		/* password view */
 		function signup_eye() {
@@ -138,6 +153,7 @@
 				document.getElementById("login_eye").className = "fa fa-eye-slash fa-lg"
 			}
 		}
+	
 		</script>
 </body>
 </html>
