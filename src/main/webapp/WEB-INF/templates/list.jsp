@@ -16,30 +16,6 @@
 
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
-	
-	  <table class="table table-hover">
-        <tr>
-            <th>No</th>
-            <th>카테고리</th>
-            <th>제목</th>
-            <th>작성자</th>
-            <th>작성일</th>
-            <th>수정일</th>
-            <th>조회수</th>
-        </tr>
-          <c:forEach var="notice" items="${list}">
-              <tr>
-                  <td>${notice.num}</td>
-                  <td>${notice.kategorie}</td>
-                  <td>${notice.title}</td>
-                  <td>${notice.name}</td>
-                  <td>${notice.createdDate}</td>
-                  <td>${notice.updatedDate}</td>
-                  <td>${notice.viewCount}</td>
-              </tr>
-          </c:forEach>
-          
-    </table>
-
+	${list}
 </body>
 </html>

@@ -1,5 +1,7 @@
 package com.spring.blog.controller;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -15,15 +17,22 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.spring.blog.domain.Account;
 import com.spring.blog.repository.AccountRepository;
 import com.spring.blog.security.UserDetailsImpl;
+import com.spring.blog.service.BoardService;
 import com.spring.blog.service.HelloMessageService;
 
 @Controller
 public class MainController {
 	
+	@Resource(name="com.spring.blog.service.BoardService")
+    BoardService boardService;
+
 	
 	
 	@RequestMapping(value = "/")
-	public String index() {return "index";}
+	public String index() throws Exception {
+		 System.out.println(boardService.boardCount());
+		return "index";
+		}
 	
 	@RequestMapping("/admin")
 	public void admin() {}
@@ -33,7 +42,6 @@ public class MainController {
 	
 	@RequestMapping("/login")
 	public void login() { }
-	
 	
 	
 	@RequestMapping("/registerForm")
@@ -59,6 +67,10 @@ public class MainController {
 		return "redirect:/";
 	}
 
+	
+
+	
+	
 	@RequestMapping("/getPrivateMessage")
 	@PreAuthorize("(#account.userid == principal.Username) or hasRole('ROLE_ADMIN')")
 	public String authstring(Account account, Model model) {
@@ -89,6 +101,4 @@ public class MainController {
 		return helloMessageService.getMessage();
 	}
 	
-	@RequestMapping("/notice")
-	public void notice() { }
 }

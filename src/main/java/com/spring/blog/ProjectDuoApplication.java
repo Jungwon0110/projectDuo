@@ -1,5 +1,6 @@
 package com.spring.blog;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -8,11 +9,14 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.spring.blog.domain.Account;
+import com.spring.blog.dto.BoardDto;
 import com.spring.blog.repository.AccountRepository;
 
 @SpringBootApplication
 public class ProjectDuoApplication {
 
+	
+	
     public static void main(String[] args) {
         SpringApplication.run(ProjectDuoApplication.class, args);
     }
@@ -24,7 +28,7 @@ public class ProjectDuoApplication {
     // InitializingBean 참고 : 토비의 봄 - (1.5) 커맨드 라인 스프링 앱 만들기
     // https://www.youtube.com/watch?v=dnCf2-XYXL8
 
-   @Autowired
+    @Autowired
     PasswordEncoder passwordEncoder;
     @Bean
     InitializingBean insertFixtureUsers(){
@@ -47,6 +51,14 @@ public class ProjectDuoApplication {
             user.setGithubAccount("none");
             accountRepository.save(user);
 
+            BoardDto sample = new BoardDto();
+            sample.setName("admin");
+            sample.setKategorie("notice");
+            sample.setTitle("제목");
+            sample.setViewCount(1);
+            sample.setContents("내용");
+            sample.setCreatedDate(null);
+            sample.setUpdatedDate(null);
         };
     }
 }
