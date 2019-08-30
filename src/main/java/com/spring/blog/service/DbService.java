@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.spring.blog.dao.DbMapper;
 import com.spring.blog.dto.TestDTO;
+import com.spring.blog.mapper.DbMapper;
  
 @Service
 public class DbService {

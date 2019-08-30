@@ -11,71 +11,88 @@
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="css/table.css">
 <link rel="stylesheet" href="css/main.css">
 
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
 	<div id="main_backgound">
-		<img class="mainImage" alt="mainBackGround" src="/img/bgImage.jpg">
+<!-- 		<img class="mainImage" alt="mainBackGround" src="/img/bgImage.jpg"> -->
+		<video autoplay muted loop id="myVideo">
+		  <source src="/video/coding2.mp4" type="video/mp4">
+		  Your browser does not support HTML5 video.
+		</video>
 	</div>
 	<div id="main_contents">
 		<div id="main_forwardIcon">
 			<p>We Are Programmer</p>
-			<br>
-			<button id="mainButton1">Enter as a Guest</button>
-			<!-- 			loginTest -->
-			<a href="/admin">admin</a>
-			<a href="/user">user</a>
-<sec:authorize access="isAnonymous()">
-로그아웃 중...
-</sec:authorize>
-<sec:authorize access="isAuthenticated()">
-로그인중
-</sec:authorize>
-	<c:url var="logoutUrl" value="/logout"/>
-		<form action="${logoutUrl}" method="post">
-			<input type="submit" value="Log out" />
-			<input type="hidden"  name="${_csrf.parameterName}" value="${_csrf.token}"/>
-		</form>
-<!-- 			loginTest -->
-			
+			<button id="mainButton1"><a href="https://github.com/Jungwon0110/projectDuo" target="_blank"><i class="fab fa-github"></i></a></button>
+			<sec:authorize access="isAnonymous()">
+				<button id="mainButton1">Enter as a Guest</button>
+			</sec:authorize>
+			<sec:authorize access="isAuthenticated()">
+				<button id="mainButton1">Show PortFolio</button>
+			</sec:authorize>
 			
 		</div>
-		<div class="form-wrap">
+		<sec:authorize access="isAnonymous()">
+		<div id="form-wrap">
 			<div class="form-tabs">
-				<h3 class="signup-tab">
-					<button class="signinupButton" onclick="signup();">Sign Up</button>
-				</h3>
 				<h3 class="login-tab">
 					<button class="signinupButton" onclick="signin();">Login</button>
+				</h3>
+				<h3 class="signup-tab">
+					<button class="signinupButton" onclick="signup();">Sign Up</button>
 				</h3>
 			</div>
 			<!--.tabs-->
 
-			<div class="tabs-content">
+			<div id="tabs-content">
 				<div id="signup-tab-content">
-					<form class="signup-form" action="" method="post">
-						<input type="email" id="email" autocomplete="off" placeholder="Email"> 
-						<input type="text" id="name" autocomplete="off" placeholder="Username"> 
+					<form class="signup-form" action="/register" method="post">
+						<input type="email" id="email" name="email"  autocomplete="off" placeholder="Email" onChange="chkEmail(this)">
+						<p id="chkemail">이메일 형식으로 입력하세요.</p> 
+						<a id="exist" style="display:none" onClick="isexist(this)">중복체크</a><input type="checkbox" id="existchk" name="exist">
+						<input type="text" id="name" name="name"  autocomplete="off" placeholder="Username"> 
 						<input type="password" name="password" id="signup_pass" autocomplete="off" placeholder="Password">
 						<a onclick="signup_eye();"><i id="signup_eye" class="fa fa-eye-slash fa-lg"></i></a>
-						<input type="text"  class="input" id="birth" autocomplete="off" placeholder="ex.19921201"> 
-						<input type="text" id="githubAccount" autocomplete="off" placeholder="github Account"> 
+						<input type="text"  class="input" id="birth" name="birth" autocomplete="off" placeholder="ex.19921201"> 
+						<input type="text" id="githubAccount"  name="githubAccount"autocomplete="off" placeholder="github Account"> 
+						<input type="hidden" name="role" value="ROLE_USER" />
+						<input type="checkbox" id="chk" name="chk" onClick="boxChk(this)"><a>약관동의?</a>
 						
-						<input type="submit" class="blueButton" value="Sign Up">
+						<input type="submit" id="register_btn" class="blueButton" value="Sign Up" disabled="disabled">
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 					</form>
 				</div>
 				<!--.signup-tab-content-->
 
 				<div id="login-tab-content">
-					<form class="login-form" action="" method="post">
-						<input type="text" id="user_login" autocomplete="off" placeholder="Email or Username"> 
-						<input type="password" name="user_pass" id="login_pass" autocomplete="off" placeholder="Password"> 
+					<c:if test="${param.error != null}">        
+						<p>
+							Invalid email and password.
+						</p>
+					</c:if>
+					<c:if test="${param.logout != null}">       
+						<p>
+							You have been logged out.
+						</p>
+					</c:if>
+				
+					<c:url value="/login" var="loginUrl"/>
+					<form class="login-form" action="${loginUrl}" method="post">  
+						<input type="text" id="user_login" name="username" placeholder="Email or Username" autocomplete="off"> 
+						<input type="password" id="login_pass" name="password"placeholder="Password"  autocomplete="off"> 
 						<a onclick="login_eye();"><i id="login_eye" class="fa fa-eye-slash fa-lg"></i></a>
+						<%--<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> --%>
+						<sec:csrfInput />
 						<input type="submit" class="blueButton" value="Login">
 					</form>
 					<!--.login-form-->
 					<div class="help-text">
+						<p style="text-align:center">
+							Remember Me : <input type="checkbox" name="_spring_security_remember_me" value="true"/>
+						</p>
 						<p style="text-align:center">
 							<a style="color:white;text-decoration:none;" href="#">Forget your password?</a>
 						</p>
@@ -87,12 +104,15 @@
 			<!--.tabs-content-->
 		</div>
 		<!--.form-wrap-->
+		</sec:authorize>
 	</div>
 	<script type="text/javascript">
 		/* button action */
 		function signup() {
 		    var x = document.getElementById("signup-tab-content");
 		    var y = document.getElementById("login-tab-content");
+		    boxChk(document.getElementById("chk"))
+		    console.log(document.getElementById("register_btn"))
 		    x.style.display = "block";           
 		    y.style.display = "none";           
 		}
@@ -102,7 +122,39 @@
 		    x.style.display = "none";           
 		    y.style.display = "block";           
 		}
+
+		function boxChk(checkbox) {
+			var btn = document.getElementById("register_btn")
+			console.log(btn.value)
+			if(checkbox.checked){
+				btn.className="blueButton"
+				btn.disabled="";
+			}else{
+				btn.disabled="disabled";
+				btn.className="grayButton";
+				console.log(btn)
+			}
+		}
 		
+		function chkEmail(email){
+			console.log(email);
+			console.log(document.getElementById("email"))
+			var e = document.getElementById("email").value;
+			console.log(e)
+			if(e.indexOf(".com")!=-1){
+				document.getElementById("chkemail").style.display="none"
+				document.getElementById("exist").style.display="block"
+			}else{
+				
+				document.getElementById("chkemail").style.display="block"
+				document.getElementById("email").focus();
+			}
+		}
+		
+		function isexist(chkexist){
+			console.log(document.getElementById("existchk"))
+			document.getElementById("existchk").checked="checked"
+		}
 		
 		/* password view */
 		function signup_eye() {
@@ -123,6 +175,7 @@
 				document.getElementById("login_eye").className = "fa fa-eye-slash fa-lg"
 			}
 		}
+	
 		</script>
 </body>
 </html>
