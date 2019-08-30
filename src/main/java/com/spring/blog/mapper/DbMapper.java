@@ -1,4 +1,4 @@
-package com.spring.blog.dao;
+package com.spring.blog.mapper;
  
 import java.util.List;
 

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.spring.blog.mapper.BoardMapper">
+
+	<select id="boardCount" resultType="Integer">
+		SELECT COUNT(*) FROM BOARD
+	</select>
+
+	<select id="boardList"
+		resultType="com.spring.blog.dto.BoardDto">
+		SELECT *
+		FROM BOARD
+	</select>
+
+	<select id="boardDetail" parameterType="Integer"
+		resultType="com.spring.blog.dto.BoardDto">
+		SELECT
+		*
+		FROM BOARD
+		WHERE
+		NUM = #{num}
+	</select>
+
+	<insert id="boardInsert"
+		parameterType="com.spring.blog.dto.BoardDto">
+		INSERT INTO
+		BOARD (KATEGORIE,TITLE,NAME,CONTENTS,VIEWCOUNT,CREATEDDATE,UPDATEDDATE)
+		VALUES(#{kategorie}, #{title}, #{name}, #{contents}, #{viewCount}, now(), now())
+	</insert>
+
+	<update id="boardUpdate"
+		parameterType="com.spring.blog.dto.BoardDto">
+		UPDATE BOARD
+		SET 
+		TITLE=#{title}
+		,CONTENTS=#{contents} 
+		,UPDATEDATE=now()
+		WHERE NUM = #{num}
+	</update>
+
+	<delete id="boardDelete" parameterType="Integer">
+		DELETE FROM BOARD WHERE BNO = #{num}
+	</delete>
+
+
+</mapper>

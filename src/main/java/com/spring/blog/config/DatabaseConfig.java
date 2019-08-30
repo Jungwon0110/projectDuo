@@ -1,4 +1,4 @@
-package com.spring.blog;
+package com.spring.blog.config;
 
 import javax.sql.DataSource;
 
@@ -12,7 +12,7 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
  
 @Configuration
-@MapperScan(basePackages="com.spring.blog.dao")
+@MapperScan(basePackages="com.spring.blog.mapper")
 @EnableTransactionManagement
 public class DatabaseConfig {
  
@@ -31,5 +31,6 @@ public class DatabaseConfig {
       return sqlSessionTemplate;
     }
  
+   
 }
 

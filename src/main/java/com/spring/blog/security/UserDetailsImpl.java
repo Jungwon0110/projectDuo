@@ -10,7 +10,6 @@ import org.springframework.security.core.userdetails.User;
 
 import com.spring.blog.domain.Account;
 
-// 기선님의 아무고나 소스 참조함.
 public class UserDetailsImpl extends User {
 	
 	private String name;

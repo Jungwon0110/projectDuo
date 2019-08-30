@@ -14,7 +14,7 @@
 			</sec:authorize>
 					
 				
-		<li class="nav_li"><a class=nav_a href="#">Home</a></li>
+		<li class="nav_li"><a class=nav_a href="/">Home</a></li>
 		<li class="nav_li"><a class=nav_a href="#">About</a></li>
 		<li style="margin-right:20px" class="nav_li"><a class=nav_a href="/notice">Notice</a></li>
 		<sec:authorize access="isAuthenticated()">
