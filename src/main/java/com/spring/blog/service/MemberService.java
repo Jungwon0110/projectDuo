@@ -11,6 +11,7 @@ import com.spring.blog.mapper.MemberMapper;
 public class MemberService {
  
     @Resource(name="com.spring.blog.mapper.MemberMapper")
+
     MemberMapper membermapper;
     
     public Account findMemberByEmail(String email) throws Exception {

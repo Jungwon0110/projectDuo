@@ -1,6 +1,7 @@
 package com.spring.blog.controller;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -19,12 +20,15 @@ import com.spring.blog.repository.AccountRepository;
 import com.spring.blog.security.UserDetailsImpl;
 import com.spring.blog.service.BoardService;
 import com.spring.blog.service.HelloMessageService;
+import com.spring.blog.service.MemberService;
 
 @Controller
 public class MainController {
 	
 	@Resource(name="com.spring.blog.service.BoardService")
     BoardService boardService;
+	@Resource(name="com.spring.blog.service.MemberService")
+	MemberService memberService;
 
 	
 	
@@ -68,6 +72,23 @@ public class MainController {
 	}
 
 	
+	//이메일 중복 체크
+	// 회원 확인
+	@ResponseBody
+	@RequestMapping(value = "/idCheck", method = RequestMethod.POST)
+	public int postIdCheck(HttpServletRequest req) throws Exception {
+	 System.out.println("==============================idcheck================================");
+	 String email = req.getParameter("email");
+	 Account idCheck =  memberService.idCheck(email);
+	 
+	 int result = 0;
+	 
+	 if(idCheck != null) {
+	  result = 1;
+	 } 
+	 
+	 return result;
+	}
 
 	
 	
