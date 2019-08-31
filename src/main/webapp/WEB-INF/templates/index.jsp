@@ -11,7 +11,6 @@
 <meta name="author" content="">
 <script type="text/javascript" src="js/main.js"></script>
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="css/table.css">
 <link rel="stylesheet" href="css/main.css">
@@ -63,18 +62,11 @@
 						<div id="tabs-content">
 							<div id="signup-tab-content">
 								<form class="signup-form" action="/register" method="post">
-									<input type="email" id="email" name="email" autocomplete="off" placeholder="Email" onChange="chkEmail(this)">
+									<input type="email" id="email" name="email" autocomplete="off" placeholder="Email" onKeyup="chkEmail(this)">
 									<p id="chkemail">이메일 형식으로 입력하세요.</p>
-									<input type="button" class="idCheck customButton" value="중복확인">
-									<p class="result">
-										<span class="msg">아이디를 확인해주세요</span>
-									</p>
-									<input type="text" id="name" name="name" autocomplete="off" placeholder="Username"> 
-									<input type="password" name="password" id="signup_pass" autocomplete="off" placeholder="Password"> 
-									<a onclick="signup_eye();"> 
-										<i style="color: white" id="signup_eye" class="fa fa-eye-slash fa-lg"></i>
-									</a> 
-									<input type="text" class="input" id="birth" name="birth" autocomplete="off" placeholder="ex.19921201"> <input type="text" id="githubAccount" name="githubAccount" autocomplete="off" placeholder="github Account"> <input type="hidden" name="role" value="ROLE_USER" /> <input type="checkbox" id="chk" name="chk" onClick="boxChk(this)"><a>약관동의?</a> <input type="submit" id="register_btn" class="customButton" value="Sign Up" disabled="disabled"> <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+									<input type="button" id="existchk" style="display: none;" onClick="isexist()"> <input type="button" id="sendEmail" style="display: none;" onClick="sendEmail()" value="이메일인증하기"> <input type="text" id="name" name="name" autocomplete="off" placeholder="Username"> <input type="password" name="password" id="signup_pass" autocomplete="off" placeholder="Password"> <a onclick="signup_eye();"> <i style="color: white" id="signup_eye" class="fa fa-eye-slash fa-lg"></i></a> <input type="text" class="input" id="birth" name="birth" autocomplete="off" placeholder="ex.19921201"> <input type="text" id="githubAccount" name="githubAccount" autocomplete="off" placeholder="github Account"> <input type="hidden" name="role" value="ROLE_USER" /> <input type="checkbox" id="chk" name="chk" onClick="boxChk(this)"><a>약관동의?</a> <input type="submit" id="register_btn" class="customButton" value="Sign Up" disabled="disabled"> <input
+										type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"
+									/>
 								</form>
 							</div>
 							<!--.signup-tab-content-->
@@ -113,6 +105,7 @@
 			</sec:authorize>
 		</div>
 	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script type="text/javascript">
 		/* button action */
 		function signup() {
@@ -143,41 +136,44 @@
 			}
 		}
 		
-		function chkEmail(email){
-			var e = document.getElementById("email").value;
-			if(e.indexOf(".com")!=-1){
-				document.getElementById("chkemail").style.display="none"
-				document.getElementById("existchk").style.display="block"
-				document.getElementById("exist").style.display="block"
-			}else{
-				document.getElementById("existchk").style.display="none"
-				document.getElementById("exist").style.display="none"
-				document.getElementById("chkemail").style.display="block"
-					document.getElementById("chkemail").innerHTML="이메일 형식으로 입력하세요.";
-				document.getElementById("email").focus();
+		/*이메일 형식 체크 */
+		function chkEmail(obj) {
+			if (obj.value.length > 0) {
+				var regExp = /[a-z0-9]{2,}@[a-z0-9-]{2,}\.[a-z0-9]{2,}/i;
+
+				if (!regExp.test(obj.value)) {
+					document.getElementById("chkemail").style.display="block";
+					return false;
+				}else{
+					document.getElementById("chkemail").style.display="none";
+					document.getElementById("existchk").click();
+				}
 			}
 		}
 		
-		function isexist(chkexist){
+		/*이메일 중복체크*/
+		function isexist() {
 			var email = document.getElementById("email").value;
 			$.ajax({
-				url:"/find/"+email,
-				method:"POST",
-				dataType:"json",
-				success:function(data){
-					console.log(data);
-					document.getElementById("chkemail").style.display="block";
-					document.getElementById("chkemail").innerHTML="이미 존재하는 이메일입니다.";
-					document.getElementById("existchk").style.display="none"
-					document.getElementById("exist").style.display="none"
-					document.getElementById("email").value="";
+				url : "/find/" + email,
+				method : "POST",
+				dataType : "json",
+				success : function(data) {
+					document.getElementById("chkemail").style.display = "block";
+					document.getElementById("chkemail").innerHTML = "이미 존재하는 이메일입니다.";
+					document.getElementById("email").value = "";
 				},
-				error:function(data){
-					console.log(data)
-					document.getElementById("exist").innerHTML="중복체크 성공";
-					document.getElementById("existchk").checked="checked"
+				error : function(data) {
+					document.getElementById("chkemail").style.display = "block";
+					document.getElementById("chkemail").innerHTML = "중복체크 성공";
+					document.getElementById("sendEmail").style.display="block";
 				}
-			})
+			});
+		}
+		
+		/*이메일 인증하기*/
+		function sendEmail(){
+			
 		}
 
 		/* password view */
