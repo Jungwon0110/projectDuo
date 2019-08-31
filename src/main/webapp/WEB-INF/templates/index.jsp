@@ -11,8 +11,9 @@
 <meta name="author" content="">
 <script type="text/javascript" src="js/main.js"></script>
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-<script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="css/table.css">
 <link rel="stylesheet" href="css/main.css">
 <jsp:include page="bootStrap.jsp"></jsp:include>
 <style>
@@ -23,6 +24,7 @@
 <body>
 
 	<jsp:include page="header.jsp"></jsp:include>
+
 
 
 	<div class="container" style="color: white">
@@ -140,25 +142,42 @@
 				console.log(btn)
 			}
 		}
-
-		function chkEmail(email) {
-			console.log(email);
-			console.log(document.getElementById("email"))
+		
+		function chkEmail(email){
 			var e = document.getElementById("email").value;
-			console.log(e)
-			if (e.indexOf(".com") != -1) {
-				document.getElementById("chkemail").style.display = "none"
-				document.getElementById("exist").style.display = "block"
-			} else {
-
-				document.getElementById("chkemail").style.display = "block"
+			if(e.indexOf(".com")!=-1){
+				document.getElementById("chkemail").style.display="none"
+				document.getElementById("existchk").style.display="block"
+				document.getElementById("exist").style.display="block"
+			}else{
+				document.getElementById("existchk").style.display="none"
+				document.getElementById("exist").style.display="none"
+				document.getElementById("chkemail").style.display="block"
+					document.getElementById("chkemail").innerHTML="이메일 형식으로 입력하세요.";
 				document.getElementById("email").focus();
 			}
 		}
-
-		function isexist(chkexist) {
-			console.log(document.getElementById("existchk"))
-			document.getElementById("existchk").checked = "checked"
+		
+		function isexist(chkexist){
+			var email = document.getElementById("email").value;
+			$.ajax({
+				url:"/find/"+email,
+				method:"POST",
+				dataType:"json",
+				success:function(data){
+					console.log(data);
+					document.getElementById("chkemail").style.display="block";
+					document.getElementById("chkemail").innerHTML="이미 존재하는 이메일입니다.";
+					document.getElementById("existchk").style.display="none"
+					document.getElementById("exist").style.display="none"
+					document.getElementById("email").value="";
+				},
+				error:function(data){
+					console.log(data)
+					document.getElementById("exist").innerHTML="중복체크 성공";
+					document.getElementById("existchk").checked="checked"
+				}
+			})
 		}
 
 		/* password view */

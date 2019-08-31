@@ -6,7 +6,8 @@ import com.spring.blog.domain.Account;
 
 @Repository("com.spring.blog.mapper.MemberMapper")
 public interface MemberMapper {
-	// 중복체크
-	public Account idCheck(String email) throws Exception;
 
+	//이메일로 유저찾기
+    public Account findMemberByEmail(String email) throws Exception;
+    
 }

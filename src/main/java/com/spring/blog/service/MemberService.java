@@ -1,4 +1,5 @@
 package com.spring.blog.service;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -10,11 +11,11 @@ import com.spring.blog.mapper.MemberMapper;
 public class MemberService {
  
     @Resource(name="com.spring.blog.mapper.MemberMapper")
-    MemberMapper memberMapper;
+
+    MemberMapper membermapper;
     
-    public Account idCheck(String email) throws Exception {
-    	return memberMapper.idCheck(email);
+    public Account findMemberByEmail(String email) throws Exception {
+    	return membermapper.findMemberByEmail(email);
     }
-	
 }
 
