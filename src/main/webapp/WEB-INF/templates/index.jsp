@@ -61,12 +61,20 @@
 
 						<div id="tabs-content">
 							<div id="signup-tab-content">
-								<form class="signup-form" action="/register" method="post">
+								<form class="signup-form" id="signup" action="/register" method="post">
 									<input type="email" id="email" name="email" autocomplete="off" placeholder="Email" onKeyup="chkEmail(this)">
 									<p id="chkemail">이메일 형식으로 입력하세요.</p>
-									<input type="button" id="existchk" style="display: none;" onClick="isexist()"> <input type="button" id="sendEmail" style="display: none;" onClick="sendEmail()" value="이메일인증하기"> <input type="text" id="name" name="name" autocomplete="off" placeholder="Username"> <input type="password" name="password" id="signup_pass" autocomplete="off" placeholder="Password"> <a onclick="signup_eye();"> <i style="color: white" id="signup_eye" class="fa fa-eye-slash fa-lg"></i></a> <input type="text" class="input" id="birth" name="birth" autocomplete="off" placeholder="ex.19921201"> <input type="text" id="githubAccount" name="githubAccount" autocomplete="off" placeholder="github Account"> <input type="hidden" name="role" value="ROLE_USER" /> <input type="checkbox" id="chk" name="chk" onClick="boxChk(this)"><a>약관동의?</a> <input type="submit" id="register_btn" class="customButton" value="Sign Up" disabled="disabled"> <input
-										type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"
-									/>
+									<input type="button" id="existchk" style="display: none;" onClick="isexist()"> 
+									<input type="button" id="sendEmail" style="display: none;" onClick="sendEmail()" value="이메일인증하기"> 
+									<input type="text" id="name" name="name" autocomplete="off" placeholder="Username"> 
+									<input type="password" name="password" id="signup_pass" autocomplete="off" placeholder="Password"> 
+									<a onclick="signup_eye();"> <i style="color: white" id="signup_eye" class="fa fa-eye-slash fa-lg"></i></a> 
+									<input type="text" class="input" id="birth" name="birth" autocomplete="off" onChange="numchk(this)" placeholder="ex.19921201"> 
+									<input type="text" id="githubAccount" name="githubAccount" autocomplete="off" placeholder="github Account"> 
+									<input type="hidden" name="role" value="ROLE_USER" /> 
+									<input type="checkbox" id="chk" name="chk" onClick="boxChk(this)"><a>약관동의?</a> 
+									<input type="button" id="register_btn" class="customButton" onClick="submitsignup()" value="Sign Up" disabled="disabled"> 
+									<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 								</form>
 							</div>
 							<!--.signup-tab-content-->
@@ -122,19 +130,6 @@
 			x.style.display = "none";
 			y.style.display = "block";
 		}
-
-		function boxChk(checkbox) {
-			var btn = document.getElementById("register_btn")
-			console.log(btn.value)
-			if (checkbox.checked) {
-				btn.className = "customButton"
-				btn.disabled = "";
-			} else {
-				btn.disabled = "disabled";
-				btn.className = "customButton";
-				console.log(btn)
-			}
-		}
 		
 		/*이메일 형식 체크 */
 		function chkEmail(obj) {
@@ -167,14 +162,46 @@
 					document.getElementById("chkemail").style.display = "block";
 					document.getElementById("chkemail").innerHTML = "중복체크 성공";
 					document.getElementById("sendEmail").style.display="block";
+					document.getElementById("existchk").checked="checked";
 				}
 			});
+			boxChk(document.getElementById("chk"));
 		}
 		
 		/*이메일 인증하기*/
 		function sendEmail(){
 			
 		}
+
+	      /* 생년월일 숫자체크 */
+	      function numchk(chknum){
+	          if(chknum.value.length != 8){
+	             alert("생년월일은  8자리 입니다.");
+	            document.getElementById("birth").focus();
+	            return false;
+	         }
+	          if(isNaN(chknum.value)){
+	            alert("문자가 있습니다. 숫자 8자리로 입력하세요.");
+	            document.getElementById("birth").value="";
+	            return false;
+	         }
+	      }
+
+	      /* 약관동의 */
+	      function boxChk(agree){
+	         if(agree.checked && existchk.checked){
+	            document.getElementById("register_btn").disabled="";
+	         }else if(agree.checked && !existchk.checked){
+	            document.getElementById("register_btn").disabled="disabled";
+	         }else{
+	            document.getElementById("register_btn").disabled="disabled";
+	         }
+	      }
+
+	      /* sign up */
+	      function submitsignup(){
+	         document.getElementById("signup").submit();
+	      }
 
 		/* password view */
 		function signup_eye() {
