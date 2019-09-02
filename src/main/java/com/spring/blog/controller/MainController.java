@@ -70,7 +70,6 @@ public class MainController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
 		return "redirect:/";
 	}
-
 	
 	@RequestMapping("/getPrivateMessage")
 	@PreAuthorize("(#account.userid == principal.Username) or hasRole('ROLE_ADMIN')")
