@@ -72,26 +72,6 @@ public class MainController {
 	}
 
 	
-	//이메일 중복 체크
-	// 회원 확인
-	@ResponseBody
-	@RequestMapping(value = "/idCheck", method = RequestMethod.POST)
-	public int postIdCheck(HttpServletRequest req) throws Exception {
-	 System.out.println("==============================idcheck================================");
-	 String email = req.getParameter("email");
-	 Account idCheck =  memberService.idCheck(email);
-	 
-	 int result = 0;
-	 
-	 if(idCheck != null) {
-	  result = 1;
-	 } 
-	 
-	 return result;
-	}
-
-	
-	
 	@RequestMapping("/getPrivateMessage")
 	@PreAuthorize("(#account.userid == principal.Username) or hasRole('ROLE_ADMIN')")
 	public String authstring(Account account, Model model) {
