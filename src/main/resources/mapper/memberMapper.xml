@@ -8,4 +8,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT * FROM Account WHERE email=#{email}
 	</select>
 
+	<insert id="insertKey" parameterType="java.util.HashMap">
+		INSERT INTO accountkey (email, key) VALUES (#{parameters[0]}, #{parameters[0]})
+	</insert>
+	
+	<select id="findkey" parameterType="java.lang.String" resultType="java.lang.String">
+		SELECT key FROM accountkey WHERE email=#{email}
+	</select>
+
 </mapper>

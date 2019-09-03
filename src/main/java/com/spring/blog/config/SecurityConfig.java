@@ -1,5 +1,6 @@
 package com.spring.blog.config;
 
+
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,5 +93,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	public SecurityEvaluationContextExtension securityEvaluationContextExtension() {
 		return new SecurityEvaluationContextExtension();
 	}
-
+	
 }
