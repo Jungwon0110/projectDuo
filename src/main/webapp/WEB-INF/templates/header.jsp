@@ -36,7 +36,7 @@
             <a class="nav-link" href="#">portFolio</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/noticeBoard">Notice</a>
+            <a class="nav-link" href="/notice">Notice</a>
           </li>
           <sec:authorize access="isAuthenticated()">
           <li class="nav-item">
