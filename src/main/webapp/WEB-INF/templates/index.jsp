@@ -70,7 +70,7 @@
                            <input type="text" id="name" name="name" autocomplete="off" placeholder="Username"> 
                            <input type="password" name="password" id="signup_pass" autocomplete="off" placeholder="Password"> 
                            <a onclick="signup_eye();"> <i style="color: white" id="signup_eye" class="fa fa-eye-slash fa-lg"></i></a> 
-                           <input type="text" class="input" id="birth" name="birth" autocomplete="off" placeholder="ex.19921201">
+                           <input type="text" class="input" id="birth" name="birth" autocomplete="off" onChange="chkbirth(this)"  placeholder="ex.19921201">
                             <input type="text" id="githubAccount" name="githubAccount" autocomplete="off" placeholder="github Account"> 
                             <input type="hidden" name="role" value="ROLE_GUEST" /> 
                             <input type="checkbox" id="chk" name="chk" onClick="boxChk(this)"><a>약관동의?</a> 
@@ -132,6 +132,16 @@
          y.style.display = "block";
       }
 
+      /* 생일 숫자 8자리 */
+      function chkbirth(birth){
+		var regExp = /[0-9]{8}/g;
+		if(!regExp.test(birth.value)){
+			alert("생년월일은 숫자 8자리 입니다.");
+			birth.value="";
+			birth.focus();
+		}
+	  }
+
       /* 약관동의 */
       function boxChk(checkbox) {
          var btn = document.getElementById("register_btn")
@@ -141,7 +151,6 @@
          } else {
             btn.disabled = "disabled";
             btn.className = "customButton";
-            console.log(btn)
          }
       }
 

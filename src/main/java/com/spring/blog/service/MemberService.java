@@ -29,4 +29,8 @@ public class MemberService {
     public void changeRole(String email) {
        membermapper.changeRole(email);
     }
+    
+    public void updateKey(AccountKeyDto updatekey) {
+    	membermapper.updateKey(updatekey);
+    }
 }

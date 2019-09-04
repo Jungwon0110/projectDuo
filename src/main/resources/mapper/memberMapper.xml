@@ -16,8 +16,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       VALUES(#{email}, #{authkey})
    </insert>
    
-   <select id="findkey" parameterType="java.lang.String" resultType="java.lang.String">
-      SELECT key 
+   <select id="findKey" parameterType="java.lang.String" resultType="java.lang.String">
+      SELECT authkey 
       FROM accountkey 
       WHERE email=#{email}
    </select>
@@ -26,6 +26,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       UPDATE Account
       SET 
       role="ROLE_USER"
+      WHERE email = #{email}
+   </update>
+   
+     <update id="updateKey" parameterType="com.spring.blog.dto.AccountKeyDto">
+      UPDATE accountkey
+      SET 
+      authkey=#{authkey}
       WHERE email = #{email}
    </update>
 </mapper>
