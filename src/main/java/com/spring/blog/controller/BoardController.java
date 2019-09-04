@@ -15,65 +15,63 @@ import com.spring.blog.service.BoardService;
 
 @Controller
 public class BoardController {
-	
-	@Resource(name="com.spring.blog.service.BoardService")
+
+	@Resource(name = "com.spring.blog.service.BoardService")
 	@Autowired
-    BoardService boardService;
+	BoardService boardService;
 
-	
-	@RequestMapping("/notice") //게시판 리스트 화면 호출  
-    private String boardList(Model model) throws Exception{
-        model.addAttribute("list", boardService.boardListService());
-        System.out.println(boardService.boardCount());
-        return "notice"; //생성할 jsp
-    }
-    
-    @RequestMapping("/detail/{num}") 
-    private String boardDetail(@PathVariable int num, Model model) throws Exception{
-        
-        model.addAttribute("detail", boardService.boardDetailService(num));
-        
-        return "detail";
-    }
-    
-    @RequestMapping("/insert") //게시글 작성폼 호출  
-    private String boardInsertForm(){
-        return "insert";
-    }
-    
-    @RequestMapping(value = "/insertProc", method = RequestMethod.POST)
-    private String boardInsertProc(HttpServletRequest request) throws Exception{
-        
-        BoardDto board = new BoardDto();
+	@RequestMapping("/notice") // 게시판 리스트 화면 호출
+	private String boardList(Model model) throws Exception {
+		model.addAttribute("list", boardService.boardListService());
+		System.out.println(boardService.boardCount());
+		return "notice"; // 생성할 jsp
+	}
 
-        board.setTitle(request.getParameter("title"));
-        board.setContents(request.getParameter("contents"));
-        board.setName(request.getParameter("name"));
-        boardService.boardInsertService(board);
-        
-        return "redirect:/notice";
-    }
+	@RequestMapping("/detail/{num}")
+	private String boardDetail(@PathVariable int num, Model model) throws Exception {
+		model.addAttribute("detail", boardService.boardDetailService(num));
+		return "detail";
+	}
 
-    
-    @RequestMapping("/update/{num}") //게시글 수정폼 호출  
-    private String boardUpdateForm(@PathVariable int num, Model model) throws Exception{
-        
-        model.addAttribute("detail", boardService.boardDetailService(num));
-        
-        return "update";
-    }
-    
-    @RequestMapping("/updateProc")
-    private void boardUpdateProc(HttpServletRequest request) throws Exception{
-    	BoardDto board = (BoardDto) request.getParameterMap();
-        boardService.boardUpdateService(board);
-    }
- 
-    @RequestMapping("/delete/{num}")
-    private String boardDelete(@PathVariable int num) throws Exception{
-        boardService.boardDeleteService(num);
-        return "redirect:/notice";
-    }
+	@RequestMapping(value = "/insertProc", method = RequestMethod.POST)
+	private String boardInsertProc(HttpServletRequest request) throws Exception {
 
+		BoardDto board = new BoardDto();
+
+		board.setTitle(request.getParameter("title"));
+		board.setContents(request.getParameter("contents"));
+		board.setName(request.getParameter("name"));
+		board.setKategorie(request.getParameter("kategorie"));
+		boardService.boardInsertService(board);
+
+		return "redirect:/notice";
+	}
+
+	@RequestMapping("/update/{num}") // 게시글 수정폼 호출
+	private String boardUpdateForm(@PathVariable int num, Model model) throws Exception {
+
+		model.addAttribute("detail", boardService.boardDetailService(num));
+
+		return "update";
+	}
+
+	@RequestMapping(value = "/updateProc", method = RequestMethod.POST)
+	private String boardUpdateProc(HttpServletRequest request) throws Exception {
+
+		BoardDto board = new BoardDto();
+		board.setTitle(request.getParameter("title"));
+		board.setContents(request.getParameter("contents"));
+		board.setNum(Integer.parseInt(request.getParameter("num")));
+
+		boardService.boardUpdateService(board);
+
+		return "redirect:/detail/" + request.getParameter("num");
+	}
+
+	@RequestMapping("/delete/{num}")
+	private String boardDelete(@PathVariable int num) throws Exception {
+		boardService.boardDeleteService(num);
+		return "redirect:/notice";
+	}
 
 }
