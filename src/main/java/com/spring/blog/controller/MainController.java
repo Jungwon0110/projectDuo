@@ -24,74 +24,54 @@ import com.spring.blog.service.MemberService;
 
 @Controller
 public class MainController {
+
+	@Resource(name = "com.spring.blog.service.BoardService")
+	BoardService boardService;
 	
-	@Resource(name="com.spring.blog.service.BoardService")
-    BoardService boardService;
-	@Resource(name="com.spring.blog.service.MemberService")
+	@Resource(name = "com.spring.blog.service.MemberService")
 	MemberService memberService;
 
-	
-	
 	@RequestMapping(value = "/")
 	public String index() throws Exception {
-		 System.out.println(boardService.boardCount());
+		//System.out.println(boardService.boardCount());
 		return "index";
-		}
-	
+	}
+
 	@RequestMapping("/admin")
-	public void admin() {}
-	
+	public void admin() {
+	}
+
 	@RequestMapping("/user")
-	public void user() {}
-	
+	public void user() {
+	}
+
 	@RequestMapping("/login")
-	public void login() { }
-	
-	
+	public void login() {
+	}
+
 	@RequestMapping("/registerForm")
-	public void registerForm() {}
-	
-	
-	// 필요한 부분은 Serivce계층으로 옮겨줘야 합니다. 
-	@Autowired AccountRepository accountRepository;
+	public void registerForm() {
+	}
+
+	// 필요한 부분은 Serivce계층으로 옮겨줘야 합니다.
+	@Autowired
+	AccountRepository accountRepository;
 	@Autowired
 	PasswordEncoder passwordEncoder;
-	
-	@RequestMapping(value="/register", method=RequestMethod.POST)
-	public String register(Account account){
+
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	public String register(Account account) {
 		// 회원정보 데이터베이스에 저장
 		account.setPassword(passwordEncoder.encode(account.getPassword()));
 		accountRepository.save(account);
-		
+
 		// SecurityContextHolder에서 Context를 받아 인증 설정
 		UserDetailsImpl userDetails = new UserDetailsImpl(account);
-		Authentication authentication = 
-				new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-        SecurityContextHolder.getContext().setAuthentication(authentication);
+		Authentication authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+		SecurityContextHolder.getContext().setAuthentication(authentication);
 		return "redirect:/";
 	}
 
-	
-	//이메일 중복 체크
-	// 회원 확인
-	@ResponseBody
-	@RequestMapping(value = "/idCheck", method = RequestMethod.POST)
-	public int postIdCheck(HttpServletRequest req) throws Exception {
-	 System.out.println("==============================idcheck================================");
-	 String email = req.getParameter("email");
-	 Account idCheck =  memberService.idCheck(email);
-	 
-	 int result = 0;
-	 
-	 if(idCheck != null) {
-	  result = 1;
-	 } 
-	 
-	 return result;
-	}
-
-	
-	
 	@RequestMapping("/getPrivateMessage")
 	@PreAuthorize("(#account.userid == principal.Username) or hasRole('ROLE_ADMIN')")
 	public String authstring(Account account, Model model) {
@@ -101,25 +81,26 @@ public class MainController {
 
 	@RequestMapping("/getUserMessage")
 	@PreAuthorize("hasRole('ROLE_USER')")
-	public String userMesasge(Account account, Model model){
+	public String userMesasge(Account account, Model model) {
 		model.addAttribute("msg", "당신은 한낱 유저입니다. ㅠ");
 		return "authorizedMessage";
 	}
 
 	@RequestMapping("/403")
-	public void accessdeniedPage(){}
+	public void accessdeniedPage() {
+	}
 
 	@RequestMapping("/userinformation")
-	public void userinformation(Model model){
+	public void userinformation(Model model) {
 		model.addAttribute("user", accountRepository.findMe());
 	}
 
 	@Autowired
 	HelloMessageService helloMessageService;
+
 	@RequestMapping("/message")
 	@ResponseBody
-	public String  getMessage(){
+	public String getMessage() {
 		return helloMessageService.getMessage();
 	}
-	
 }

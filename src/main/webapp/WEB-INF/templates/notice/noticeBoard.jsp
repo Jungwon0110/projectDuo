@@ -7,20 +7,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="css/main.css">
-<jsp:include page="bootStrap.jsp"></jsp:include>
+<jsp:include page="../bootStrap.jsp"></jsp:include>
 <body>
-	<jsp:include page="header.jsp"></jsp:include>
+	<jsp:include page="../header.jsp"></jsp:include>
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-12 invisibleContents2"></div>
-			<div class="col-sm-3" style="background-color : rgba(0,0,0,0.3)">
+			<div class="col-sm-3" style="background-color: rgba(0, 0, 0, 0.3)">
 				<h1>공지사항</h1>
 			</div>
 			<div class="col-sm-9">
 				<table class="table table-hover">
 					<tr>
 						<th>No</th>
-						<th>카테고리</th>
 						<th>제목</th>
 						<th>작성자</th>
 						<th>작성일</th>
@@ -28,19 +27,23 @@
 						<th>조회수</th>
 					</tr>
 					<c:forEach var="notice" items="${list}">
-						<tr>
-							<td>${notice.num}</td>
-							<td>${notice.kategorie}</td>
-							<td>${notice.title}</td>
-							<td>${notice.name}</td>
+						<tr onclick="location.href='/noticeDetail/${notice.boardNum}'" style="cursor: pointer">
+							<td>${notice.boardNum}</td>
+							<td>${notice.boardTitle}</td>
+							<td>${notice.boardAuthor}</td>
 							<td>${notice.createdDate}</td>
 							<td>${notice.updatedDate}</td>
 							<td>${notice.viewCount}</td>
 						</tr>
 					</c:forEach>
+					<tr>
+						<td colspan="6">
+							<button class="customButton" onclick="location.href='/noticeInsert'">공지사항 작성</button>
+						</td>
+					<tr>
 				</table>
 			</div>
 		</div>
 	</div>
 </body>
-</html>
+</html> 
