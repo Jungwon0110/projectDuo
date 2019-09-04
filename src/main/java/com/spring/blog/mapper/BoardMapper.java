@@ -31,4 +31,9 @@ public interface BoardMapper {
 	// 파일 업로드
 	public void fileInsert(FileDto filedto) throws Exception;
 	 
+	//파일 상세
+	public FileDto fileDetail(int boardNum) throws Exception;
+	
+	//파일 삭제
+	public void fileDelete(int boardNum) throws Exception;
 }

@@ -4,15 +4,10 @@
 <!DOCTYPE html>
 <html>
 <title>ProjectDuo</title>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="">
-<meta name="author" content="">
-<script type="text/javascript" src="js/main.js"></script>
-<script src="https://kit.fontawesome.com/a076d05399.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="css/table.css">
+<script src="https://kit.fontawesome.com/1b10eafc75.js"></script>
+<link rel="stylesheet" href="css/button.css">
 <link rel="stylesheet" href="css/main.css">
 <jsp:include page="bootStrap.jsp"></jsp:include>
 <style>
@@ -27,16 +22,15 @@
 
 
    <div class="container" style="color: white">
-      <video autoplay muted loop id="myVideo">
+      <video autoplay muted loop id="myVideo" style="z-index: -2">
          <source src="/video/coding1.mp4" type="video/mp4">
          Your browser does not support HTML5 video.
       </video>
-      <div class="row">
-         <div class="col-sm-12 invisibleContents"></div>
-         <div class="col-sm-6" style="margin-bottom: 50px;">
+      <div class="row ">
+         <div class="col-sm-6 indexTopContents" style="margin-bottom: 50px;">
             <h1>We Are Programmer</h1>
             <button id="mainButton1">
-               <a href="https://github.com/Jungwon0110/projectDuo" target="_blank"> <i class="fab fa-github"></i>
+               <a href="https://github.com/Jungwon0110/projectDuo" target="_blank"> <i class="fab fa-github-alt"></i>
                </a>
             </button>
             <sec:authorize access="isAnonymous()">
@@ -47,7 +41,7 @@
             </sec:authorize>
          </div>
          <sec:authorize access="isAnonymous()">
-            <div class="col-sm-6">
+            <div class="col-sm-6 indexTopContents">
                <div id="form-wrap">
                   <div class="form-tabs">
                      <h3 class="login-tab">

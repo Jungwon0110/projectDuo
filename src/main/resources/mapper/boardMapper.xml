@@ -41,10 +41,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="boardDelete" parameterType="Integer">
 		DELETE FROM BOARD WHERE BOARDNUM = #{boardNum}
 	</delete>
+	
+	<delete id="fileDelete" parameterType="Integer">
+		DELETE FROM FILES WHERE FILEKATEGORIE = "NOTICE" AND KATEGORIENUM = #{boardNum}
+	</delete>
 
 	<insert id="fileInsert" parameterType="com.spring.blog.dto.FileDto">
 		INSERT INTO
 		FILES (FILENUM, FILEKATEGORIE,KATEGORIENUM, FILENAME, FILEORINAME, FILEURL)
 		VALUES (#{fileNum},#{fileKategorie},#{kategorieNum},#{fileName},#{fileOriName},#{fileUrl})
 	</insert>
+
+	<select id="fileDetail" parameterType="Integer" resultType="com.spring.blog.dto.FileDto">
+		SELECT
+		*
+		FROM FILES
+		WHERE
+		FILEKATEGORIE="NOTICE" AND KATEGORIENUM = #{kategorieNum}
+	</select>
+
+
 </mapper>
