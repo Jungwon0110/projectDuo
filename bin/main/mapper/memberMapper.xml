@@ -4,8 +4,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="com.spring.blog.mapper.MemberMapper">
-	<select id="findMemberByEmail" parameterType="java.lang.String" resultType="com.spring.blog.domain.Account">
-		SELECT * FROM Account WHERE email=#{email}
-	</select>
+   <select id="findMemberByEmail" parameterType="java.lang.String" resultType="com.spring.blog.domain.Account">
+      SELECT * 
+      FROM Account 
+      WHERE email=#{email}
+   </select>
 
+   <insert id="insertKey" parameterType="com.spring.blog.dto.AccountKeyDto">
+      INSERT INTO 
+      accountkey (email, authkey) 
+      VALUES(#{email}, #{authkey})
+   </insert>
+   
+   <select id="findkey" parameterType="java.lang.String" resultType="java.lang.String">
+      SELECT key 
+      FROM accountkey 
+      WHERE email=#{email}
+   </select>
+   
+   <update id="changeRole" parameterType="java.lang.String">
+      UPDATE Account
+      SET 
+      role="ROLE_USER"
+      WHERE email = #{email}
+   </update>
 </mapper>

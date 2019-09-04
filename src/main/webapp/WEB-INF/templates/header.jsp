@@ -36,13 +36,13 @@
             <a class="nav-link" href="#">portFolio</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/notice">Notice</a>
+            <a class="nav-link" href="/noticeBoard">Notice</a>
           </li>
           <sec:authorize access="isAuthenticated()">
           <li class="nav-item">
             <c:url var="logoutUrl" value="/logout"/>
 			<form style="display: contents;" action="${logoutUrl}" method="post">
-				<input class="blueButton" type="submit" value="Logout" />
+				<input type="submit" class="customButton" value="Logout" />
 				<input type="hidden"  name="${_csrf.parameterName}" value="${_csrf.token}"/>
 			</form>
           </li>
