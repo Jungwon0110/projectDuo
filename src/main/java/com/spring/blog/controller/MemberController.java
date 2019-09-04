@@ -9,9 +9,11 @@ import javax.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring.blog.domain.Account;
@@ -48,14 +50,19 @@ public class MemberController {
       actkey.setEmail(email);
       actkey.setAuthkey(key);
       
-      memberService.insertKey(actkey);
+      String existkey = memberService.findKey(email);
+      if(existkey != null) {
+    	  memberService.updateKey(actkey);
+      }else {
+    	  memberService.insertKey(actkey);
+      }
 
       sendmail.setSubject("[이메일 인증]");
       sendmail.setText(
                new StringBuffer().append("<h1>메일인증</h1>")
-               .append("<a href='http://localhost:8080/emailConfirm?email=")
+               .append("<a href='http://localhost:8080/joinConfirm?email=")
                .append(email)
-               .append("&authKey=").append(key)
+               .append("&authkey=").append(key)
                .append("' target='_blank'>이메일 인증 확인</a>").toString());      
       sendmail.setFrom("fffff4324@gmail.com", "projectDuo");
       sendmail.setTo(email);
@@ -63,17 +70,18 @@ public class MemberController {
       return "/";
    }
    
-   @RequestMapping(value = "/emailConfirm/", method = RequestMethod.GET)
-   @ResponseBody
-   public String confirmMember(@PathVariable String email, @PathVariable String authkey) throws Exception {
-      String userkey = memberService.findKey(email);
-      if(userkey.equals(authkey)) {
-         System.out.println("인증 성공!!!");
-         memberService.changeRole(email);
-      }else {
-         
-      }
-      return "/";
+   @RequestMapping(value = "/joinConfirm", method = RequestMethod.GET)
+   public String confirmMember(@RequestParam(value="email") String email, @RequestParam(value="authkey") String authkey) throws Exception {
+	   
+	   String userkey = memberService.findKey(email);
+	   if(userkey.equals(authkey)) {
+		   memberService.changeRole(email);
+		   return "redirect:/";
+	   }else {
+		   return "notconfirm";
+	   }
+	   
+       
    }
    
 }
