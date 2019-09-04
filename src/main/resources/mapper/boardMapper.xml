@@ -6,44 +6,48 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.spring.blog.mapper.BoardMapper">
 
 	<select id="boardCount" resultType="Integer">
-		SELECT COUNT(*) FROM BOARD
+		SELECT COUNT(*)
+		FROM BOARD
 	</select>
 
-	<select id="boardList"
-		resultType="com.spring.blog.dto.BoardDto">
+	<select id="boardList" resultType="com.spring.blog.dto.BoardDto">
 		SELECT *
 		FROM BOARD
 	</select>
 
-	<select id="boardDetail" parameterType="Integer"
-		resultType="com.spring.blog.dto.BoardDto">
+	<select id="boardDetail" parameterType="Integer" resultType="com.spring.blog.dto.BoardDto">
 		SELECT
 		*
 		FROM BOARD
 		WHERE
-		NUM = #{num}
+		BOARDNUM = #{boardNum}
 	</select>
 
-	<insert id="boardInsert"
-		parameterType="com.spring.blog.dto.BoardDto">
+	<insert id="boardInsert" parameterType="com.spring.blog.dto.BoardDto" useGeneratedKeys="true" keyProperty="boardNum">
 		INSERT INTO
-		BOARD (KATEGORIE,TITLE,NAME,CONTENTS,VIEWCOUNT,CREATEDDATE,UPDATEDDATE)
-		VALUES(#{kategorie}, #{title}, #{name}, #{contents}, #{viewCount}, now(), now())
+		BOARD (KATEGORIE,BOARDTITLE,BOARDAUTHOR,BOARDCONTENTS,VIEWCOUNT,CREATEDDATE,UPDATEDDATE)
+		VALUES(#{kategorie}, #{boardTitle}, #{boardAuthor}, #{boardContents}, #{viewCount}, now(), now())
 	</insert>
 
-	<update id="boardUpdate"
-		parameterType="com.spring.blog.dto.BoardDto">
+	<update id="boardUpdate" parameterType="com.spring.blog.dto.BoardDto">
 		UPDATE BOARD
-		SET 
-		TITLE=#{title}
-		,CONTENTS=#{contents} 
-		,UPDATEDATE=now()
-		WHERE NUM = #{num}
+		SET
+		BOARDTITLE=#{boardTitle}
+		,BOARDCONTENTS=#{boardContents}
+		,UPDATEDDATE=now()
+		WHERE BOARDNUM = #{boardNum}
 	</update>
 
 	<delete id="boardDelete" parameterType="Integer">
-		DELETE FROM BOARD WHERE BNO = #{num}
+		DELETE FROM BOARD WHERE BOARDNUM = #{boardNum}
 	</delete>
+
+	<insert id="fileInsert" parameterType="com.spring.blog.dto.FileDto">
+		INSERT INTO
+		FILES (FILENUM, FILEKATEGORIE,KATEGORIENUM, FILENAME, FILEORINAME, FILEURL)
+		VALUES (#{fileNum},#{fileKategorie},#{kategorieNum},#{fileName},#{fileOriName},#{fileUrl})
+	</insert>
+
 
 
 </mapper>

@@ -3,49 +3,42 @@ package com.spring.blog.dto;
 import java.util.Date;
 
 public class BoardDto {
-    private int num;
+    private int boardNum;
     private String kategorie;
-    private String title;
-    private String name;
+    private String boardTitle;
+    private String boardAuthor;
     private Date createdDate;
     private Date updatedDate;
     private int viewCount;
-    private String contents;
-    
+    private String boardContents;
     
 	public BoardDto() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	
-	
-	public BoardDto(int num, String kategorie, String title, String name, Date createdDate, Date updatedDate,
-			int viewCount, String contents) {
+	public BoardDto(int boardNum, String kategorie, String boardTitle, String boardAuthor, Date createdDate, Date updatedDate, int viewCount, String boardContents) {
 		super();
-		this.num = num;
+		this.boardNum = boardNum;
 		this.kategorie = kategorie;
-		this.title = title;
-		this.name = name;
+		this.boardTitle = boardTitle;
+		this.boardAuthor = boardAuthor;
 		this.createdDate = createdDate;
 		this.updatedDate = updatedDate;
 		this.viewCount = viewCount;
-		this.contents = contents;
+		this.boardContents = boardContents;
 	}
-	
 	
 	@Override
 	public String toString() {
-		return "BoardDto [num=" + num + ", kategorie=" + kategorie + ", title=" + title + ", name=" + name
-				+ ", createdDate=" + createdDate + ", updatedDate=" + updatedDate + ", viewCount=" + viewCount
-				+ ", contents=" + contents + "]";
+		return "BoardDto [boardNum=" + boardNum + ", kategorie=" + kategorie + ", boardTitle=" + boardTitle + ", boardAuthor=" + boardAuthor + ", createdDate=" + createdDate + ", updatedDate=" + updatedDate + ", viewCount=" + viewCount + ", boardContents=" + boardContents + "]";
 	}
 	
-	
-	public int getNum() {
-		return num;
+	public int getBoardNum() {
+		return boardNum;
 	}
-	public void setNum(int num) {
-		this.num = num;
+	public void setBoardNum(int boardNum) {
+		this.boardNum = boardNum;
 	}
 	public String getKategorie() {
 		return kategorie;
@@ -53,17 +46,17 @@ public class BoardDto {
 	public void setKategorie(String kategorie) {
 		this.kategorie = kategorie;
 	}
-	public String getTitle() {
-		return title;
+	public String getBoardTitle() {
+		return boardTitle;
 	}
-	public void setTitle(String title) {
-		this.title = title;
+	public void setBoardTitle(String boardTitle) {
+		this.boardTitle = boardTitle;
 	}
-	public String getName() {
-		return name;
+	public String getBoardAuthor() {
+		return boardAuthor;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setBoardAuthor(String boardAuthor) {
+		this.boardAuthor = boardAuthor;
 	}
 	public Date getCreatedDate() {
 		return createdDate;
@@ -83,15 +76,13 @@ public class BoardDto {
 	public void setViewCount(int viewCount) {
 		this.viewCount = viewCount;
 	}
-	public String getContents() {
-		return contents;
+	public String getBoardContents() {
+		return boardContents;
 	}
-	public void setContents(String contents) {
-		this.contents = contents;
+	public void setBoardContents(String boardContents) {
+		this.boardContents = boardContents;
 	}
     
     
-    
- 
 }
  
