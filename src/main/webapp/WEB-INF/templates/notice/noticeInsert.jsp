@@ -1,33 +1,42 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert Form</title>
-</head>
+<title>ProjectDuo</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/button.css">
+<jsp:include page="../bootStrap.jsp"></jsp:include>
 <body>
-
-	<h2>게시글 작성</h2>
-
+	<jsp:include page="../header.jsp"></jsp:include>
 	<div class="container">
-		<form action="/noticeInsertProc" method="post" enctype="multipart/form-data">
-			<!-- 추가 -->
-			<div class="form-group">
-				<label for="subject">제목</label> <input type="text" class="form-control" id="boardTitle" name="boardTitle" placeholder="제목을 입력하세요.">
-			</div>
-			<div class="form-group">
-				<label for="writer">작성자</label> <input type="text" class="form-control" id="boardAuthor" name="boardAuthor" value="<sec:authentication property="principal.name"/>" readonly="readonly">
-			</div>
-			<div class="form-group">
-				<label for=content">내용</label>
-				<textarea class="form-control" id="boardContents" name="boardContents" rows="3"></textarea>
-			</div>
-			<input type="hidden" class="form-control" id="kategorie" name="kategorie" value="notice"> 
-			<input type="file" name="files">
-			<!-- 추가 -->
-			<button type="submit" class="customButton">작성</button>
-		</form>
+		<div class="col-xs-12" style="margin: 15px auto;">
+			<label style="font-size: 20px;"><span class="glyphicon glyphicon-edit"></span>게시글 작성</label>
+		</div>
+
+		<div class="col-xs-12">
+			<form action="/noticeInsertProc" method="post" enctype="multipart/form-data">
+				<!-- 추가 -->
+				<div class="form-group">
+					<label for="subject">제목</label> <input type="text" class="form-control" id="boardTitle" name="boardTitle" placeholder="제목을 입력하세요." required="required">
+				</div>
+				<div class="form-group">
+					<label for="writer">작성자</label> <input type="text" class="form-control" id="boardAuthor" name="boardAuthor" value="<sec:authentication property="principal.name"/>" readonly="readonly">
+				</div>
+				<div class="form-group">
+					<label for=content">내용</label>
+					<textarea class="form-control" id="boardContents" name="boardContents" rows="3" required="required"></textarea>
+				</div>
+				<input type="hidden" class="form-control" id="kategorie" name="kategorie" value="notice"> <input type="file" name="files">
+				<div class="btn-group btn-group-sm" role="group" style="float: right;">
+					<button class="customButton" onclick="location.href='/noticeBoard'">목록</button>
+					<button type="reset" class="customButton">리셋</button>
+					<button type="submit" class="customButton">작성</button>
+				</div>
+			</form>
+		</div>
 	</div>
 </body>
 </html>
