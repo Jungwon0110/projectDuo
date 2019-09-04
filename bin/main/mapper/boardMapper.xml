@@ -47,7 +47,4 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FILES (FILENUM, FILEKATEGORIE,KATEGORIENUM, FILENAME, FILEORINAME, FILEURL)
 		VALUES (#{fileNum},#{fileKategorie},#{kategorieNum},#{fileName},#{fileOriName},#{fileUrl})
 	</insert>
-
-
-
 </mapper>

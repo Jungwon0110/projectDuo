@@ -103,5 +103,4 @@ public class MainController {
 	public String getMessage() {
 		return helloMessageService.getMessage();
 	}
-
 }

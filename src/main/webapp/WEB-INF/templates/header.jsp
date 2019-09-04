@@ -42,7 +42,7 @@
           <li class="nav-item">
             <c:url var="logoutUrl" value="/logout"/>
 			<form style="display: contents;" action="${logoutUrl}" method="post">
-				<input class="blueButton" type="submit" value="Logout" />
+				<input type="submit" class="customButton" value="Logout" />
 				<input type="hidden"  name="${_csrf.parameterName}" value="${_csrf.token}"/>
 			</form>
           </li>

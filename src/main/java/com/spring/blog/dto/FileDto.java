@@ -64,4 +64,5 @@ public class FileDto {
 	public void setFileUrl(String fileUrl) {
 		this.fileUrl = fileUrl;
 	}
+	
 }

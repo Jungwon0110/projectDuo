@@ -48,7 +48,6 @@ public class ProjectDuoApplication {
             user.setBirth("none");
             user.setGithubAccount("none");
             accountRepository.save(user);
-
         };
     }
 }

@@ -128,5 +128,4 @@ public class PortfolioDto {
 	public void setMainImage(String mainImage) {
 		this.mainImage = mainImage;
 	}
-
 }

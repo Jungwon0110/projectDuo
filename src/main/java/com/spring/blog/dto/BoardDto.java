@@ -82,7 +82,5 @@ public class BoardDto {
 	public void setBoardContents(String boardContents) {
 		this.boardContents = boardContents;
 	}
-    
-    
 }
  

@@ -43,5 +43,4 @@ public class BoardService {
 	public void fileInsertService(FileDto filedto) throws Exception {
 		boardMapper.fileInsert(filedto);
 	}
-
 }

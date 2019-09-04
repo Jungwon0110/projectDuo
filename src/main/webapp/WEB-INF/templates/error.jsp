@@ -7,8 +7,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.3.0/snap.svg-min.js"></script>
 <jsp:include page="bootStrap.jsp"></jsp:include>
 <style type="text/css">
-*
-{
+*{
   font-family: 'PT Sans Caption', sans-serif, 'arial', 'Times New Roman';
 }
 /* Error Page */

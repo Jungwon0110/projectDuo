@@ -31,7 +31,4 @@ public interface BoardMapper {
 	// 파일 업로드
 	public void fileInsert(FileDto filedto) throws Exception;
 	 
-	 
-	
-
 }

@@ -43,4 +43,4 @@
 		<button class="customButton" onclick="location.href='/noticeDelete/${detail.boardNum}'">삭제</button>
 	</div>
 </body>
-</html>
+</html> 

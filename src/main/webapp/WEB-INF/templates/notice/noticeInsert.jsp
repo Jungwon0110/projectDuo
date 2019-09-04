@@ -17,7 +17,7 @@
 				<label for="subject">제목</label> <input type="text" class="form-control" id="boardTitle" name="boardTitle" placeholder="제목을 입력하세요.">
 			</div>
 			<div class="form-group">
-				<label for="writer">작성자</label> <input type="text" class="form-control" id="boardAuthor" name="boardAuthor" value="<sec:authentication property="principal.name"/>" readonly="readonly">
+				<label for="writer">작성자</label> <input type="text" class="form-control" id="boardAuthor" name="boardAuthor" value="<sec:authentication property="principal.name"/> " readonly="readonly">
 			</div>
 			<div class="form-group">
 				<label for=content">내용</label>

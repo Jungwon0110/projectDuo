@@ -113,6 +113,4 @@ public class BoardController {
 		boardService.boardDeleteService(boardNum);
 		return "redirect:/noticeBoard";
 	}
-
-	
 }
