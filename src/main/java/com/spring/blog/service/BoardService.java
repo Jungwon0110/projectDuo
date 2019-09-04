@@ -43,4 +43,13 @@ public class BoardService {
 	public void fileInsertService(FileDto filedto) throws Exception {
 		boardMapper.fileInsert(filedto);
 	}
+	
+	public FileDto fileDetailService(int boardNum) throws Exception{
+	    return boardMapper.fileDetail(boardNum);
+	}
+	
+	public void fileDeleteService(int boardNum) throws Exception{
+		boardMapper.fileDelete(boardNum);
+	}
+
 }

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -23,6 +23,7 @@
 				<label for=content">내용</label>
 				<textarea class="form-control" id="boardContents" name="boardContents" rows="3"></textarea>
 			</div>
+			<input type="hidden" class="form-control" id="kategorie" name="kategorie" value="notice"> 
 			<input type="file" name="files">
 			<!-- 추가 -->
 			<button type="submit" class="customButton">작성</button>
