@@ -37,12 +37,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SET 
 		TITLE=#{title}
 		,CONTENTS=#{contents} 
-		,UPDATEDATE=now()
+		,UPDATEDDATE=now()
 		WHERE NUM = #{num}
 	</update>
 
 	<delete id="boardDelete" parameterType="Integer">
-		DELETE FROM BOARD WHERE BNO = #{num}
+		DELETE FROM BOARD WHERE NUM = #{num}
 	</delete>
 
 

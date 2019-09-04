@@ -141,7 +141,6 @@
 			} else {
 				btn.disabled = "disabled";
 				btn.className = "customButton";
-				console.log(btn)
 			}
 		}
 
@@ -152,7 +151,7 @@
 			if(chkemail&&chkagreement){
 				document.getElementById("signup-form").submit();
 			}
-		}
+    }
 		
 		/*이메일 형식 체크 */
 		function chkEmail(obj) {
@@ -188,8 +187,10 @@
 					document.getElementById("chkemail").innerHTML = "중복체크 성공";
 					document.getElementById("sendEmail").style.display="block";
 					document.getElementById("emailchecking").checked="checked";
+
 				}
 			});
+			boxChk(document.getElementById("chk"));
 		}
 		
 		/*이메일 인증하기*/
@@ -203,6 +204,36 @@
 				}
 			});
 		}
+
+	      /* 생년월일 숫자체크 */
+	      function numchk(chknum){
+	          if(chknum.value.length != 8){
+	             alert("생년월일은  8자리 입니다.");
+	            document.getElementById("birth").focus();
+	            return false;
+	         }
+	          if(isNaN(chknum.value)){
+	            alert("문자가 있습니다. 숫자 8자리로 입력하세요.");
+	            document.getElementById("birth").value="";
+	            return false;
+	         }
+	      }
+
+	      /* 약관동의 */
+	      function boxChk(agree){
+	         if(agree.checked && existchk.checked){
+	            document.getElementById("register_btn").disabled="";
+	         }else if(agree.checked && !existchk.checked){
+	            document.getElementById("register_btn").disabled="disabled";
+	         }else{
+	            document.getElementById("register_btn").disabled="disabled";
+	         }
+	      }
+
+	      /* sign up */
+	      function submitsignup(){
+	         document.getElementById("signup").submit();
+	      }
 
 		/* password view */
 		function signup_eye() {
