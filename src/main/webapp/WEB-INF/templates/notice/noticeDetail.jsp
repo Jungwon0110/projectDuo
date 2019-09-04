@@ -35,6 +35,12 @@
 			<p>${detail.viewCount}</p>
 		</div>
 		<div class="form-group">
+			<label>첨부파일</label>
+			<p>
+				<a href="/fileDown/${files.fileNum}">${files.fileOriName}</a>
+			</p>
+		</div>
+		<div class="form-group">
 			<label>내용</label>
 			<p>${detail.boardContents}</p>
 		</div>
@@ -43,4 +49,4 @@
 		<button class="customButton" onclick="location.href='/noticeDelete/${detail.boardNum}'">삭제</button>
 	</div>
 </body>
-</html> 
+</html>
