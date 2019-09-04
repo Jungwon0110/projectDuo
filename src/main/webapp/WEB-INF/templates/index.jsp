@@ -61,20 +61,22 @@
 
 						<div id="tabs-content">
 							<div id="signup-tab-content">
-								<form class="signup-form" id="signup" action="/register" method="post">
+								<form id="signup-form" class="signup-form" action="/register" method="post">
 									<input type="email" id="email" name="email" autocomplete="off" placeholder="Email" onKeyup="chkEmail(this)">
 									<p id="chkemail">이메일 형식으로 입력하세요.</p>
 									<input type="button" id="existchk" style="display: none;" onClick="isexist()"> 
-									<input type="button" id="sendEmail" style="display: none;" onClick="sendEmail()" value="이메일인증하기"> 
+									<input type="checkbox" id="emailchecking" name="emailchecking" style="display: none;">
+									<input type="button" id="sendEmail" style="display: none;" onClick="sendregEmail()" value="이메일인증하기"> 
 									<input type="text" id="name" name="name" autocomplete="off" placeholder="Username"> 
 									<input type="password" name="password" id="signup_pass" autocomplete="off" placeholder="Password"> 
 									<a onclick="signup_eye();"> <i style="color: white" id="signup_eye" class="fa fa-eye-slash fa-lg"></i></a> 
-									<input type="text" class="input" id="birth" name="birth" autocomplete="off" onChange="numchk(this)" placeholder="ex.19921201"> 
-									<input type="text" id="githubAccount" name="githubAccount" autocomplete="off" placeholder="github Account"> 
-									<input type="hidden" name="role" value="ROLE_USER" /> 
-									<input type="checkbox" id="chk" name="chk" onClick="boxChk(this)"><a>약관동의?</a> 
-									<input type="button" id="register_btn" class="customButton" onClick="submitsignup()" value="Sign Up" disabled="disabled"> 
-									<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+									<input type="text" class="input" id="birth" name="birth" autocomplete="off" placeholder="ex.19921201">
+									 <input type="text" id="githubAccount" name="githubAccount" autocomplete="off" placeholder="github Account"> 
+									 <input type="hidden" name="role" value="ROLE_GUEST" /> 
+									 <input type="checkbox" id="chk" name="chk" onClick="boxChk(this)"><a>약관동의?</a> 
+									 <input type="button" id="register_btn" class="customButton" value="Sign Up" onClick="register()" disabled="disabled"> <input
+										type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"
+									/>
 								</form>
 							</div>
 							<!--.signup-tab-content-->
@@ -120,7 +122,6 @@
 			var x = document.getElementById("signup-tab-content");
 			var y = document.getElementById("login-tab-content");
 			boxChk(document.getElementById("chk"))
-			console.log(document.getElementById("register_btn"))
 			x.style.display = "block";
 			y.style.display = "none";
 		}
@@ -130,6 +131,27 @@
 			x.style.display = "none";
 			y.style.display = "block";
 		}
+
+		/* 약관동의 */
+		function boxChk(checkbox) {
+			var btn = document.getElementById("register_btn")
+			if (checkbox.checked) {
+				btn.className = "customButton"
+				btn.disabled = "";
+			} else {
+				btn.disabled = "disabled";
+				btn.className = "customButton";
+			}
+		}
+
+		/* 회원가입하기 & 인증 메일 발송 */
+		function register(){
+			var chkemail = document.getElementById("emailchecking").checked;
+			var chkagreement = document.getElementById("chk").checked;
+			if(chkemail&&chkagreement){
+				document.getElementById("signup-form").submit();
+			}
+    }
 		
 		/*이메일 형식 체크 */
 		function chkEmail(obj) {
@@ -138,6 +160,8 @@
 
 				if (!regExp.test(obj.value)) {
 					document.getElementById("chkemail").style.display="block";
+					document.getElementById("chkemail").innerHTML = "이메일 형식으로 입력하세요.";
+						document.getElementById("emailchecking").checked="";
 					return false;
 				}else{
 					document.getElementById("chkemail").style.display="none";
@@ -162,15 +186,23 @@
 					document.getElementById("chkemail").style.display = "block";
 					document.getElementById("chkemail").innerHTML = "중복체크 성공";
 					document.getElementById("sendEmail").style.display="block";
-					document.getElementById("existchk").checked="checked";
+					document.getElementById("emailchecking").checked="checked";
+
 				}
 			});
 			boxChk(document.getElementById("chk"));
 		}
 		
 		/*이메일 인증하기*/
-		function sendEmail(){
-			
+		function sendregEmail(){
+			var email = document.getElementById("email").value;
+			$.ajax({
+				url:"/emailConfirm/"+email,
+				method:"POST",
+				success:function(data){
+					alert("메일이 발송되었습니다.");
+				}
+			});
 		}
 
 	      /* 생년월일 숫자체크 */
