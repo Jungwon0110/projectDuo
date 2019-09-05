@@ -15,7 +15,9 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12" style="margin: auto;width: 85%">
-				<label style="font-size: 20px;"><span class="glyphicon glyphicon-list-alt"></span>게시글 목록</label>
+				<label style="font-size: 20px;">
+				<span class="glyphicon glyphicon-list-alt">
+				</span>게시글 목록</label>
 				<table class="table table-hover" width="100%">
 					<colgroup>
 						<col width="5%">

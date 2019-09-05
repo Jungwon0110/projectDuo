@@ -33,4 +33,9 @@ public class MemberService {
     public void updateKey(AccountKeyDto updatekey) {
     	membermapper.updateKey(updatekey);
     }
+
+	public void memberUpdateService(Account account) {
+		System.out.println(account.toString());
+		membermapper.updateMember(account);
+	}
 }

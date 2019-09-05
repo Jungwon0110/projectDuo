@@ -22,4 +22,7 @@ public interface MemberMapper {
     
     //key가 있는 유저는 update
     public void updateKey(AccountKeyDto updatekey);
+
+    //유저 수정
+	public void updateMember(Account account);
 }
