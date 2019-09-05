@@ -14,13 +14,14 @@ public class PortfolioDto {
 	private Date startTime;
 	private Date EndTime;
 	private String mainImage;
+	private int visible;
 
 	public PortfolioDto() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public PortfolioDto(int portfolioNum, String portfolioTitle, String teamName, String leader, String githubRepo, String pageUrl, String summary, String youtubeUrl, Date startTime, Date endTime, String mainImage) {
+	public PortfolioDto(int portfolioNum, String portfolioTitle, String teamName, String leader, String githubRepo, String pageUrl, String summary, String youtubeUrl, Date startTime, Date endTime, String mainImage, int visible) {
 		super();
 		this.portfolioNum = portfolioNum;
 		this.portfolioTitle = portfolioTitle;
@@ -33,12 +34,13 @@ public class PortfolioDto {
 		this.startTime = startTime;
 		EndTime = endTime;
 		this.mainImage = mainImage;
+		this.visible = visible;
 	}
 
 	@Override
 	public String toString() {
 		return "PortfolioDto [portfolioNum=" + portfolioNum + ", portfolioTitle=" + portfolioTitle + ", teamName=" + teamName + ", leader=" + leader + ", githubRepo=" + githubRepo + ", pageUrl=" + pageUrl + ", summary=" + summary + ", youtubeUrl=" + youtubeUrl + ", startTime=" + startTime
-				+ ", EndTime=" + EndTime + ", mainImage=" + mainImage + "]";
+				+ ", EndTime=" + EndTime + ", mainImage=" + mainImage + ", visible=" + visible + "]";
 	}
 
 	public int getPortfolioNum() {
@@ -128,4 +130,13 @@ public class PortfolioDto {
 	public void setMainImage(String mainImage) {
 		this.mainImage = mainImage;
 	}
+
+	public int getVisible() {
+		return visible;
+	}
+
+	public void setVisible(int visible) {
+		this.visible = visible;
+	}
+
 }

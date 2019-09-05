@@ -52,6 +52,7 @@ public class MainController {
 	@RequestMapping("/registerForm")
 	public void registerForm() {
 	}
+	
 
 	// 필요한 부분은 Serivce계층으로 옮겨줘야 합니다.
 	@Autowired

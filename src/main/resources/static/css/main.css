@@ -1,5 +1,13 @@
+list{
+	list-style: none;
+}
+
 .indexTopContents {
 	margin-top: 200px;
+}
+
+.loginTop{
+	margin-top: 50px;
 }
 
 .mobileTopContents {
@@ -59,7 +67,7 @@ body {
 	position: relative;
 	width: 100%;
 	z-index: 1000;
-	margin-bottom: 50px;
+	margin-bottom: 30px;
 }
 
 /* footer */
