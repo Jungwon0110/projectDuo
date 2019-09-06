@@ -25,6 +25,11 @@ public class PortfolioController {
 		return "portfolio";
 	}
 	
+	
+	@RequestMapping("/portfolioInsert")
+	public void portfolioInsert(){
+		
+	}
 
 	
 

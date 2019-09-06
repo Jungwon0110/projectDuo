@@ -23,55 +23,9 @@
 <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Custom styles for this template -->
-<link href="product.css" rel="stylesheet">
+<link href="css/mypage.css" rel="stylesheet">
 <style type="text/css">
-#updateForm {
-	display: none;
-}
 
-.where {
-	display: block;
-	margin: 25px 15px;
-	font-size: 11px;
-	color: #000;
-	text-decoration: none;
-	font-family: verdana;
-	font-style: italic;
-}
-
-.filebox input[type="file"] {
-	position: absolute;
-	width: 1px;
-	height: 1px;
-	padding: 0;
-	margin: -1px;
-	overflow: hidden;
-	clip: rect(0, 0, 0, 0);
-	border: 0;
-}
-
-/* named upload */
-.filebox .upload-name {
-	display: inline-block;
-	padding: .5em .75em;
-	font-size: inherit;
-	font-family: inherit;
-	line-height: normal;
-	vertical-align: middle;
-	background-color: #f5f5f5;
-	border: 1px solid #ebebeb;
-	border-bottom-color: #e2e2e2;
-	border-radius: .25em;
-	-webkit-appearance: none;
-	-moz-appearance: none;
-	appearance: none;
-}
-
-.filebox.bs3-primary label {
-	color: #fff;
-	background-color: #337ab7;
-	border-color: #2e6da4;
-}
 </style>
 </head>
 <body>
@@ -101,7 +55,7 @@
 						<input id="imageUpload" type="hidden" name="my_image" value="${user.my_image}"> 
 						
 
-
+							
 							<input class="upload-name" value="파일선택" disabled="disabled"> 
 							<label for="file" class="customButton">업로드</label>
 							 <input style="display: none" type="file" id=file class="upload-hidden">
@@ -111,7 +65,7 @@
 					</div>
 					<div class="col-lg-7">
 						<label>Name</label> <input class="form-control" type="text" name="name" autocomplete="off" placeholder="이름" value="${user.name}"> <label>Github</label> <input class="form-control" type="text" name="github_account" autocomplete="off" placeholder="github" value="${user.github_account}"> <label>Birth</label> <input class="form-control" type="text" name="birth" autocomplete="off" placeholder="birth" value="${user.birth}">
-						<textarea class="form-control" name="introduce" rows="3" required="required" placeholder="자기소개">${user.introduce}</textarea>
+						<label>Introduce</label><textarea class="form-control" name="introduce" rows="3" required="required" placeholder="자기소개">${user.introduce}</textarea>
 						<button type="submit" class="customButton" onclick="changeForm()">수정 완료</button>
 					</div>
 				</div>
@@ -159,9 +113,12 @@
 						<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias corporis quod, ea minima accusamus.</p>
 					</div>
 					<div class="card-footer">
-						<a href="#" class="btn btn-primary btn-sm">More Info</a>
+						<a href="#" class="customButton">More Info</a>
 					</div>
 				</div>
+			</div>
+			<div class="col-xs-12">
+				<button class="customButton" onclick="location.href='/portfolioInsert'">Create Portfolio</button>
 			</div>
 			<!-- /.col-md-4 -->
 
