@@ -2,6 +2,13 @@
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <script src="https://kit.fontawesome.com/1b10eafc75.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+<style>
+	*{
+		font-family: 'Noto Sans KR', sans-serif;
+	}
+</style>
+
 <!-- Navigation -->
 
 <nav id="header" class="navbar navbar-expand-md navbar-dark bg-dark">
@@ -14,9 +21,10 @@
 		<ul class="navbar-nav mr-auto">
 			<li class="nav-item active"><a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a></li>
 			<li class="nav-item"><a class="nav-link" href="/portfolio">portFolio</a></li>
+			<li class="nav-item"><a class="nav-link" href="/fileUpload">fileUpload</a></li>
+			<li class="nav-item"><a class="nav-link" href="/google">Google</a></li>
 			<li class="nav-item"><a class="nav-link disabled" href="#">Disabled</a></li>
 			<sec:authorize access="isAuthenticated()">
-				<li class="nav-item"><a class="nav-link" href="/myPage">myPage</a></li>
 				<li class="nav-item"><a class="nav-link" href="/noticeBoard">Notice</a></li>
 			</sec:authorize>
 			<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
@@ -24,13 +32,15 @@
 					<a class="dropdown-item" href="#">Action</a> <a class="dropdown-item" href="#">Another action</a> <a class="dropdown-item" href="#">Something else here</a>
 				</div></li>
 		</ul>
-		<form class="form-inline my-2 my-md-0">
+		<sec:authorize access="isAuthenticated()">
+				<li class="nav-item" style="list-style: none;"><a style="color:white;" class="nav-link" href="/myPage">myPage</a></li>
+		</sec:authorize>
+		<form style="margin-left:10px;" class="form-inline my-2 my-md-0">
 			<input class="form-control" type="text" placeholder="Search">
 		</form>
-
 		<sec:authorize access="isAuthenticated()">
 			<li class="nav-item" style="list-style: none;">
-				<form style="display: contents" action="/logout" method="post">
+				<form style="display: contents;" action="/logout" method="post">
 					<button type="submit" class="customButton">
 						logout <i class="fas fa-sign-out-alt"></i>
 					</button>

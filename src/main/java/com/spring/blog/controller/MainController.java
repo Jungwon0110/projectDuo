@@ -40,6 +40,14 @@ public class MainController {
 	@RequestMapping("/admin")
 	public void admin() {
 	}
+	
+	@RequestMapping("/fileUpload")
+	public void fileUpload() {
+	}
+	
+	@RequestMapping("/google")
+	public void google() {
+	}
 
 	@RequestMapping("/user")
 	public void user() {

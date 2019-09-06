@@ -32,8 +32,10 @@ import com.spring.blog.service.MemberService;
 public class MemberController {
 
 	@Resource(name = "com.spring.blog.service.MemberService")
+	
 	@Autowired
 	MemberService memberService;
+	
 	@Autowired
 	JavaMailSender javaMailSender;
 
@@ -87,11 +89,6 @@ public class MemberController {
 
 	@RequestMapping("/myPage")
 	public void myPage(Model model) {
-		model.addAttribute("user", accountRepository.findMe());
-	}
-	
-	@RequestMapping("/updateMyPage")
-	public void updateMyPage(Model model) {
 		model.addAttribute("user", accountRepository.findMe());
 	}
 	

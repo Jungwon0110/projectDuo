@@ -40,8 +40,7 @@
 				<p>${detail.viewCount}</p>
 			</div>
 			<div class="form-group">
-				<label>첨부파일</label><br>
-				<img width="30%" alt="첨부파일이 없습니다." src="/uploadFile/image/${files.fileName}">
+				<label>첨부파일</label><br> <img width="30%" alt="첨부파일이 없습니다." src="/uploadFile/image/${files.fileName}">
 				<p>
 					<a href="/fileDown/${detail.boardNum}">${files.fileOriName}</a>
 				</p>
@@ -57,5 +56,6 @@
 			</div>
 		</div>
 	</div>
+<jsp:include page="../comment.jsp"></jsp:include>
 </body>
 </html>
