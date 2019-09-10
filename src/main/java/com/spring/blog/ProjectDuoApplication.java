@@ -13,33 +13,45 @@ import com.spring.blog.repository.AccountRepository;
 @SpringBootApplication
 public class ProjectDuoApplication {
 
-	
-	
-    public static void main(String[] args) {
-        SpringApplication.run(ProjectDuoApplication.class, args);
-    }
+	public static void main(String[] args) {
+		SpringApplication.run(ProjectDuoApplication.class, args);
+	}
 
-    @Autowired
-    AccountRepository accountRepository;
+	@Autowired
+	AccountRepository accountRepository;
 
-    // 초기 시작시 데이터 초기화 (JPA : CREATE-DROP )
-    // InitializingBean 참고 : 토비의 봄 - (1.5) 커맨드 라인 스프링 앱 만들기
-    // https://www.youtube.com/watch?v=dnCf2-XYXL8
+	// 초기 시작시 데이터 초기화 (JPA : CREATE-DROP )
+	// InitializingBean 참고 : 토비의 봄 - (1.5) 커맨드 라인 스프링 앱 만들기
+	// https://www.youtube.com/watch?v=dnCf2-XYXL8
 
-    @Autowired
-    PasswordEncoder passwordEncoder;
-	/*
-	 * @Bean InitializingBean insertFixtureUsers(){ return ()->{ Account admin = new
-	 * Account(); admin.setEmail("admin@admin.com");;
-	 * admin.setPassword(passwordEncoder.encode("1234"));
-	 * admin.setRole("ROLE_ADMIN"); admin.setName("관리자"); admin.setBirth("none");
-	 * admin.setGithub_account("none"); admin.setIntroduce("안녕하세요 관리자입니다.");
-	 * admin.setMy_image("관리자 이미지"); accountRepository.save(admin);
-	 * 
-	 * Account user = new Account(); user.setEmail("user@user.com");
-	 * user.setPassword(passwordEncoder.encode("1234")); user.setRole("ROLE_USER");
-	 * user.setName("일반유저"); user.setBirth("none"); user.setGithub_account("none");
-	 * user.setIntroduce("안녕하세요 일반 유저입니다."); user.setMy_image("유저 이미지");
-	 * accountRepository.save(user); }; }
-	 */
+	@Autowired
+	PasswordEncoder passwordEncoder;
+
+	@Bean
+	InitializingBean insertFixtureUsers() {
+		return () -> {
+			Account admin = new Account();
+			admin.setEmail("admin@admin.com");
+			admin.setPassword(passwordEncoder.encode("1234"));
+			admin.setRole("ROLE_ADMIN");
+			admin.setName("관리자");
+			admin.setBirth("none");
+			admin.setGithub_account("none");
+			admin.setIntroduce("안녕하세요 관리자입니다.");
+			admin.setMy_image("관리자 이미지");
+			accountRepository.save(admin);
+
+			Account user = new Account();
+			user.setEmail("user@user.com");
+			user.setPassword(passwordEncoder.encode("1234"));
+			user.setRole("ROLE_USER");
+			user.setName("일반유저");
+			user.setBirth("none");
+			user.setGithub_account("none");
+			user.setIntroduce("안녕하세요 일반 유저입니다.");
+			user.setMy_image("유저 이미지");
+			accountRepository.save(user);
+		};
+	}
+
 }
