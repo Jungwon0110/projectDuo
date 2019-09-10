@@ -3,9 +3,10 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <script src="https://kit.fontawesome.com/1b10eafc75.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" rel="stylesheet">
 <style>
 	*{
-		font-family: 'Noto Sans KR', sans-serif;
+		font-family: 'Noto Sans', sans-serif;
 	}
 </style>
 
@@ -23,6 +24,7 @@
 			<li class="nav-item"><a class="nav-link" href="/portfolio">portFolio</a></li>
 			<li class="nav-item"><a class="nav-link" href="/fileUpload">fileUpload</a></li>
 			<li class="nav-item"><a class="nav-link" href="/google">Google</a></li>
+			<li class="nav-item"><a class="nav-link" href="/jira">Jira</a></li>
 			<li class="nav-item"><a class="nav-link disabled" href="#">Disabled</a></li>
 			<sec:authorize access="isAuthenticated()">
 				<li class="nav-item"><a class="nav-link" href="/noticeBoard">Notice</a></li>
