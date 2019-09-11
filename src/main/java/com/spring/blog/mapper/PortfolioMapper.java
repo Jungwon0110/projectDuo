@@ -17,4 +17,6 @@ public interface PortfolioMapper {
 	// 포트폴리오 목록
 	public List<PortfolioDto> portfolioList() throws Exception;
 
+	//포트폴리오 삽입
+	public void portfolioInsertProc(PortfolioDto portfolioDto) throws Exception;
 }

@@ -21,32 +21,33 @@
 	<jsp:include page="header.jsp"></jsp:include>
 
 	<div class="container">
+	<form action="/portfolioInsertProc">
 		<h1 class="my-4">
-			<input type="text" name="portfolioTitle" autocomplete="off" placeholder="Title"/>
+			<input type="text" name="portfolioTitle" autocomplete="off" placeholder="Title" required/>
 		</h1>
 
 		<div class="row">
 			<div class="col-md-7">
-				<h1><small><input type="text" name="teamName" autocomplete="off" placeholder="teamName"/></small></h1>
+				<h1><small><input type="text" name="teamName" autocomplete="off" placeholder="teamName" required/></small></h1>
 				<!-- 파일업로드 -->
 				<img style="max-height: 500px; max-width: 500px;" id=image src=""> 
-				<input id="imageUpload" type="hidden" name="mainImage" value=""> 
-				<input class="upload-name" value="파일선택" disabled="disabled"> 
+				<input id="imageUpload" type="hidden" name="mainImage" value="" required> 
+				<input class="upload-name" value="파일선택" disabled="disabled" required> 
 				<label for="file" class="customButton">업로드</label>
-				<input style="display: none" type="file" id=file class="upload-hidden"><br>
+				<input style="display: none" type="file" id=file class="upload-hidden" required><br>
 				<!-- 파일업로드 -->
-				<input type="text" name="githubRepo" autocomplete="off" placeholder="github Repository"/><br>
-				<input type="text" name="pageUrl" autocomplete="off" placeholder="page url"/><br>
-				<input type="text" name="youtubeUrl" autocomplete="off" placeholder="youtube url"/><br><br>
+				<input type="text" name="githubRepo" autocomplete="off" placeholder="github Repository" required/><br>
+				<input type="text" name="pageUrl" autocomplete="off" placeholder="page url" required/><br>
+				<input type="text" name="youtubeUrl" autocomplete="off" placeholder="youtube url" required/><br><br>
 				<label>Start Time : </label>
-				<input type="date" name="startTime"/>&nbsp;
+				<input type="date" name="startTime" required/>&nbsp;
 				<label>  End Time : </label>
-				<input type="date" name="endTime"/><br><br>
+				<input type="date" name="endTime" required/><br><br>
 				<label><b>공개여부</b></label><br>
 				<label>공개</label>
 				<input type="radio" name="visible" value="1">&nbsp;
 				<label>비공개</label>
-				<input type="radio" name="visible" value="0">
+				<input type="radio" name="visible" value="0" >
 				
 				
 			</div>
@@ -166,10 +167,9 @@
       </ul>
 
     </div>
-		
-		<button class="customButton" style="margin-bottom:20px;float:right">Upload</button>
+		<button type="submit" class="customButton" style="margin-bottom:20px;float:right">Upload</button>
 	</div>
-	
+</form>	
 	
 	
 	<script type="text/javascript">

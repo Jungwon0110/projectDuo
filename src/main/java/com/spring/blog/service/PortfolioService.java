@@ -25,4 +25,8 @@ public class PortfolioService {
 	public List<PortfolioDto> portfolioListService() throws Exception {
 		return portfolioMapper.portfolioList();
 	}
+	
+	public void portfolioInsertService(PortfolioDto portfolioDto) throws Exception {
+		portfolioMapper.portfolioInsertProc(portfolioDto);
+	}
 }

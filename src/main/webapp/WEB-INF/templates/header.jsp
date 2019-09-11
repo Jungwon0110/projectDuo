@@ -5,15 +5,30 @@
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" rel="stylesheet">
 <style>
-	*{
-		font-family: 'Noto Sans', sans-serif;
-	}
+* {
+	font-family: 'Noto Sans', sans-serif;
+}
+
+#adminPass {
+	display: none;
+}
 </style>
 
 <!-- Navigation -->
 
 <nav id="header" class="navbar navbar-expand-md navbar-dark bg-dark">
-	<a class="navbar-brand" href="/">WAP</a>
+	<a class="navbar-brand" onclick="changeRole2Admin()">WAP</a>
+
+	<sec:authorize access="isAuthenticated()">
+		<div id="adminPass" style="position: absolute; top: 70px; left: 50px; background-color: rgba(1, 1, 1, 0.3)">
+			<form action="/changeRole2Admin" method="post">
+				<input type="hidden" name="email" value="<sec:authentication property="principal.username"/>"> <input type="password" name="password" placeholder="Change Role to Admin" />
+				<button type="submit" style="float: right">SEND</button>
+			</form>
+			<button style="float: right; margin-right: 5px;" onclick="cancel()">Cancel</button>
+		</div>
+	</sec:authorize>
+	
 	<button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
 	</button>
@@ -35,9 +50,9 @@
 				</div></li>
 		</ul>
 		<sec:authorize access="isAuthenticated()">
-				<li class="nav-item" style="list-style: none;"><a style="color:white;" class="nav-link" href="/myPage">myPage</a></li>
+			<li class="nav-item" style="list-style: none;"><a style="color: white;" class="nav-link" href="/myPage">myPage</a></li>
 		</sec:authorize>
-		<form style="margin-left:10px;" class="form-inline my-2 my-md-0">
+		<form style="margin-left: 10px;" class="form-inline my-2 my-md-0">
 			<input class="form-control" type="text" placeholder="Search">
 		</form>
 		<sec:authorize access="isAuthenticated()">
@@ -62,3 +77,18 @@
 		</sec:authorize>
 	</div>
 </nav>
+
+<script type="text/javascript">
+	var x = document.getElementById("adminPass");
+	function changeRole2Admin() {
+		if (x.style.display = "none") {
+			x.style.display = "block"
+		} else if (x.style.display = "block") {
+			x.style.display = "none"
+		}
+	}
+
+	function cancel() {
+		x.style.display = "none"
+	}
+</script>

@@ -81,6 +81,7 @@
                                 .append(
                                         "<div class=\"row imageContents\" value=\""+imgNum +"\"><div class=\"preview-box col-md-7\" value=\"" + imgNum +"\">"
                                                 + "<img class=\"thumbnail\" src=\"" + img.target.result + "\"\/>"
+                                                + "<input id=\"imageUpload"+ imgNum +"\" type=\"hidden\" name=\"my_image\" value=\"\"> "
                                                 + "<p>"
                                                 + file.name
                                                 + "</p>"
@@ -128,7 +129,17 @@
                 return false;
             }
         }
- 
+
+
+		var file = document.getElementById("uploadInputBox");
+		file.onchange = function(event) {
+        	 var x = document.getElementById("imageUpload0");
+             var y = document.getElementsByClassName("thumbnail"); 
+             var src = y[0].src; 
+             x.value = src;
+		};
+
+        
         $(document).ready(function() {
             //submit 등록. 실제로 submit type은 아니다.
             $('.submit a').on('click',function() {                        

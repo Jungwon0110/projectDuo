@@ -107,5 +107,26 @@ public class MemberController {
 		return "redirect:/myPage";
 	}
 	
+	
+	@RequestMapping(value = "/changeRole2Admin", method = RequestMethod.POST)
+	public String changeRole2Admin(HttpServletRequest request) {
+		String email = request.getParameter("email");
+		int password = Integer.parseInt(request.getParameter("password"));
+		System.out.println(email);
+		System.out.println(password);
+		int pass = 1111;
+		if(pass==password) {
+			System.out.println("비밀번호가 일치합니다.");
+			memberService.updateRole2AdminService(email);
+			return "redirect:/";
+		}else {
+			System.out.println("비밀번호가 일치않습니다.");
+			return "error";
+		}
+		
+	}
+	
+	
+	
 
 }

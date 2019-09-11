@@ -45,4 +45,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       ,MY_IMAGE = #{my_image}
       WHERE EMAIL = #{email}
    </update>
+   
+   <update id="updateRole2Admin" parameterType="java.lang.String">
+      UPDATE ACCOUNT SET ROLE = "ROLE_ADMIN" WHERE EMAIL=#{email}
+   </update>
 </mapper>
