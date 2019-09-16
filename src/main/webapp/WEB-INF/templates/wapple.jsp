@@ -27,7 +27,7 @@
 			</div>
 			<form action="wappleCompleted" method="post" style="width:100%">
 				<div class="col-xs-12" style="margin: auto;width:100%;max-width:700px">
-					<input type="text" name="search" style="padding: 10px;border-radius: 10px;float: left;width: 89%;">
+					<input type="text" name="search" style="padding: 10px;border-radius: 10px;float: left;width: 89%;" value="${exSearch}">
 					<button type="submit" style="padding:10px;float: right;width: 10%;background: rgba(255,255,255,0.1);border:none;">
 						<i style="font-size: 20px;" class="fas fa-search"></i>
 					</button>
