@@ -16,22 +16,23 @@
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
+	
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12" style="margin-top: 30%"></div>
-			<div class="col-xs-12" style="margin: auto;margin-bottom:10px">
-				<span style="font-size: 10vw;font-family: 'Noto Sans', sans-serif;">
-					<b style="color: blue">W</b>
-					<b style="color: red">a</b>
-					<b style="color: yellow">p</b>
-					<b style="color: blue">p</b>
-					<b style="color: green">l</b>
-					<b style="color: red">e</b>
-				<span>
+			<div class="col-xs-12" style="text-align:center;margin:auto;margin-bottom:10px;width:100%">
+				<p style="font-size: 6vw;font-family: 'Noto Sans', sans-serif;">
+					<span style="color:blue">W</span><span style="color:red">a</span><span style="color:yellow">p</span><span style="color:blue">p</span><span style="color:green">l</span><span style="color:red">e</span>
+				</p>
 			</div>
-			<div class="col-xs-12" style="margin: auto">
-				<input style="padding:10px;border-radius:10px;width:700px;margin-right:20px" type="text"><i style="font-size:20px" class="fas fa-search"></i>
-			</div>
+			<form action="wappleCompleted" method="post" style="width:100%">
+				<div class="col-xs-12" style="margin: auto;width:100%;max-width:700px">
+					<input type="text" name="search" style="padding: 10px;border-radius: 10px;float: left;width: 89%;">
+					<button type="submit" style="padding:10px;float: right;width: 10%;background: rgba(255,255,255,0.1);border:none;">
+						<i style="font-size: 20px;" class="fas fa-search"></i>
+					</button>
+				</div>
+			</form>
 		</div>
 	</div>
 

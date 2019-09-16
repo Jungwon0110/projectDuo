@@ -15,6 +15,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM PORTFOLIO WHERE VISIBLE = 1
 	</select>
 
+	<select id="wapplePortfolio" parameterType="String" resultType="com.spring.blog.dto.PortfolioDto">
+		SELECT *
+		FROM 
+		PORTFOLIO
+		WHERE 
+		VISIBLE = 1
+		AND
+		(PORTFOLIOTITLE LIKE CONCAT('%',#{search},'%')
+		OR
+		TEAMNAME LIKE CONCAT('%',#{search},'%')
+		OR
+		SUMMARY LIKE CONCAT('%',#{search},'%')
+		OR
+		LEADER LIKE CONCAT('%',#{search},'%'))
+	</select>
+
 	<insert id="portfolioInsertProc" parameterType="com.spring.blog.dto.PortfolioDto">
 		INSERT INTO PORTFOLIO
 		(PORTFOLIOTITLE,TEAMNAME,LEADER,GITHUBREPO,PAGEURL,SUMMARY,YOUTUBEURL,STARTTIME,ENDTIME,MAINIMAGE,VISIBLE)
