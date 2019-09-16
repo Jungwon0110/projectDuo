@@ -33,7 +33,7 @@ public class PortfolioController {
 	@RequestMapping("/portfolioInsertProc")
 	private String portfolioInsertProc(HttpServletRequest request) throws Exception {
 
-		PortfolioDto portfolioDto = new PortfolioDto();
+		PortfolioDto portfolioDto = new PortfolioDto(); 
 
 		portfolioDto.setPortfolioTitle(request.getParameter("portfolioTitle"));
 		portfolioDto.setTeamName(request.getParameter("teamName"));

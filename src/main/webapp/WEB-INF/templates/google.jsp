@@ -20,14 +20,14 @@
 		<div class="row">
 			<div class="col-xs-12" style="margin-top: 30%"></div>
 			<div class="col-xs-12" style="margin: auto;margin-bottom:10px">
-				<p style="font-size: 10vw;font-family: 'Noto Sans', sans-serif;">
-					<b style="color: blue">G</b>
-					<b style="color: red">o</b>
-					<b style="color: yellow">o</b>
-					<b style="color: blue">g</b>
+				<span style="font-size: 10vw;font-family: 'Noto Sans', sans-serif;">
+					<b style="color: blue">W</b>
+					<b style="color: red">a</b>
+					<b style="color: yellow">p</b>
+					<b style="color: blue">p</b>
 					<b style="color: green">l</b>
 					<b style="color: red">e</b>
-				<p>
+				<span>
 			</div>
 			<div class="col-xs-12" style="margin: auto">
 				<input style="padding:10px;border-radius:10px;width:700px;margin-right:20px" type="text"><i style="font-size:20px" class="fas fa-search"></i>
