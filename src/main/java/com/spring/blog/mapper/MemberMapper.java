@@ -19,4 +19,13 @@ public interface MemberMapper {
     
     //role 변경
     public void changeRole(String email);
+    
+    //key가 있는 유저는 update
+    public void updateKey(AccountKeyDto updatekey);
+
+    //유저 수정
+	public void updateMember(Account account);
+
+	//권한변경
+	public void updateRole2Admin(String email);
 }

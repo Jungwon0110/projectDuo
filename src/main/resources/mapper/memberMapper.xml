@@ -7,25 +7,46 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    <select id="findMemberByEmail" parameterType="java.lang.String" resultType="com.spring.blog.domain.Account">
       SELECT * 
       FROM Account 
-      WHERE email=#{email}
+      WHERE EMAIL=#{email}
    </select>
 
    <insert id="insertKey" parameterType="com.spring.blog.dto.AccountKeyDto">
       INSERT INTO 
-      accountkey (email, authkey) 
+      ACCOUNTKEY (email, authkey) 
       VALUES(#{email}, #{authkey})
    </insert>
    
-   <select id="findkey" parameterType="java.lang.String" resultType="java.lang.String">
-      SELECT key 
-      FROM accountkey 
-      WHERE email=#{email}
+   <select id="findKey" parameterType="java.lang.String" resultType="java.lang.String">
+      SELECT AUTHKEY 
+      FROM ACCOUNTKEY 
+      WHERE EMAIL=#{email}
    </select>
    
    <update id="changeRole" parameterType="java.lang.String">
       UPDATE Account
       SET 
-      role="ROLE_USER"
-      WHERE email = #{email}
+      ROLE="ROLE_USER"
+      WHERE EMAIL = #{email}
+   </update>
+   
+     <update id="updateKey" parameterType="com.spring.blog.dto.AccountKeyDto">
+      UPDATE ACCOUNTKEY
+      SET 
+      AUTHKEY=#{authkey}
+      WHERE EMAIL = #{email}
+   </update>
+   
+   <update id="updateMember" parameterType="com.spring.blog.domain.Account">
+      UPDATE ACCOUNT
+      SET 
+      NAME = #{name}
+      ,INTRODUCE = #{introduce}
+      ,GITHUB_ACCOUNT = #{github_account}
+      ,MY_IMAGE = #{my_image}
+      WHERE EMAIL = #{email}
+   </update>
+   
+   <update id="updateRole2Admin" parameterType="java.lang.String">
+      UPDATE ACCOUNT SET ROLE = "ROLE_ADMIN" WHERE EMAIL=#{email}
    </update>
 </mapper>

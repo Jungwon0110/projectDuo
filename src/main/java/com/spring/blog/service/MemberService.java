@@ -29,4 +29,16 @@ public class MemberService {
     public void changeRole(String email) {
        membermapper.changeRole(email);
     }
+    
+    public void updateKey(AccountKeyDto updatekey) {
+    	membermapper.updateKey(updatekey);
+    }
+
+	public void memberUpdateService(Account account) {
+		membermapper.updateMember(account);
+	}
+	
+	public void updateRole2AdminService(String email) {
+		membermapper.updateRole2Admin(email);
+	}
 }

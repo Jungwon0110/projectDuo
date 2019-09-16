@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.spring.blog.mapper.CommentMapper">
+
+	<select id="commentCount" resultType="Integer">
+		SELECT
+		COUNT(*)
+		FROM COMMENT
+	</select>
+
+	<select id="commentList" resultType="com.spring.blog.dto.CommentDto">
+		SELECT
+		*
+		FROM COMMENT
+	</select>
+
+
+	<insert id="commentInsert" parameterType="com.spring.blog.dto.CommentDto">
+		INSERT INTO
+		COMMENT (COMMENTKATEGORIE, KATEGORIENUM, CONTENTAUTHOR, COMMENTCONTENTS, CREATEDDATE,UPDATEDDATE)
+		VALUES(#{commentKategorie},#{kategorieNum},#{contentAuthor},#{commentContents},now(),now())
+	</insert>
+
+	<update id="commentUpdate" parameterType="com.spring.blog.dto.CommentDto">
+		UPDATE COMMENT
+		SET
+		COMMENTCONTENT = #{COMMENTCONTENT}
+		,UPDATEDDATE = now()
+		WHERE commentNum = #{commentNum}
+	</update>
+
+	<delete id="commentDelete" parameterType="Integer">
+		DELETE FROM COMMENT WHERE commentNum = #{commentNum}
+	</delete>
+</mapper>
