@@ -7,13 +7,12 @@ public class FileDto {
 	private String fileName;
 	private String fileOriName;
 	private String fileUrl;
-	
+	private String fileDescription;
 	public FileDto() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	public FileDto(int fileNum, String fileKategorie, int kategorieNum, String fileName, String fileOriName, String fileUrl) {
+	public FileDto(int fileNum, String fileKategorie, int kategorieNum, String fileName, String fileOriName, String fileUrl, String fileDescription) {
 		super();
 		this.fileNum = fileNum;
 		this.fileKategorie = fileKategorie;
@@ -21,13 +20,8 @@ public class FileDto {
 		this.fileName = fileName;
 		this.fileOriName = fileOriName;
 		this.fileUrl = fileUrl;
+		this.fileDescription = fileDescription;
 	}
-	
-	@Override
-	public String toString() {
-		return "FileDto [fileNum=" + fileNum + ", fileKategorie=" + fileKategorie + ", kategorieNum=" + kategorieNum + ", fileName=" + fileName + ", fileOriName=" + fileOriName + ", fileUrl=" + fileUrl + "]";
-	}
-	
 	public int getFileNum() {
 		return fileNum;
 	}
@@ -64,5 +58,20 @@ public class FileDto {
 	public void setFileUrl(String fileUrl) {
 		this.fileUrl = fileUrl;
 	}
+	public String getFileDescription() {
+		return fileDescription;
+	}
+	public void setFileDescription(String fileDescription) {
+		this.fileDescription = fileDescription;
+	}
+	
+	@Override
+	public String toString() {
+		return "FileDto [fileNum=" + fileNum + ", fileKategorie=" + fileKategorie + ", kategorieNum=" + kategorieNum + ", fileName=" + fileName + ", fileOriName=" + fileOriName + ", fileUrl=" + fileUrl + ", fileDescription=" + fileDescription + "]";
+	}
+	
+	
+	
+	
 	
 }

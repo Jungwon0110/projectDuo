@@ -25,4 +25,7 @@ public interface MemberMapper {
 
     //유저 수정
 	public void updateMember(Account account);
+
+	//권한변경
+	public void updateRole2Admin(String email);
 }

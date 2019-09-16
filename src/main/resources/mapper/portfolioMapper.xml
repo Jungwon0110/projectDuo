@@ -15,6 +15,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM PORTFOLIO WHERE VISIBLE = 1
 	</select>
 
-
+	<insert id="portfolioInsertProc" parameterType="com.spring.blog.dto.PortfolioDto">
+		INSERT INTO PORTFOLIO
+		(PORTFOLIOTITLE,TEAMNAME,LEADER,GITHUBREPO,PAGEURL,SUMMARY,YOUTUBEURL,STARTTIME,ENDTIME,MAINIMAGE,VISIBLE)
+		VALUES
+		(#{portfolioTitle},#{teamName},#{leader},#{githubRepo},#{pageUrl},#{summary},#{youtubeUrl},NOW(),NOW(),#{mainImage},#{visible});
+	</insert>
+	
+	<insert id="portfolioFileInsertProc" parameterType="com.spring.blog.dto.FileDto">
+		INSERT INTO files 
+		(fileKategorie, kategorieNum, fileName, fileUrl, fileDescription) 
+		VALUES 
+		(#{fileKategorie}, #{kategorieNum}, #{fileName}, #{fileUrl}, #{fileDescription});
+	</insert>
 
 </mapper>

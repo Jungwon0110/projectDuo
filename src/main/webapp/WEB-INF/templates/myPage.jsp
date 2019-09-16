@@ -53,7 +53,6 @@
 						<img style="max-height: 300px; max-width: 300px;" id=image src="${user.my_image}"> 
 						<input id="imageUpload" type="hidden" name="my_image" value="${user.my_image}"> 
 						
-
 							
 							<input class="upload-name" value="파일선택" disabled="disabled"> 
 							<label for="file" class="customButton">업로드</label>
@@ -63,8 +62,14 @@
 						<input type="button" class="customButton" onclick="deleteImage()" value="이미지 삭제">
 					</div>
 					<div class="col-lg-7">
-						<label>Name</label> <input class="form-control" type="text" name="name" autocomplete="off" placeholder="이름" value="${user.name}"> <label>Github</label> <input class="form-control" type="text" name="github_account" autocomplete="off" placeholder="github" value="${user.github_account}"> <label>Birth</label> <input class="form-control" type="text" name="birth" autocomplete="off" placeholder="birth" value="${user.birth}">
-						<label>Introduce</label><textarea class="form-control" name="introduce" rows="3" required="required" placeholder="자기소개">${user.introduce}</textarea>
+						<label>Name</label> 
+						<input class="form-control" type="text" name="name" autocomplete="off" placeholder="이름" value="${user.name}"> 
+						<label>Github</label> 
+						<input class="form-control" type="text" name="github_account" autocomplete="off" placeholder="github" value="${user.github_account}">
+						<label>Birth</label> 
+						<input class="form-control" type="text" name="birth" autocomplete="off" placeholder="birth" value="${user.birth}">
+						<label>Introduce</label>
+						<textarea class="form-control" name="introduce" rows="3" required="required" placeholder="자기소개">${user.introduce}</textarea>
 						<button type="submit" class="customButton" onclick="changeForm()">수정 완료</button>
 					</div>
 				</div>

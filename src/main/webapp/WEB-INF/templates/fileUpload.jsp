@@ -44,7 +44,7 @@
 		     <!-- 첨부 버튼 -->
             <div id="attach">
                 <button class="customButton" ><label style="margin:auto" class="waves-effect waves-teal btn-flat" for="uploadInputBox">사진첨부</label></button>
-                <button class="submit"><a href="#" title="등록" class="btnlink">등록</a></button>
+                <input type="button" class="submit btnlink" onclick="uploadImage()" value = "등록"/>
                 <input id="uploadInputBox" style="display: none" type="file" name="filedata" multiple />
             </div>   
             <!-- multipart 업로드시 영역 -->
@@ -79,8 +79,10 @@
                         var imgNum = previewIndex++;
                         $("#preview")
                                 .append(
-                                        "<div class=\"row imageContents\" value=\""+imgNum +"\"><div class=\"preview-box col-md-7\" value=\"" + imgNum +"\">"
+                                        "<form id=\"fileNum"+imgNum+"\" action=\"/portfolioFileInsertProc/"+imgNum+"\" method=\"POST\">"
+                                        +"<div class=\"row imageContents\" value=\""+imgNum +"\"><div class=\"preview-box col-md-7\" value=\"" + imgNum +"\">"
                                                 + "<img class=\"thumbnail\" src=\"" + img.target.result + "\"\/>"
+                                                + "<input id=\"imageUpload"+ imgNum +"\" type=\"hidden\" name=\"my_image\" value=\""+img.target.result+"\">"
                                                 + "<p>"
                                                 + file.name
                                                 + "</p>"
@@ -91,10 +93,10 @@
                                                 + "</div>"
                                                 + "<div class=\"col-md-5\" value=\"" + imgNum +"\">"
                     				   			+ "<h3><input type=\"text\" class=\"form-control\" name=\"photoName"
-                    				   			+ imgNum+"\"required=\"required\" placeholder=\"사진제목\"></h3>" 
+                    				   			+"\"required=\"required\" placeholder=\"사진제목\"></h3>" 
                     				   			+ "<textarea class=\"form-control\" name=\"photoDescription"
-                    				   			+ imgNum+"\" rows=\"5\" required=\"required\">사진설명</textarea>"
-                    				   			+ "</div></div>");
+                    				   			+"\" rows=\"5\" required=\"required\" placeholder=\"사진설명\"></textarea>"
+                    				   			+ "</div></div></form>");
                         files[imgNum] = file;
                     };
                     reader.readAsDataURL(file);
@@ -102,6 +104,24 @@
             } else
                 alert('invalid file input'); // 첨부클릭 후 취소시의 대응책은 세우지 않았다.
         }
+
+		//등록 버튼 눌렀을 때 파일 저장
+        function uploadImage(){
+            console.log(Object.keys(files));
+            for(var i = 0; i <Object.keys(files).length; i++){
+               var searchId="imageUpload"+Object.keys(files)[i];
+               //document.getElementById("fileNum"+Object.keys(files)[i]).submit();
+               var queryString = $("form[id=fileNum"+Object.keys(files)[i]+"]").serialize()
+               console.log(queryString);
+
+               $.ajax({
+					type : 'POST',
+					url:'/portfolioFileInsertProc/'+Object.keys(files)[i],
+					async:true,
+					data:queryString
+               });
+            }
+       }
  
         //preview 영역에서 삭제 버튼 클릭시 해당 미리보기이미지 영역 삭제
         function deletePreview(obj) {
@@ -128,7 +148,17 @@
                 return false;
             }
         }
- 
+
+
+		var file = document.getElementById("uploadInputBox");
+		file.onchange = function(event) {
+        	 var x = document.getElementById("imageUpload0");
+             var y = document.getElementsByClassName("thumbnail"); 
+             var src = y[0].src; 
+             x.value = src;
+		};
+
+        
         $(document).ready(function() {
             //submit 등록. 실제로 submit type은 아니다.
             $('.submit a').on('click',function() {                        

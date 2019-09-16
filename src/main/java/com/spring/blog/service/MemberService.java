@@ -35,7 +35,10 @@ public class MemberService {
     }
 
 	public void memberUpdateService(Account account) {
-		System.out.println(account.toString());
 		membermapper.updateMember(account);
+	}
+	
+	public void updateRole2AdminService(String email) {
+		membermapper.updateRole2Admin(email);
 	}
 }
