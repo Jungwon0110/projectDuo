@@ -51,5 +51,11 @@ public class BoardService {
 	public void fileDeleteService(int boardNum) throws Exception{
 		boardMapper.fileDelete(boardNum);
 	}
+	
+	public List<BoardDto> wappleBoardService(String search) throws Exception{
+		return boardMapper.wappleBoard(search);
+	}
+	
+	
 
 }

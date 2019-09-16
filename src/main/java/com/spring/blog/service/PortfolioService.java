@@ -31,6 +31,10 @@ public class PortfolioService {
 		return portfolioMapper.portfolioList();
 	}
 	
+	public List<PortfolioDto> wapplePortfolioService(String search) throws Exception {
+		return portfolioMapper.wapplePortfolio(search);
+	}
+	
 	public void portfolioInsertService(PortfolioDto portfolioDto) throws Exception {
 		portfolioMapper.portfolioInsertProc(portfolioDto);
 	}

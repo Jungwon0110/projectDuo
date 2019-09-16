@@ -19,6 +19,9 @@ public interface PortfolioMapper {
 
 	// 공개된 포트폴리오 목록
 	public List<PortfolioDto> portfolioList() throws Exception;
+	
+	// 포트폴리오 검색
+	public List<PortfolioDto> wapplePortfolio(String search) throws Exception;
 
 	//포트폴리오 삽입
 	public void portfolioInsertProc(PortfolioDto portfolioDto) throws Exception;
