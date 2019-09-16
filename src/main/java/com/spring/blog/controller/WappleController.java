@@ -31,6 +31,7 @@ public class WappleController {
 		String search = request.getParameter("search");
 		model.addAttribute("notice", boardService.wappleBoardService(search));
 		model.addAttribute("portfolio", portfolioService.wapplePortfolioService(search));
+		model.addAttribute("exSearch",search);
 		System.out.println(search+" 검색완료");
 		return "wappleCompleted";
 	}
