@@ -21,6 +21,11 @@ public class PortfolioService {
 	public int portfolioCount() throws Exception {
 		return portfolioMapper.portfolioCount();
 	}
+	
+	public int portfolioAllCount() throws Exception {
+		return portfolioMapper.portfolioAllCount();
+	}
+
 
 	public List<PortfolioDto> portfolioListService() throws Exception {
 		return portfolioMapper.portfolioList();
@@ -33,5 +38,9 @@ public class PortfolioService {
 	public void portfolioFileInsertService(FileDto fileDto) {
 		// TODO Auto-generated method stub
 		portfolioMapper.portfolioFileInsertProc(fileDto);
+	}
+	
+	public int findPortfolioNum() {
+		return portfolioMapper.findPortfolioNum();
 	}
 }

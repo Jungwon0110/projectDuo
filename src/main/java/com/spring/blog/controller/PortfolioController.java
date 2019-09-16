@@ -36,14 +36,20 @@ public class PortfolioController {
 	
 	@RequestMapping("/portfolioFileInsertProc/{imgNum}")
 	private String portfolioFileInsertProc(HttpServletRequest request, @PathVariable int imgNum) {
-		System.out.println("++++++++++++++++++++++++++++imgNum"+imgNum);
+		int num=0;
+		try {
+			num=portfolioService.findPortfolioNum();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		FileDto fileDto = new FileDto();
 		
 		fileDto.setFileName(request.getParameter("photoName"));
 		fileDto.setFileDescription(request.getParameter("photoDescription"));
 		fileDto.setFileUrl(request.getParameter("my_image"));
 		fileDto.setFileKategorie("portfolio");
-		fileDto.setKategorieNum(imgNum);
+		fileDto.setKategorieNum(num-1);
 		
 		portfolioService.portfolioFileInsertService(fileDto);
 		return "redirect:/portfolio";
@@ -51,9 +57,9 @@ public class PortfolioController {
 
 	@RequestMapping("/portfolioInsertProc")
 	private String portfolioInsertProc(HttpServletRequest request) throws Exception {
-
+		
 		PortfolioDto portfolioDto = new PortfolioDto(); 
-
+		
 		portfolioDto.setPortfolioTitle(request.getParameter("portfolioTitle"));
 		portfolioDto.setTeamName(request.getParameter("teamName"));
 		portfolioDto.setMainImage(request.getParameter("mainImage"));
@@ -64,9 +70,10 @@ public class PortfolioController {
 		portfolioDto.setSummary(request.getParameter("summary"));
 		portfolioDto.setVisible(Integer.parseInt(request.getParameter("visible")));
 		
+		System.out.println("portfolioInsertProc"+portfolioDto.toString());
+		
 		portfolioService.portfolioInsertService(portfolioDto);
-
-		return "redirect:/portfolio";
+		return "redirect:/portfolioInsert";
 	}
 
 }

@@ -9,6 +9,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT COUNT(*)
 		FROM PORTFOLIO WHERE VISIBLE = 1
 	</select>
+	
+	<select id="portfolioAllCount" resultType="Integer">
+		SELECT COUNT(*)
+		FROM PORTFOLIO
+	</select>
 
 	<select id="portfolioList" resultType="com.spring.blog.dto.PortfolioDto">
 		SELECT *
@@ -22,11 +27,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		(#{portfolioTitle},#{teamName},#{leader},#{githubRepo},#{pageUrl},#{summary},#{youtubeUrl},NOW(),NOW(),#{mainImage},#{visible});
 	</insert>
 	
-	<insert id="portfolioFileInsertProc" parameterType="com.spring.blog.dto.FileDto">
+	<insert id="portfolioFileInsertProc" parameterType="com.spring.blog.dto.FileDto" >
 		INSERT INTO files 
 		(fileKategorie, kategorieNum, fileName, fileUrl, fileDescription) 
 		VALUES 
 		(#{fileKategorie}, #{kategorieNum}, #{fileName}, #{fileUrl}, #{fileDescription});
 	</insert>
-
+	
+	<select id="findPortfolioNum" resultType="Integer">	
+		SELECT AUTO_INCREMENT
+		FROM information_schema.tables
+		WHERE table_name = 'portfolio'
+		AND table_schema = DATABASE( ) ;
+	</select>
+	
 </mapper>
