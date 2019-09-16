@@ -29,4 +29,9 @@ public class PortfolioService {
 	public void portfolioInsertService(PortfolioDto portfolioDto) throws Exception {
 		portfolioMapper.portfolioInsertProc(portfolioDto);
 	}
+
+	public void portfolioFileInsertService(FileDto fileDto) {
+		// TODO Auto-generated method stub
+		portfolioMapper.portfolioFileInsertProc(fileDto);
+	}
 }

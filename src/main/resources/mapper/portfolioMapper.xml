@@ -21,5 +21,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		VALUES
 		(#{portfolioTitle},#{teamName},#{leader},#{githubRepo},#{pageUrl},#{summary},#{youtubeUrl},NOW(),NOW(),#{mainImage},#{visible});
 	</insert>
+	
+	<insert id="portfolioFileInsertProc" parameterType="com.spring.blog.dto.FileDto">
+		INSERT INTO files 
+		(fileKategorie, kategorieNum, fileName, fileUrl, fileDescription) 
+		VALUES 
+		(#{fileKategorie}, #{kategorieNum}, #{fileName}, #{fileUrl}, #{fileDescription});
+	</insert>
 
 </mapper>
