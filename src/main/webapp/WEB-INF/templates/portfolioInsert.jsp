@@ -40,9 +40,9 @@
 		   <input type="text" name="pageUrl" autocomplete="off" placeholder="page url" required/><br>
 		   <input type="text" name="youtubeUrl" autocomplete="off" placeholder="youtube url" required/><br><br>
 		   <label>Start Time : </label>
-		   <input type="date" name="startTime" required/>&nbsp;
+		   <input type="date" name="startTime" id="startTime" required onchange="setStartTime()"/>&nbsp;
 		   <label>  End Time : </label>
-		   <input type="date" name="endTime" required/><br><br>
+		   <input type="date" name="endTime" id="endTime"required onchange="setEndTime()"/><br><br>
 		   <label><b>공개여부</b></label><br>
 		   <label>공개</label>
 		   <input type="radio" name="visible" value="1">&nbsp;
@@ -124,6 +124,28 @@
          image.src = "http://dy.gnch.or.kr/img/no-image.jpg";
          imageValue.value = "http://dy.gnch.or.kr/img/no-image.jpg";
       }
+
+      /*프로젝트 날 선택*/
+      function setStartTime(){
+		setEndTime();
+      }
+      function setEndTime(){
+          var start = $('#startTime').val();
+          var end = $('#endTime').val();
+
+          console.log(start);
+
+          if(start==""){
+			alert("프로젝트 시작날을 선택해주세요");
+         }
+          var diffstart = start instanceof Date ? start :new Date(start);
+          var diffend = end instanceof Date ? end :new Date(end);
+		console.log(diffend);
+  		if(diffend-diffstart<0){
+			alert("프로젝트 종료날짜는 프로젝트 시작날보다 같거나 이후여야 합니다.");
+			document.getElementById("endTime").valueAsDate=null;
+  	  	}
+      };
 
       /* 업로드 폼 변경 */
       $(document).ready(
@@ -213,7 +235,7 @@
  		          }
             	  location.href="/portfolio"
               }
-          })
+          });
 		}
 
       //preview 영역에서 삭제 버튼 클릭시 해당 미리보기이미지 영역 삭제
