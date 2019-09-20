@@ -1,6 +1,8 @@
 package com.spring.blog.controller;
 
 import java.nio.file.Files;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -59,8 +61,15 @@ public class PortfolioController {
 	private String portfolioInsertProc(HttpServletRequest request) throws Exception {
 		
 		PortfolioDto portfolioDto = new PortfolioDto(); 
+		String st = request.getParameter("startTime");
+		String et = request.getParameter("endTime");
+		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date startTime = transFormat.parse(st);
+		Date endTime = transFormat.parse(et);
 		
 		portfolioDto.setPortfolioTitle(request.getParameter("portfolioTitle"));
+		portfolioDto.setStartTime(startTime);
+		portfolioDto.setEndTime(endTime);
 		portfolioDto.setTeamName(request.getParameter("teamName"));
 		portfolioDto.setMainImage(request.getParameter("mainImage"));
 		portfolioDto.setLeader(request.getParameter("leader"));

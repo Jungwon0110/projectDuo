@@ -40,7 +40,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		INSERT INTO PORTFOLIO
 		(PORTFOLIOTITLE,TEAMNAME,LEADER,GITHUBREPO,PAGEURL,SUMMARY,YOUTUBEURL,STARTTIME,ENDTIME,MAINIMAGE,VISIBLE)
 		VALUES
-		(#{portfolioTitle},#{teamName},#{leader},#{githubRepo},#{pageUrl},#{summary},#{youtubeUrl},NOW(),NOW(),#{mainImage},#{visible});
+		(#{portfolioTitle},#{teamName},#{leader},#{githubRepo},#{pageUrl},#{summary},#{youtubeUrl},#{startTime},#{endTime},#{mainImage},#{visible});
 	</insert>
 	
 	<insert id="portfolioFileInsertProc" parameterType="com.spring.blog.dto.FileDto" >

@@ -9,6 +9,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       FROM Account 
       WHERE EMAIL=#{email}
    </select>
+   
+   <select id="findMemberByName" parameterType="java.lang.String" resultType="com.spring.blog.domain.Account">
+      SELECT * 
+      FROM Account 
+      WHERE NAME LIKE concat('%',#{name},'%') 
+   </select>
 
    <insert id="insertKey" parameterType="com.spring.blog.dto.AccountKeyDto">
       INSERT INTO 
