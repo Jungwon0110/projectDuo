@@ -1,184 +1,55 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
-<head>
 <title>ProjectDuo</title>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<script src="https://kit.fontawesome.com/1b10eafc75.js"></script>
-<link rel="stylesheet" href="/css/button.css">
-<link rel="stylesheet" href="/css/main.css">
-<link rel="stylesheet" href="/css/jira.css">
-<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/button.css">
 <jsp:include page="bootStrap.jsp"></jsp:include>
-
-</head>
 <body>
-	<script>
-		window.console = window.console || function(t) {
-		};
-	</script>
-	<script>
-		if (document.location.search.match(/type=embed/gi)) {
-			window.parent.postMessage("resize", "*");
-		}
-	</script>
 	<jsp:include page="header.jsp"></jsp:include>
-	<section class="section">
-		<h1>Agile Board Layout</h1>
-		<h4>Drag and Drop Interface</h4>
-	</section>
-	<div class="drag-container">
-		<ul class="drag-list">
-			<li class="drag-column drag-column-on-hold"><span class="drag-column-header">
-					<h2>On Hold</h2> <a class="drag-header-more" data-target="options1"><i class="fas fa-caret-down"></i></a>
-
-
-			</span>
-				<div class="drag-options" id="options1">
-					<label class="drag-options-label"><input type="checkbox"><span>Research</span></label><label class="drag-options-label"><input type="checkbox"><span>Strategy</span></label><label class="drag-options-label"><input type="checkbox"><span>Inspiration</span></label><label class="drag-options-label"><input type="checkbox"><span>Execution</span></label>
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12" style="margin: auto;width: 85%">
+				<label style="font-size: 20px;">
+				<span class="glyphicon glyphicon-list-alt">
+				</span>애자일 보드 목록</label>
+				<table class="table table-hover" width="100%">
+					<colgroup>
+						<col width="5%">
+						<col width="50%">
+						<col  class="mobileHiddenContents" width="10%">
+						<col class="mobileHiddenContents" width="10%">
+						<col class="mobileHiddenContents" width="10%">
+					</colgroup>
+					<tr>
+						<th>No</th>
+						<th>보드명</th>
+						<th>리더</th>
+						<th class="mobileHiddenContents">작성일</th>
+						<th class="mobileHiddenContents">수정일</th>
+					</tr>
+					<c:forEach var="notice" items="${list}">
+						<tr onclick="location.href='/noticeDetail/${notice.boardNum}'" style="cursor: pointer">
+							<td>${notice.boardNum}</td>
+							<td>${notice.boardTitle}</td>
+							<td>${notice.boardAuthor}</td>
+							<td class="mobileHiddenContents"><fmt:formatDate value="${notice.createdDate}" pattern="yyyy.MM.dd HH:mm:ss"/></td>
+							<td class="mobileHiddenContents"><fmt:formatDate value="${notice.updatedDate}" pattern="yyyy.MM.dd HH:mm:ss"/></td>
+						</tr>
+					</c:forEach>
+					<tr>
+					<tr>
+				</table>
+				<div class="btn-group btn-group-sm" role="group" style="float: right;">
+					<button class="customButton" onclick="location.href='/jiraInsert'">보드 생성</button>
 				</div>
-				<ul class="drag-inner-list" id="1">
-					<li class="drag-item"></li>
-					<li class="drag-item"></li>
-				</ul></li>
-			<li class="drag-column drag-column-in-progress"><span class="drag-column-header">
-					<h2>In Progress</h2> <a class="drag-header-more" data-target="options2"><i class="fas fa-caret-down"></i></a>
-			</span>
-				<div class="drag-options" id="options2">
-					<label class="drag-options-label"><input type="checkbox"><span>Research</span></label><label class="drag-options-label"><input type="checkbox"><span>Strategy</span></label><label class="drag-options-label"><input type="checkbox"><span>Inspiration</span></label><label class="drag-options-label"><input type="checkbox"><span>Execution</span></label>
-				</div>
-				<ul class="drag-inner-list" id="2">
-					<li class="drag-item"></li>
-					<li class="drag-item"></li>
-					<li class="drag-item"></li>
-				</ul></li>
-			<li class="drag-column drag-column-needs-review"><span class="drag-column-header">
-					<h2>Needs Review</h2> <a class="drag-header-more" data-target="options3"><i class="fas fa-caret-down"></i></a>
-			</span>
-				<div class="drag-options" id="options3">
-					<label class="drag-options-label"> <input type="checkbox"> <span>Research</span>
-					</label> <label class="drag-options-label"> <input type="checkbox"><span>Strategy</span></label><label class="drag-options-label"><input type="checkbox"><span>Inspiration</span></label><label class="drag-options-label"><input type="checkbox"><span>Execution</span></label>
-				</div>
-				<ul class="drag-inner-list" id="3">
-					<li class="drag-item"></li>
-					<li class="drag-item"></li>
-					<li class="drag-item"></li>
-					<li class="drag-item"></li>
-				</ul></li>
-			<li class="drag-column drag-column-approved"><span class="drag-column-header">
-					<h2>Approved</h2>
-					<a class="drag-header-more" data-target="options4"><i class="fas fa-caret-down"></i></a>
-			</span>
-				<div class="drag-options" id="options4">
-					<label class="drag-options-label"><input type="checkbox"><span>Research</span></label><label class="drag-options-label"><input type="checkbox"><span>Strategy</span></label><label class="drag-options-label"><input type="checkbox"><span>Inspiration</span></label><label class="drag-options-label"><input type="checkbox"><span>Execution</span></label>
-				</div>
-				<ul class="drag-inner-list" id="4">
-					<li class="drag-item"></li>
-					<li class="drag-item"></li>
-				</ul></li>
-		</ul>
+			</div>
+		</div>
 	</div>
-	<section class="section">
-		<a href="https://github.com/bevacqua/dragula">Drag and drop functionality by <strong>bevacqua/dragula</strong></a>
-	</section>
-
-	<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
-	<script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/45226/dragula.min.js"></script>
-	<script id="rendered-js">
-		dragula(
-				[ document.getElementById('1'), document.getElementById('2'),
-						document.getElementById('3'),
-						document.getElementById('4'),
-						document.getElementById('5') ]).
-
-		on('drag', function(el) {
-
-			// add 'is-moving' class to element being dragged
-			el.classList.add('is-moving');
-		}).on('dragend', function(el) {
-
-			// remove 'is-moving' class from element after dragging has stopped
-			el.classList.remove('is-moving');
-
-			// add the 'is-moved' class for 600ms then remove it
-			window.setTimeout(function() {
-				el.classList.add('is-moved');
-				window.setTimeout(function() {
-					el.classList.remove('is-moved');
-				}, 600);
-			}, 100);
-		});
-
-		var createOptions = function() {
-			var dragOptions = document.querySelectorAll('.drag-options');
-
-			// these strings are used for the checkbox labels
-			var options = [ 'Research', 'Strategy', 'Inspiration', 'Execution' ];
-
-			// create the checkbox and labels here, just to keep the html clean. append the <label> to '.drag-options'
-			function create() {
-				for (var i = 0; i < dragOptions.length; i++) {
-					if (window.CP.shouldStopExecution(0))
-						break;
-
-					options.forEach(function(item) {
-						var checkbox = document.createElement('input');
-						var label = document.createElement('label');
-						var span = document.createElement('span');
-						checkbox.setAttribute('type', 'checkbox');
-						span.innerHTML = item;
-						label.appendChild(span);
-						label.insertBefore(checkbox, label.firstChild);
-						label.classList.add('drag-options-label');
-						dragOptions[i].appendChild(label);
-					});
-
-				}
-				window.CP.exitedLoop(0);
-			}
-
-			return {
-				create : create
-			};
-
-		}();
-
-		var showOptions = function() {
-
-			// the 3 dot icon
-			var more = document.querySelectorAll('.drag-header-more');
-
-			function show() {
-				// show 'drag-options' div when the more icon is clicked
-				var target = this.getAttribute('data-target');
-				var options = document.getElementById(target);
-				options.classList.toggle('active');
-			}
-
-			function init() {
-				for (i = 0; i < more.length; i++) {
-					if (window.CP.shouldStopExecution(1))
-						break;
-					more[i].addEventListener('click', show, false);
-				}
-				window.CP.exitedLoop(1);
-			}
-
-			return {
-				init : init
-			};
-
-		}();
-
-		createOptions.create();
-		showOptions.init();
-		//# sourceURL=pen.js
-	</script>
-
-
 </body>
 </html>

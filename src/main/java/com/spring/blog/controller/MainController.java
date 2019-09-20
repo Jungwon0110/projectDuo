@@ -48,11 +48,6 @@ public class MainController {
 	public void jira() {
 	}
 
-	@RequestMapping("/fileUpload")
-	public void fileUpload() {
-	}
-
-
 	@RequestMapping("/user")
 	public void user() {
 	}

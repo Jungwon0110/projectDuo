@@ -3,7 +3,6 @@ package com.spring.blog.controller;
 import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
@@ -96,6 +95,9 @@ public class PortfolioController {
 		portfolioDto.setYoutubeUrl(request.getParameter("youtubeUrl"));
 		portfolioDto.setSummary(request.getParameter("summary"));
 		portfolioDto.setVisible(Integer.parseInt(request.getParameter("visible")));
+		portfolioDto.setStartTime(request.getParameter("startTime"));
+		portfolioDto.setEndTime(request.getParameter("endTime"));
+		
 		
 		System.out.println("portfolioInsertProc"+portfolioDto.toString());
 		
