@@ -35,12 +35,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		OR
 		LEADER LIKE CONCAT('%',#{search},'%'))
 	</select>
+	
+	<insert id="addTeam" parameterType="com.spring.blog.dto.TeamDto">
+		INSERT INTO TEAM
+		(portfolioNum, member)
+		VALUES
+		(#{portfolioNum},#{member});
+	</insert>
 
 	<insert id="portfolioInsertProc" parameterType="com.spring.blog.dto.PortfolioDto">
 		INSERT INTO PORTFOLIO
 		(PORTFOLIOTITLE,TEAMNAME,LEADER,GITHUBREPO,PAGEURL,SUMMARY,YOUTUBEURL,STARTTIME,ENDTIME,MAINIMAGE,VISIBLE)
 		VALUES
-		(#{portfolioTitle},#{teamName},#{leader},#{githubRepo},#{pageUrl},#{summary},#{youtubeUrl},NOW(),NOW(),#{mainImage},#{visible});
+		(#{portfolioTitle},#{teamName},#{leader},#{githubRepo},#{pageUrl},#{summary},#{youtubeUrl},#{startTime},#{endTime},#{mainImage},#{visible});
 	</insert>
 	
 	<insert id="portfolioFileInsertProc" parameterType="com.spring.blog.dto.FileDto" >

@@ -1,5 +1,7 @@
 package com.spring.blog.mapper;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import com.spring.blog.domain.Account;
@@ -28,4 +30,7 @@ public interface MemberMapper {
 
 	//권한변경
 	public void updateRole2Admin(String email);
+
+	//이름으로 멤버찾기
+	public List<Account> findMemberByName(String name);
 }

@@ -1,5 +1,7 @@
 package com.spring.blog.service;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -40,5 +42,9 @@ public class MemberService {
 	
 	public void updateRole2AdminService(String email) {
 		membermapper.updateRole2Admin(email);
+	}
+
+	public List<Account> findMemberByName(String name) {
+		return membermapper.findMemberByName(name);
 	}
 }

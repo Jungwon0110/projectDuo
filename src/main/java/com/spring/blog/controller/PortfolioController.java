@@ -1,7 +1,8 @@
 package com.spring.blog.controller;
 
 import java.nio.file.Files;
-
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.spring.blog.dto.FileDto;
 import com.spring.blog.dto.PortfolioDto;
+import com.spring.blog.dto.TeamDto;
 import com.spring.blog.service.PortfolioService;
 
 @Controller
@@ -40,7 +42,6 @@ public class PortfolioController {
 		try {
 			num=portfolioService.findPortfolioNum();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		FileDto fileDto = new FileDto();
@@ -54,13 +55,38 @@ public class PortfolioController {
 		portfolioService.portfolioFileInsertService(fileDto);
 		return "redirect:/portfolio";
 	}
+	
+	@RequestMapping("/addTeam/{member}")
+	private String addTeam(HttpServletRequest request, @PathVariable String member) {
+		int num=0;
+		try {
+			num=portfolioService.findPortfolioNum();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		TeamDto teamDto = new TeamDto();
+		teamDto.setPortfolioNum(num-1);
+		teamDto.setMember(member);
+		
+		portfolioService.addTeam(teamDto);
+		
+		return "redirect:/portfolio";
+	}
+
 
 	@RequestMapping("/portfolioInsertProc")
 	private String portfolioInsertProc(HttpServletRequest request) throws Exception {
 		
 		PortfolioDto portfolioDto = new PortfolioDto(); 
+		String st = request.getParameter("startTime");
+		String et = request.getParameter("endTime");
+		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date startTime = transFormat.parse(st);
+		Date endTime = transFormat.parse(et);
 		
 		portfolioDto.setPortfolioTitle(request.getParameter("portfolioTitle"));
+		portfolioDto.setStartTime(startTime);
+		portfolioDto.setEndTime(endTime);
 		portfolioDto.setTeamName(request.getParameter("teamName"));
 		portfolioDto.setMainImage(request.getParameter("mainImage"));
 		portfolioDto.setLeader(request.getParameter("leader"));
@@ -69,6 +95,9 @@ public class PortfolioController {
 		portfolioDto.setYoutubeUrl(request.getParameter("youtubeUrl"));
 		portfolioDto.setSummary(request.getParameter("summary"));
 		portfolioDto.setVisible(Integer.parseInt(request.getParameter("visible")));
+		portfolioDto.setStartTime(request.getParameter("startTime"));
+		portfolioDto.setEndTime(request.getParameter("endTime"));
+		
 		
 		System.out.println("portfolioInsertProc"+portfolioDto.toString());
 		

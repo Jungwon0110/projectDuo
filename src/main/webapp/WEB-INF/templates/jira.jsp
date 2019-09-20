@@ -17,7 +17,7 @@
 			<div class="col-xs-12" style="margin: auto;width: 85%">
 				<label style="font-size: 20px;">
 				<span class="glyphicon glyphicon-list-alt">
-				</span>Agile Board List</label>
+				</span>애자일 보드 목록</label>
 				<table class="table table-hover" width="100%">
 					<colgroup>
 						<col width="5%">
@@ -32,24 +32,21 @@
 						<th>리더</th>
 						<th class="mobileHiddenContents">작성일</th>
 						<th class="mobileHiddenContents">수정일</th>
-						<th class="mobileHiddenContents">조회수</th>
 					</tr>
 					<c:forEach var="notice" items="${list}">
 						<tr onclick="location.href='/noticeDetail/${notice.boardNum}'" style="cursor: pointer">
 							<td>${notice.boardNum}</td>
 							<td>${notice.boardTitle}</td>
 							<td>${notice.boardAuthor}</td>
-							
 							<td class="mobileHiddenContents"><fmt:formatDate value="${notice.createdDate}" pattern="yyyy.MM.dd HH:mm:ss"/></td>
 							<td class="mobileHiddenContents"><fmt:formatDate value="${notice.updatedDate}" pattern="yyyy.MM.dd HH:mm:ss"/></td>
-							<td class="mobileHiddenContents">${notice.viewCount}</td>
 						</tr>
 					</c:forEach>
 					<tr>
 					<tr>
 				</table>
 				<div class="btn-group btn-group-sm" role="group" style="float: right;">
-					<button class="customButton" onclick="location.href='/noticeInsert'">공지사항 작성</button>
+					<button class="customButton" onclick="location.href='/jiraInsert'">보드 생성</button>
 				</div>
 			</div>
 		</div>
