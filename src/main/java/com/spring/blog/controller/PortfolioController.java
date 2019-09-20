@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.spring.blog.dto.FileDto;
 import com.spring.blog.dto.PortfolioDto;
+import com.spring.blog.dto.TeamDto;
 import com.spring.blog.service.PortfolioService;
 
 @Controller
@@ -42,7 +43,6 @@ public class PortfolioController {
 		try {
 			num=portfolioService.findPortfolioNum();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		FileDto fileDto = new FileDto();
@@ -56,6 +56,24 @@ public class PortfolioController {
 		portfolioService.portfolioFileInsertService(fileDto);
 		return "redirect:/portfolio";
 	}
+	
+	@RequestMapping("/addTeam/{member}")
+	private String addTeam(HttpServletRequest request, @PathVariable String member) {
+		int num=0;
+		try {
+			num=portfolioService.findPortfolioNum();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		TeamDto teamDto = new TeamDto();
+		teamDto.setPortfolioNum(num-1);
+		teamDto.setMember(member);
+		
+		portfolioService.addTeam(teamDto);
+		
+		return "redirect:/portfolio";
+	}
+
 
 	@RequestMapping("/portfolioInsertProc")
 	private String portfolioInsertProc(HttpServletRequest request) throws Exception {

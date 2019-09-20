@@ -35,6 +35,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		OR
 		LEADER LIKE CONCAT('%',#{search},'%'))
 	</select>
+	
+	<insert id="addTeam" parameterType="com.spring.blog.dto.TeamDto">
+		INSERT INTO TEAM
+		(portfolioNum, member)
+		VALUES
+		(#{portfolioNum},#{member});
+	</insert>
 
 	<insert id="portfolioInsertProc" parameterType="com.spring.blog.dto.PortfolioDto">
 		INSERT INTO PORTFOLIO

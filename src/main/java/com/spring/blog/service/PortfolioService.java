@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.spring.blog.dto.BoardDto;
 import com.spring.blog.dto.FileDto;
 import com.spring.blog.dto.PortfolioDto;
+import com.spring.blog.dto.TeamDto;
 import com.spring.blog.mapper.BoardMapper;
 import com.spring.blog.mapper.PortfolioMapper;
 
@@ -46,5 +47,9 @@ public class PortfolioService {
 	
 	public int findPortfolioNum() {
 		return portfolioMapper.findPortfolioNum();
+	}
+
+	public void addTeam(TeamDto teamDto) {
+		portfolioMapper.addTeam(teamDto);
 	}
 }

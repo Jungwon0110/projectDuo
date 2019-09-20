@@ -66,7 +66,7 @@
 					 <table  class="table table-striped">
 					    <tr ng-repeat="row in choices"  ng-class="{'muted':choice($index)}">
 					      <td>{{$index+1}}</td>
-					      <td>{{row}}</td>
+					      <td name="members">{{row}}</td>
 					      <td>
 					        <button class="btn btn-danger btn-mini" ng-click="deleteRow(row)" ng-hide="isTemp($index)"><i class="fas fa-trash-alt"></i></button>
 					      </td>
@@ -303,6 +303,7 @@
 
 		//등록 버튼 눌렀을 때 파일 저장
 		function uploadImage() {
+			members=document.getElementsByName("members");
 			$.post({
 						type : 'POST',
 						url : '/portfolioInsertProc',
@@ -322,6 +323,13 @@
 									async : true,
 									data : queryString
 								});
+							}
+							for(var i =0; i<members.length;i++){
+								$.ajax({
+									type:'POST',
+									url:'/addTeam/'+members[i].innerHTML,
+									data:String
+								})
 							}
 							location.href = "/portfolio"
 						}
