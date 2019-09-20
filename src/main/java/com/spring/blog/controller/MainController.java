@@ -44,9 +44,6 @@ public class MainController {
 	public void admin() {
 	}
 
-	@RequestMapping("/jira")
-	public void jira() {
-	}
 
 	@RequestMapping("/user")
 	public void user() {

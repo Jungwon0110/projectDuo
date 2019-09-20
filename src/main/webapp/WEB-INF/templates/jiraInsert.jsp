@@ -9,9 +9,9 @@
 <title>Jira</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="css/main.css">
-<link rel="stylesheet" href="css/button.css">
-<link rel="stylesheet" href="css/jira.css">
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/button.css">
+<link rel="stylesheet" href="/css/jira.css">
 <jsp:include page="bootStrap.jsp"></jsp:include>
 <script>
 	window.console = window.console || function(t) {
@@ -28,14 +28,13 @@
 
 	<div class="container">
 		<div class="row">
-			<div class="col-xs-12" style="margin:auto;">
-				<header>
-					<h1>
-						Drag &amp; Drop<br> <span>Agile Board</span>
-					</h1>
-				</header>
+			<div class="col-xs-12" style="margin: auto;">
+					<header>
+						<h1>[${jiraList.agileTitle}]</h1>
+						<span style="float:right;font-size: 20px">담당자 : ${jiraList.agileAuthor}</span>
+					</header>
 			</div>
-			<div class="col-xs-12" style="margin:auto;width:90%">
+			<div class="col-xs-12" style="margin: auto; width: 90%">
 				<section class="add-task-container">
 					<input type="text" maxlength="12" id="taskText" placeholder="New Task..." onkeydown="if (event.keyCode == 13)document.getElementById('add').click()">
 					<button id="add" class="button add-button" onclick="addTask()">Add New Task</button>

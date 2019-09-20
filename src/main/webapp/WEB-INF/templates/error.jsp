@@ -5,6 +5,8 @@
 <meta charset="UTF-8">
 <title>Animation SVG</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.3.0/snap.svg-min.js"></script>
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/button.css">
 <jsp:include page="bootStrap.jsp"></jsp:include>
 <style type="text/css">
 *
