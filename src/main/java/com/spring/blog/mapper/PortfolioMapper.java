@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import com.spring.blog.dto.BoardDto;
 import com.spring.blog.dto.FileDto;
 import com.spring.blog.dto.PortfolioDto;
+import com.spring.blog.dto.TeamDto;
 
 @Repository("com.spring.blog.mapper.PortfolioMapper")
 public interface PortfolioMapper {
@@ -31,4 +32,7 @@ public interface PortfolioMapper {
 
 	//portfolioNum 가져오기
 	public int findPortfolioNum();
+
+	//team 멤버 추가
+	public void addTeam(TeamDto teamDto);
 }

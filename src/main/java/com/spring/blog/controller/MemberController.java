@@ -2,6 +2,7 @@ package com.spring.blog.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.lang.ProcessBuilder.Redirect;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.mail.MessagingException;
@@ -43,6 +44,13 @@ public class MemberController {
 	@ResponseBody
 	private Account findMemberByEmail(@PathVariable String email) throws Exception {
 		Account existmem = memberService.findMemberByEmail(email);
+		return existmem;
+	}
+	
+	@RequestMapping("/findByName/{name}")
+	@ResponseBody
+	private List<Account> findMemberByName(@PathVariable String name) throws Exception {
+		List<Account> existmem = memberService.findMemberByName(name);
 		return existmem;
 	}
 
