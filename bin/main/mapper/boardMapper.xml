@@ -14,12 +14,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT *
 		FROM BOARD
 	</select>
+	
+	<select id="wappleBoard" parameterType="String" resultType="com.spring.blog.dto.BoardDto">
+		SELECT
+		*
+		FROM BOARD
+		WHERE
+		KATEGORIE = 'notice'
+		AND
+		(BOARDTITLE LIKE CONCAT('%',#{search},'%')
+		OR
+		BOARDAUTHOR LIKE CONCAT('%',#{search},'%')
+		OR
+		BOARDCONTENTS LIKE CONCAT('%',#{search},'%'))
+	</select>
 
 	<select id="boardDetail" parameterType="Integer" resultType="com.spring.blog.dto.BoardDto">
 		SELECT
 		*
 		FROM BOARD
-		WHERE
+		WHERE 
+		KATEGORIE = 'NOTICE' 
+		AND
 		BOARDNUM = #{boardNum}
 	</select>
 

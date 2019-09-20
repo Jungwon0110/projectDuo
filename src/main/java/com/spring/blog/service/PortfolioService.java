@@ -21,12 +21,30 @@ public class PortfolioService {
 	public int portfolioCount() throws Exception {
 		return portfolioMapper.portfolioCount();
 	}
+	
+	public int portfolioAllCount() throws Exception {
+		return portfolioMapper.portfolioAllCount();
+	}
+
 
 	public List<PortfolioDto> portfolioListService() throws Exception {
 		return portfolioMapper.portfolioList();
 	}
 	
+	public List<PortfolioDto> wapplePortfolioService(String search) throws Exception {
+		return portfolioMapper.wapplePortfolio(search);
+	}
+	
 	public void portfolioInsertService(PortfolioDto portfolioDto) throws Exception {
 		portfolioMapper.portfolioInsertProc(portfolioDto);
+	}
+
+	public void portfolioFileInsertService(FileDto fileDto) {
+		// TODO Auto-generated method stub
+		portfolioMapper.portfolioFileInsertProc(fileDto);
+	}
+	
+	public int findPortfolioNum() {
+		return portfolioMapper.findPortfolioNum();
 	}
 }

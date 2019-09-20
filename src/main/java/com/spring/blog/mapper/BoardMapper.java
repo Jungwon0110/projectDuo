@@ -18,6 +18,9 @@ public interface BoardMapper {
 
 	// 게시글 상세
 	public BoardDto boardDetail(int boardNum) throws Exception;
+	
+	// 게시글 검색
+	public List<BoardDto> wappleBoard(String search) throws Exception;
 
 	// 게시글 작성
 	public void boardInsert(BoardDto board) throws Exception;
