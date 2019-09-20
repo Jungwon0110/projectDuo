@@ -7,7 +7,7 @@
 <html>
 <head>
 <title>Google</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="css/google.css">
 <link rel="stylesheet" href="css/main.css">
 <link rel="stylesheet" href="css/button.css">
@@ -21,11 +21,11 @@
 		<div class="row">
 			<div class="col-xs-12" style="margin-top: 30%"></div>
 			<div class="col-xs-12" style="text-align:center;margin:auto;margin-bottom:10px;width:100%">
-				<p style="font-size: 6vw;font-family: 'Noto Sans', sans-serif;">
+				<p style="font-size: 10vw;font-family: 'Noto Sans', sans-serif;">
 					<span style="color:blue">W</span><span style="color:red">a</span><span style="color:yellow">p</span><span style="color:blue">p</span><span style="color:green">l</span><span style="color:red">e</span>
 				</p>
 			</div>
-			<form action="wappleCompleted" method="post" style="width:100%">
+			<form action="wappleCompleted" method="post" style="width:90%;margin:auto">
 				<div class="col-xs-12" style="margin: auto;width:100%;max-width:700px">
 					<input type="text" name="search" style="padding: 10px;border-radius: 10px;float: left;width: 89%;" value="${exSearch}">
 					<button type="submit" style="padding:10px;float: right;width: 10%;background: rgba(255,255,255,0.1);border:none;">
