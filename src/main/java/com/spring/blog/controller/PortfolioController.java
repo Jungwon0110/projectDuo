@@ -25,7 +25,7 @@ public class PortfolioController {
 	@Autowired
 	PortfolioService portfolioService;
 
-	@RequestMapping(value ="/portfolio", method = RequestMethod.POST)
+	@RequestMapping(value ="/portfolio", method = RequestMethod.GET)
 	public String portfolioList(Model model) throws Exception {
 		model.addAttribute("list", portfolioService.portfolioListService());
 		model.addAttribute("count", portfolioService.portfolioCount());
@@ -33,7 +33,7 @@ public class PortfolioController {
 		return "portfolio";
 	}
 
-	@RequestMapping(value ="/portfolioInsert", method = RequestMethod.POST)
+	@RequestMapping(value ="/portfolioInsert", method = RequestMethod.GET)
 	public void portfolioInsert() {
 	}
 	

@@ -34,14 +34,14 @@ public class BoardController {
 	@Autowired
 	BoardService boardService;
 
-	@RequestMapping(value = "/noticeBoard", method = RequestMethod.GET) // 게시판 리스트 화면 호출
+	@RequestMapping(value = "/noticeBoard") // 게시판 리스트 화면 호출
 	private String boardList(@RequestBody BoardDto boardDto,Model model) throws Exception {
 		model.addAttribute("list", boardService.boardListService());
 		System.out.println(boardService.boardCount());
 		return "notice/noticeBoard"; // 생성할 jsp
 	}
 
-	@RequestMapping(value = "/noticeInsert", method = RequestMethod.POST)
+	@RequestMapping(value = "/noticeInsert", method = RequestMethod.GET)
 	public String noticeInsert() {
 		return "notice/noticeInsert";
 	}
@@ -98,7 +98,7 @@ public class BoardController {
 		return "redirect:/noticeBoard";
 	}
 
-	@RequestMapping(value ="/noticeUpdate/{boardNum}", method = RequestMethod.POST) // 게시글 수정폼 호출
+	@RequestMapping(value ="/noticeUpdate/{boardNum}", method = RequestMethod.GET) // 게시글 수정폼 호출
 	private String boardUpdateForm(@PathVariable int boardNum, Model model) throws Exception {
 
 		model.addAttribute("detail", boardService.boardDetailService(boardNum));
