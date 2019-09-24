@@ -126,7 +126,7 @@ public class BoardController {
 		return "redirect:/noticeBoard";
 	}
 
-	@RequestMapping(value = "/fileDown/{boardNum}", method = RequestMethod.POST)
+	@RequestMapping(value = "/fileDown/{boardNum}", method = {RequestMethod.POST,RequestMethod.GET})
     private void fileDown(@PathVariable int boardNum, HttpServletRequest request, HttpServletResponse response) throws Exception{
         
         request.setCharacterEncoding("UTF-8");
