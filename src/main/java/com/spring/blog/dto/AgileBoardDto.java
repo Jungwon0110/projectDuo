@@ -4,12 +4,11 @@ import java.util.Date;
 
 public class AgileBoardDto {
 
-    private Integer agileboardnum;
-    private Integer portfolionum;
-    private String agiletitle;
+    private int agileBoardNum;
+    private int portfolioNum;
+    private String agileTitle;
     private String status;
-    private Date starttime;
-    private Date endtime;
+    private Date updatedTime;
     private String description;
     private String pic;
     
@@ -18,40 +17,38 @@ public class AgileBoardDto {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public AgileBoardDto(Integer agileboardnum, Integer portfolionum, String agiletitle, String status, Date starttime, Date endtime, String description, String pic) {
+	public AgileBoardDto(int agileBoardNum, int portfolioNum, String agileTitle, String status, Date updatedTime, String description, String pic) {
 		super();
-		this.agileboardnum = agileboardnum;
-		this.portfolionum = portfolionum;
-		this.agiletitle = agiletitle;
+		this.agileBoardNum = agileBoardNum;
+		this.portfolioNum = portfolioNum;
+		this.agileTitle = agileTitle;
 		this.status = status;
-		this.starttime = starttime;
-		this.endtime = endtime;
+		this.updatedTime = updatedTime;
 		this.description = description;
 		this.pic = pic;
 	}
 	
 	@Override
 	public String toString() {
-		return "AgileBoardDto [agileboardnum=" + agileboardnum + ", portfolionum=" + portfolionum + ", agiletitle=" + agiletitle + ", status=" + status + ", starttime=" + starttime + ", endtime=" + endtime + ", description=" + description + ", pic=" + pic + "]";
+		return "AgileBoardDto [agileBoardNum=" + agileBoardNum + ", portfolioNum=" + portfolioNum + ", agileTitle=" + agileTitle + ", status=" + status + ", updatedTime=" + updatedTime + ", description=" + description + ", pic=" + pic + "]";
 	}
-	
-	public Integer getAgileboardnum() {
-		return agileboardnum;
+	public int getAgileBoardNum() {
+		return agileBoardNum;
 	}
-	public void setAgileboardnum(Integer agileboardnum) {
-		this.agileboardnum = agileboardnum;
+	public void setAgileBoardNum(int agileBoardNum) {
+		this.agileBoardNum = agileBoardNum;
 	}
-	public Integer getPortfolionum() {
-		return portfolionum;
+	public int getPortfolioNum() {
+		return portfolioNum;
 	}
-	public void setPortfolionum(Integer portfolionum) {
-		this.portfolionum = portfolionum;
+	public void setPortfolioNum(int portfolioNum) {
+		this.portfolioNum = portfolioNum;
 	}
-	public String getAgiletitle() {
-		return agiletitle;
+	public String getAgileTitle() {
+		return agileTitle;
 	}
-	public void setAgiletitle(String agiletitle) {
-		this.agiletitle = agiletitle;
+	public void setAgileTitle(String agileTitle) {
+		this.agileTitle = agileTitle;
 	}
 	public String getStatus() {
 		return status;
@@ -59,17 +56,11 @@ public class AgileBoardDto {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public Date getStarttime() {
-		return starttime;
+	public Date getUpdatedTime() {
+		return updatedTime;
 	}
-	public void setStarttime(Date starttime) {
-		this.starttime = starttime;
-	}
-	public Date getEndtime() {
-		return endtime;
-	}
-	public void setEndtime(Date endtime) {
-		this.endtime = endtime;
+	public void setUpdatedTime(Date updatedTime) {
+		this.updatedTime = updatedTime;
 	}
 	public String getDescription() {
 		return description;

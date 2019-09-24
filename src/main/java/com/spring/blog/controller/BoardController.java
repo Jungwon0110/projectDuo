@@ -36,6 +36,7 @@ public class BoardController {
 
 	@RequestMapping(value = "/noticeBoard", method = RequestMethod.GET)
 	private String boardList(Model model) throws Exception {
+
 		model.addAttribute("list", boardService.boardListService());
 		System.out.println(boardService.boardCount());
 		return "notice/noticeBoard"; // 생성할 jsp
