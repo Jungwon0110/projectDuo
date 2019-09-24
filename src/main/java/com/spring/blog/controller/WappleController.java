@@ -23,7 +23,7 @@ public class WappleController {
 	@Autowired
 	PortfolioService portfolioService;
 
-	@RequestMapping(value ="/wapple", method = RequestMethod.POST)
+	@RequestMapping(value ="/wapple", method = RequestMethod.GET)
 	public void wapple() {
 	}
 

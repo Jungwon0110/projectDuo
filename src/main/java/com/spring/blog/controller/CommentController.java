@@ -28,7 +28,7 @@ public class CommentController {
     @Autowired
 	AccountRepository accountRepository;
     
-    @RequestMapping(value ="/commentlist", method = RequestMethod.POST) //댓글 리스트
+    @RequestMapping(value ="/commentlist", method = RequestMethod.GET) //댓글 리스트
     @ResponseBody
     private List<CommentDto> commentListService(Model model) throws Exception{
     	model.addAttribute("user", accountRepository.findMe());

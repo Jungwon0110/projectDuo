@@ -95,7 +95,7 @@ public class MemberController {
 	@Autowired
 	AccountRepository accountRepository;
 
-	@RequestMapping(value ="/myPage", method = RequestMethod.POST)
+	@RequestMapping(value ="/myPage", method = RequestMethod.GET)
 	public void myPage(Model model) {
 		model.addAttribute("user", accountRepository.findMe());
 	}
