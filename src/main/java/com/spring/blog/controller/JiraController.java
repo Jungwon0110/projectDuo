@@ -5,6 +5,7 @@ import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.spring.blog.service.BoardService;
 
@@ -15,10 +16,11 @@ public class JiraController {
 	@Autowired
 	BoardService boardService;
 
-	@RequestMapping("/jiraInsert")
-	public String jiraInsert() {
-		return "jiraInsert";
-	}
+	@RequestMapping("/jira")
+	public void jira() {}
+	
+	@RequestMapping(value ="/jiraInsert", method = RequestMethod.GET)
+	public void jiraInsert() {}
 
 
 }

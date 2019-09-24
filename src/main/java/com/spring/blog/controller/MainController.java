@@ -44,11 +44,7 @@ public class MainController {
 	public void admin() {
 	}
 
-	@RequestMapping("/jira")
-	public void jira() {
-	}
-
-	@RequestMapping("/user")
+ 	@RequestMapping("/user")
 	public void user() {
 	}
 
@@ -79,25 +75,25 @@ public class MainController {
 		return "redirect:/";
 	}
 
-	@RequestMapping("/getPrivateMessage")
+	@RequestMapping(value ="/getPrivateMessage", method = RequestMethod.POST)
 	@PreAuthorize("(#account.userid == principal.Username) or hasRole('ROLE_ADMIN')")
 	public String authstring(Account account, Model model) {
 		model.addAttribute("msg", "당신은 관리자거나 요청 파라미터랑 아이디가 같습니다?");
 		return "authorizedMessage";
 	}
 
-	@RequestMapping("/getUserMessage")
+	@RequestMapping(value ="/getUserMessage", method = RequestMethod.POST)
 	@PreAuthorize("hasRole('ROLE_USER')")
 	public String userMesasge(Account account, Model model) {
 		model.addAttribute("msg", "당신은 한낱 유저입니다. ㅠ");
 		return "authorizedMessage";
 	}
 
-	@RequestMapping("/403")
+	@RequestMapping(value ="/403")
 	public void accessdeniedPage() {
 	}
 
-	@RequestMapping("/userinformation")
+	@RequestMapping(value ="/userinformation", method = RequestMethod.POST)
 	public void userinformation(Model model) {
 		model.addAttribute("user", accountRepository.findMe());
 	}
@@ -105,7 +101,7 @@ public class MainController {
 	@Autowired
 	HelloMessageService helloMessageService;
 
-	@RequestMapping("/message")
+	@RequestMapping(value ="/message")
 	@ResponseBody
 	public String getMessage() {
 		return helloMessageService.getMessage();
