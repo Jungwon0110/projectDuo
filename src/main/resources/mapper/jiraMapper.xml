@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.spring.blog.mapper.JiraMapper">
+
+	<insert id="jiraMake" parameterType="com.spring.blog.dto.AgileBoardStartDto">
+		INSERT INTO
+		AGILEBOARDSTART (AGILETITLE, AGILEAUTHOR,STARTTIME)
+		VALUES(#{agileTitle}, #{agileAuthor},now())
+	</insert>
+	
+	<select id="jiraList" resultType="com.spring.blog.dto.AgileBoardStartDto">
+		SELECT *
+		FROM AGILEBOARDSTART
+	</select>
+	
+	<select id="jiraDetail_1" parameterType="integer"  resultType="com.spring.blog.dto.AgileBoardStartDto">
+		SELECT *
+		FROM AGILEBOARDSTART
+		WHERE
+		AGILENUM=#{agileNum}
+	</select>
+
+</mapper>
