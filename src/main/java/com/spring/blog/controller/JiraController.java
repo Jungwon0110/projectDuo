@@ -38,7 +38,7 @@ public class JiraController {
 		return "redirect:/jira";
 	}
 
-	@RequestMapping("/agileBoard/{agileNum}")
+	@RequestMapping(value = "/agileBoard/{agileNum}",method = RequestMethod.GET)
 	private String agileBoarde(@PathVariable int agileNum, Model model) throws Exception {
 		model.addAttribute("jiraList", jiraService.jiraDetailService(agileNum));
 		System.out.println(agileNum);
