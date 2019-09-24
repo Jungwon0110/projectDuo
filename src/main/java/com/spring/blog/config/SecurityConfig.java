@@ -57,7 +57,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //		http.rememberMe().key("projectDuoKey");
 		http.rememberMe().key(REMEMBER_ME_KEY).rememberMeServices(persistentTokenBasedRememberMeServices());
 
-		// 403 페이지 핸들링
+		//403 페이지 핸들링
 		//http.exceptionHandling().accessDeniedPage("/403");
 	}
 
