@@ -47,7 +47,7 @@ public class MemberController {
 		return existmem;
 	}
 	
-	@RequestMapping(value ="/findByName/{name}", method = RequestMethod.POST)
+	@RequestMapping(value ="/findByName/{name}", method = RequestMethod.GET)
 	@ResponseBody
 	private List<Account> findMemberByName(@PathVariable String name) throws Exception {
 		List<Account> existmem = memberService.findMemberByName(name);
