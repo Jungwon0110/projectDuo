@@ -34,7 +34,8 @@ public class BoardController {
 	@Autowired
 	BoardService boardService;
 
-	@RequestMapping(value = "/noticeBoard", method = {RequestMethod.GET, RequestMethod.POST}) // 게시판 리스트 화면 호출
+
+	@RequestMapping(value = "/noticeBoard", method = RequestMethod.GET)
 	private String boardList(Model model) throws Exception {
 		model.addAttribute("list", boardService.boardListService());
 		System.out.println(boardService.boardCount());
