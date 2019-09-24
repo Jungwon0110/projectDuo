@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.spring.blog.dto.FileDto;
 import com.spring.blog.dto.PortfolioDto;
@@ -24,7 +25,7 @@ public class PortfolioController {
 	@Autowired
 	PortfolioService portfolioService;
 
-	@RequestMapping("/portfolio")
+	@RequestMapping(value ="/portfolio", method = RequestMethod.GET)
 	public String portfolioList(Model model) throws Exception {
 		model.addAttribute("list", portfolioService.portfolioListService());
 		model.addAttribute("count", portfolioService.portfolioCount());
@@ -32,11 +33,11 @@ public class PortfolioController {
 		return "portfolio";
 	}
 
-	@RequestMapping("/portfolioInsert")
+	@RequestMapping(value ="/portfolioInsert", method = RequestMethod.GET)
 	public void portfolioInsert() {
 	}
 	
-	@RequestMapping("/portfolioFileInsertProc/{imgNum}")
+	@RequestMapping(value ="/portfolioFileInsertProc/{imgNum}", method = RequestMethod.POST)
 	private String portfolioFileInsertProc(HttpServletRequest request, @PathVariable int imgNum) {
 		int num=0;
 		try {
@@ -56,7 +57,7 @@ public class PortfolioController {
 		return "redirect:/portfolio";
 	}
 	
-	@RequestMapping("/addTeam/{member}")
+	@RequestMapping(value ="/addTeam/{member}", method = RequestMethod.POST)
 	private String addTeam(HttpServletRequest request, @PathVariable String member) {
 		int num=0;
 		try {
@@ -74,7 +75,7 @@ public class PortfolioController {
 	}
 
 
-	@RequestMapping("/portfolioInsertProc")
+	@RequestMapping(value ="/portfolioInsertProc", method = RequestMethod.POST)
 	private String portfolioInsertProc(HttpServletRequest request) throws Exception {
 		
 		PortfolioDto portfolioDto = new PortfolioDto(); 
@@ -95,8 +96,6 @@ public class PortfolioController {
 		portfolioDto.setYoutubeUrl(request.getParameter("youtubeUrl"));
 		portfolioDto.setSummary(request.getParameter("summary"));
 		portfolioDto.setVisible(Integer.parseInt(request.getParameter("visible")));
-		portfolioDto.setStartTime(request.getParameter("startTime"));
-		portfolioDto.setEndTime(request.getParameter("endTime"));
 		
 		
 		System.out.println("portfolioInsertProc"+portfolioDto.toString());

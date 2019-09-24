@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestPart;
@@ -33,19 +34,19 @@ public class BoardController {
 	@Autowired
 	BoardService boardService;
 
-	@RequestMapping("/noticeBoard") // 게시판 리스트 화면 호출
-	private String boardList(Model model) throws Exception {
+	@RequestMapping(value = "/noticeBoard") // 게시판 리스트 화면 호출
+	private String boardList(@RequestBody BoardDto boardDto,Model model) throws Exception {
 		model.addAttribute("list", boardService.boardListService());
 		System.out.println(boardService.boardCount());
 		return "notice/noticeBoard"; // 생성할 jsp
 	}
 
-	@RequestMapping("/noticeInsert")
+	@RequestMapping(value = "/noticeInsert", method = RequestMethod.GET)
 	public String noticeInsert() {
 		return "notice/noticeInsert";
 	}
 
-	@RequestMapping("/noticeDetail/{boardNum}")
+	@RequestMapping(value = "/noticeDetail/{boardNum}", method = RequestMethod.GET)
 	private String boardDetail(@PathVariable int boardNum, Model model) throws Exception {
 		model.addAttribute("detail", boardService.boardDetailService(boardNum));
 		model.addAttribute("files", boardService.fileDetailService(boardNum)); // 추가
@@ -55,7 +56,7 @@ public class BoardController {
 	@Value("${file.upload.directory}")
 	String uploadFileDir;
 
-	@RequestMapping("/noticeInsertProc")
+	@RequestMapping(value = "/noticeInsertProc", method = RequestMethod.POST)
 	private String boardInsertProc(HttpServletRequest request, @RequestPart MultipartFile files) throws Exception {
 
 		BoardDto board = new BoardDto();
@@ -97,7 +98,7 @@ public class BoardController {
 		return "redirect:/noticeBoard";
 	}
 
-	@RequestMapping("/noticeUpdate/{boardNum}") // 게시글 수정폼 호출
+	@RequestMapping(value ="/noticeUpdate/{boardNum}", method = RequestMethod.GET) // 게시글 수정폼 호출
 	private String boardUpdateForm(@PathVariable int boardNum, Model model) throws Exception {
 
 		model.addAttribute("detail", boardService.boardDetailService(boardNum));
@@ -118,14 +119,14 @@ public class BoardController {
 		return "redirect:/noticeDetail/" + request.getParameter("boardNum");
 	}
 
-	@RequestMapping("/noticeDelete/{boardNum}")
+	@RequestMapping(value = "/noticeDelete/{boardNum}", method = RequestMethod.POST)
 	private String boardDelete(@PathVariable int boardNum) throws Exception {
 		boardService.boardDeleteService(boardNum);
 		boardService.fileDeleteService(boardNum);
 		return "redirect:/noticeBoard";
 	}
 
-	@RequestMapping("/fileDown/{boardNum}")
+	@RequestMapping(value = "/fileDown/{boardNum}", method = RequestMethod.POST)
     private void fileDown(@PathVariable int boardNum, HttpServletRequest request, HttpServletResponse response) throws Exception{
         
         request.setCharacterEncoding("UTF-8");

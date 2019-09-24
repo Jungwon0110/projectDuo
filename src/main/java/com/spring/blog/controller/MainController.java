@@ -34,29 +34,25 @@ public class MainController {
 	@Resource(name = "com.spring.blog.service.MemberService")
 	MemberService memberService;
 
-	@RequestMapping(value = "/")
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index() throws Exception {
 		// System.out.println(boardService.boardCount());
 		return "index";
 	}
 
-	@RequestMapping("/admin")
+	@RequestMapping(value ="/admin", method = RequestMethod.GET)
 	public void admin() {
 	}
 
-	@RequestMapping("/jira")
-	public void jira() {
-	}
-
-	@RequestMapping("/user")
+ 	@RequestMapping(value ="/user", method = RequestMethod.GET)
 	public void user() {
 	}
 
-	@RequestMapping("/login")
+	@RequestMapping(value ="/login", method = RequestMethod.GET)
 	public void login() {
 	}
 
-	@RequestMapping("/registerForm")
+	@RequestMapping(value ="/registerForm", method = RequestMethod.GET)
 	public void registerForm() {
 	}
 
@@ -79,25 +75,25 @@ public class MainController {
 		return "redirect:/";
 	}
 
-	@RequestMapping("/getPrivateMessage")
+	@RequestMapping(value ="/getPrivateMessage", method = RequestMethod.GET)
 	@PreAuthorize("(#account.userid == principal.Username) or hasRole('ROLE_ADMIN')")
 	public String authstring(Account account, Model model) {
 		model.addAttribute("msg", "당신은 관리자거나 요청 파라미터랑 아이디가 같습니다?");
 		return "authorizedMessage";
 	}
 
-	@RequestMapping("/getUserMessage")
+	@RequestMapping(value ="/getUserMessage", method = RequestMethod.GET)
 	@PreAuthorize("hasRole('ROLE_USER')")
 	public String userMesasge(Account account, Model model) {
 		model.addAttribute("msg", "당신은 한낱 유저입니다. ㅠ");
 		return "authorizedMessage";
 	}
 
-	@RequestMapping("/403")
+	@RequestMapping(value ="/403")
 	public void accessdeniedPage() {
 	}
 
-	@RequestMapping("/userinformation")
+	@RequestMapping(value ="/userinformation", method = RequestMethod.GET)
 	public void userinformation(Model model) {
 		model.addAttribute("user", accountRepository.findMe());
 	}
@@ -105,7 +101,7 @@ public class MainController {
 	@Autowired
 	HelloMessageService helloMessageService;
 
-	@RequestMapping("/message")
+	@RequestMapping(value ="/message")
 	@ResponseBody
 	public String getMessage() {
 		return helloMessageService.getMessage();

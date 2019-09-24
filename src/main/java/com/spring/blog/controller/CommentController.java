@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -27,14 +28,14 @@ public class CommentController {
     @Autowired
 	AccountRepository accountRepository;
     
-    @RequestMapping("/commentlist") //댓글 리스트
+    @RequestMapping(value ="/commentlist", method = RequestMethod.GET) //댓글 리스트
     @ResponseBody
     private List<CommentDto> commentListService(Model model) throws Exception{
     	model.addAttribute("user", accountRepository.findMe());
         return commentService.commentListService();
     }
     
-    @RequestMapping("/commentInsert") //댓글 작성 
+    @RequestMapping(value ="/commentInsert", method = RequestMethod.POST) //댓글 작성 
     @ResponseBody
     private int mCommentServiceInsert(HttpServletRequest request) throws Exception{
         
@@ -49,7 +50,7 @@ public class CommentController {
         return commentService.commentInsertService(commentDto);
     }
     
-    @RequestMapping("/commentUpdate") //댓글 수정  
+    @RequestMapping(value ="/commentUpdate", method = RequestMethod.POST) //댓글 수정  
     @ResponseBody
     private int mCommentServiceUpdateProc(@RequestParam int commentNum, @RequestParam String commentContent) throws Exception{
         
@@ -60,7 +61,7 @@ public class CommentController {
         return commentService.commentUpdateService(commentDto);
     }
     
-    @RequestMapping("/commentDelete/{commentNum}") //댓글 삭제  
+    @RequestMapping(value = "/commentDelete/{commentNum}", method = RequestMethod.POST) //댓글 삭제  
     @ResponseBody
     private int mCommentServiceDelete(@PathVariable int commentNum) throws Exception{
         return commentService.commentDeleteService(commentNum);

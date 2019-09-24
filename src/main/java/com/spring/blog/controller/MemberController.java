@@ -40,14 +40,14 @@ public class MemberController {
 	@Autowired
 	JavaMailSender javaMailSender;
 
-	@RequestMapping("/find/{email}")
+	@RequestMapping(value ="/find/{email}", method = RequestMethod.POST)
 	@ResponseBody
 	private Account findMemberByEmail(@PathVariable String email) throws Exception {
 		Account existmem = memberService.findMemberByEmail(email);
 		return existmem;
 	}
 	
-	@RequestMapping("/findByName/{name}")
+	@RequestMapping(value ="/findByName/{name}", method = RequestMethod.POST)
 	@ResponseBody
 	private List<Account> findMemberByName(@PathVariable String name) throws Exception {
 		List<Account> existmem = memberService.findMemberByName(name);
@@ -95,7 +95,7 @@ public class MemberController {
 	@Autowired
 	AccountRepository accountRepository;
 
-	@RequestMapping("/myPage")
+	@RequestMapping(value ="/myPage", method = RequestMethod.GET)
 	public void myPage(Model model) {
 		model.addAttribute("user", accountRepository.findMe());
 	}
